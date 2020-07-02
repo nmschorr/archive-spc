@@ -1,7 +1,20 @@
-<template>
-  <div id="app">
+<!doctype html>
+<html lang="en">
 
-   <div class="relative ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+  <link rel="stylesheet" href="./build/tailwind.css">
+  <script src="./vue.js"></script>
+  <script src="./axios.js"></script>
+  <script src="./vue-overlay.js"></script>
+  <title>Space Exploration</title>
+</head>
+
+<body class="antialiased font-sans">
+  <div class="relative ">
 
 
     <nav class="flex items-center justify-between flex-wrap bg-purple-400 p-6">
@@ -39,6 +52,25 @@
   
           <div class="text-gray-700 text-3xl leading-tight font-medium">
             Space Exploration provides users with genuine reviews validated by the blockchain
+          </div>
+    <!--
+          <div class="text-gray-700 text-xl leading-tight font-medium">Contract name: {{contract.alias}}</div>
+          <div class="text-gray-700 text-xl leading-tight font-medium">Contract Address: {{contract.contractAddress}}</div>
+    -->
+          <!-- <input type="text" class="py-2 px-12 shadow border"> -->
+        </div>
+        <!-- <div class="w-full xl:w-1/2 lg:w-1/3  rounded shadow-md mt-24">
+          <div class="items-center md:flex lg:block xl:flex rounded-lg p-6">
+            <img class="h-32 w-32 md:h-32 md:w-32 rounded-full mx-auto xl:mx-0 xl:mr-6 " src="https://i.pravatar.cc/150?img=68">
+            <div class="text-center md:text-left">
+              <h2 class="text-2xl">Erwin Jeager</h2>
+              <div class="text-purple-500 font-medium text-lg">Review for: Breville JE98XL Juice Fountain Plus 850-Watt Juice Extractor</div>
+              
+              <div class="text-gray-600 leading-tight text-lg  xl:text-xl">I love the Breville line of juicers. I've been juicing & making smoothies for 20 years. While I prefer smoothies (to include all the fiber), when I want a juice, Breville is the best</div>
+            </div>
+          </div>
+        </div> -->
+        <div class="block xl:w-1/2 lg:w-1/3 md:mt-auto md:mb-auto sm:mt-6">
           <div class="text-center relative text-6xl font-extrabold">Try Space Exploration</div> 
           <a href="reviews.html" ><div class="hover:bg-purple-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-purple-400 text-center">Post a Review</div></a>
         </div>
@@ -46,9 +78,10 @@
       
     </main>
   </div>
+</body>
 <script type="module">
-  import axios from 'axios'
-  import Vue from 'vue'
+  import axios from './axios'
+  import Vue from './vue'
 
   import constantsObj from './constants/constants';
   const CHAINID = constantsObj.CHAINID;
