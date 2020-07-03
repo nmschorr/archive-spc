@@ -110,6 +110,8 @@
 
     new Vue({
       el: '#app',
+      name: "AllReviews",
+
       data: {
         contract: null,
         products: null,

@@ -273,8 +273,8 @@
     </main>
   </div>
   <script type="module">
-    import axios from './axios'
-    import Vue from './vue'
+    import axios from 'axios'
+    import Vue from 'vue'
 
     import constantsObj from './constants/constants';
 
@@ -299,6 +299,7 @@
 
     new Vue({
       el: '#app',
+      name: "Reviews",
       data: {
         contract: null,
         products: null,
