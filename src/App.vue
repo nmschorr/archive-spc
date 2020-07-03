@@ -1,31 +1,21 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-   </v-app-bar>
-
-    <v-content>
       <IndexComp/>
-    </v-content>
   </v-app>
 </template>
 
-
 <script>
-import IndexComp from './components/IndexComp';
+  import IndexComp from './components/IndexComp';  //front landing page
+  // import store from './store'
 
-export default {
-  name: 'App',
-
-  components: {
-    IndexComp,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  export default {
+    name: 'App',
+    components: {
+      IndexComp,
+    },
+    data: () => ({
+      //
+    }),
+  };
 </script>
+<template>

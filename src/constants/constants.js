@@ -12,6 +12,11 @@ var GAS_LIMIT = 9000000;
 var POSTURL_w3 = "http://westteam.nulstar.com:8003";
 var POSTURL_w4 = "http://westteam.nulstar.com:8004/jsonrpc";
 
-export var constantsObj = {
-    CHAINID, PW, CONT_ADDY, SENDER, OWNER, BUYER, 
-    VALUE_ASSET, GAS_PRICE, GAS_LIMIT, POSTURL_w3, POSTURL_w4 }
+export default {
+    data: {
+        constantsObj: {
+            CHAINID, PW, CONT_ADDY, SENDER, OWNER, BUYER,
+            VALUE_ASSET, GAS_PRICE, GAS_LIMIT, POSTURL_w3, POSTURL_w4
+        }
+    }
+}

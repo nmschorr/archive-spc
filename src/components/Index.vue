@@ -1,18 +1,17 @@
 <template>
   <v-app>
-    <dashboard-core-view />
+    <IndexComp />
    
-    <dashboard-core-settings />
   </v-app>
 </template>
 
 <script>
   export default {
-    name: 'DashboardIndex',
+    name: 'IndexView',
 
     components: {
 
-      DashboardCoreView: () => import('./components/core/View'),
+      IndexComp: () => import('./components/IndexComp'),
     },
 
     data: () => ({

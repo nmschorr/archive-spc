@@ -1,29 +1,14 @@
 <template>
+
   <container class="antialiased font-sans">
-    <div class="relative ">
+      <v-app-bar
+      app
+      color="primary"
+      dark
+   />
+    <v-card class="relative ">
 
-
-      <nav class="flex items-center justify-between flex-wrap bg-purple-400 p-6">
-        <div class="flex items-center justify-between flex-wrap mx-auto container">
-          <div class="flex items-center flex-shrink-0 text-white mr-6">
-            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-            </svg>
-            <a href="index.html" class="font-semibold text-xl tracking-tight">Space Exploration</a>
-          </div>
-          <div class="flex-1 items-center ml-6">
-            <a class="text-white font-black  mr-8" href="index.html">Home<a>
-                <a class="text-white font-black  mr-8" href="reviews.html?products=1">List ProductIds</a>
-                <a class="text-white font-black  mr-8" href="allreviews.html">List Reviews</a>
-          </div>
-          <a class="hover:bg-purple-700 hover:cursor-pointer rounded shadow-md text-white mr-2 font-bold py-2 px-5 bg-purple-600"
-            href="reviews.html">
-            Write Reviews</a>
-        </div>
-
-      </nav>
+      <NavSam />
       <v-card id="app" class="mx-auto container">
         <v-card class="lg:flex">
           <div class="leading-none sm:leading-relaxed text-center block mt-24 w-full lg:w-2/3 xl:w-1/2">
@@ -56,34 +41,29 @@
     </container>
   </template>>
 
-  <script type="module">
+  <script lang="ts">
+    
     import axios from 'axios'
-    import Vue from 'vue'
-    import constantsObj from './constants/constants';
-    const CHAINID = constantsObj.CHAINID;
-    const PW = constantsObj.PW;
-    const CONT_ADDY = constantsObj.CONT_ADDY;
-    const SENDER = constantsObj.SENDER;
-    const OWNER = constantsObj.OWNER;
-    const BUYER = constantsObj.BUYER;
-    const VALUE_ASSET = constantsObj.VALUE_ASSET;
-    const GAS_PRICE = constantsObj.GAS_PRICE;
-    const GAS_LIMIT = constantsObj.GAS_LIMIT;
-    const POSTURL_w3 = constantsObj.POSTURL_w3;
-    const POSTURL_w4 = constantsObj.POSTURL_w4;
+    import constantsObj from '../constants/constants.js';
+    import NavSam from '../components/NavSam.vue'
 
-    Vue.use(VueLoading);
+    const CHAINID = constantsObj.CHAINID;
+    const CONT_ADDY = constantsObj.CONT_ADDY;
+    const POSTURL_w3 = constantsObj.POSTURL_w3;
     const GCMETHOD = "getContract";
 
-    new Vue({
-      el: '#app',
+    export default {
       name: "IndexComp",
-      data: {
+      data: () => ({
         contract: null,
         products: null,
-      },
+        CHAINID,
+        CONT_ADDY,
+        POSTURL_w3,
+        GCMETHOD
+      }),
       components: {
-        Loading: VueLoading
+        NavSam,
       },
       async mounted() {
         this.getContract()
@@ -108,10 +88,9 @@
           }
         }
       },
-    })
+    }
 
   </script>
 
-  </html>
-  <style src="./styles/tailwind.css">
+  <style src="../styles/tailwind.css">
   </style>

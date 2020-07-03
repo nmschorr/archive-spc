@@ -276,7 +276,7 @@
     import axios from 'axios'
     import Vue from 'vue'
 
-    import constantsObj from './constants/constants';
+    import constantsObj from '../constants/constants.js';
 
     const CHAINID = constantsObj.CHAINID;
     const PW = constantsObj.PW;

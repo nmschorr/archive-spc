@@ -1,96 +1,77 @@
-<!doctype html>
-<html lang="en">
+<template>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-  <link rel="stylesheet" href="./build/tailwind.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./styles/allrev.css" />
+  <container class="antialiased font-sans">
+    <div id="app" class="relative ">
+      <loading :active.sync="visible" :can-cancel="true"></loading>
 
-  <script src="vue.js"></script>
-  <script src="vue-overlay.js"></script>
-  <title>Space Exploration</title>
-</head>
-
-<body class="antialiased font-sans">
-  <div id="app" class="relative ">
-    <loading :active.sync="visible" :can-cancel="true"></loading>
-
-    <nav class="flex items-center justify-between flex-wrap bg-purple-400 p-6">
-      <div class="flex items-center justify-between flex-wrap mx-auto container">
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
-          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-          </svg>
-          <a href="index.html" class="font-semibold text-xl tracking-tight">Space Exploration</a>
-        </div>
-        <div class="flex-1 items-center ml-6">
-          <a class="text-white font-black  mr-8" href="index.html">Home<a>
-              <a class="text-white font-black  mr-8" href="reviews.html?products=1">List ProductIds</a>
-              <a class="text-white font-black  mr-8" href="allreviews.html">List Reviews</a>
-        </div>
-        <a class="hover:bg-purple-700 hover:cursor-pointer rounded shadow-md text-white mr-2 font-bold py-2 px-5 bg-purple-600"
-          href="reviews.html">
-          Write Reviews</a>
-      </div>
-
-    </nav>
-    <main id="app" class="mx-auto container">
-
-
-      <h1 class="mt-4 text-center font-extrabold text-2xl">
-
-
-        <span class="">
-          All Reviews
-        </span>
-      </h1>
-
-
-
-      <div class="lg:flex lg:justify-between">
-
-        <div class="w-full ">
-          <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" v-if="contract">
-            <div class="text-center relative text-4xl font-extrabold">Contract Info</div>
-            <div>Alias: {{contract.alias}}</div>
+      <nav class="flex items-center justify-between flex-wrap bg-purple-400 p-6">
+        <div class="flex items-center justify-between flex-wrap mx-auto container">
+          <div class="flex items-center flex-shrink-0 text-white mr-6">
+            <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+            </svg>
+            <a href="index.html" class="font-semibold text-xl tracking-tight">Space Exploration</a>
           </div>
+          <div class="flex-1 items-center ml-6">
+            <a class="text-white font-black  mr-8" href="index.html">Home<a>
+                <a class="text-white font-black  mr-8" href="reviews.html?products=1">List ProductIds</a>
+                <a class="text-white font-black  mr-8" href="allreviews.html">List Reviews</a>
+          </div>
+          <a class="hover:bg-purple-700 hover:cursor-pointer rounded shadow-md text-white mr-2 font-bold py-2 px-5 bg-purple-600"
+            href="reviews.html">
+            Write Reviews</a>
+        </div>
+      </nav>
 
-          <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" v-if="reviews.length > 0">
-            <div class="text-center relative text-4xl font-extrabold">{{reviews.length}} review(s)</div>
-            <!-- <div class="text-center relative text-2xl font-extrabold"></div>  -->
-            <div class="overflow-auto h-screen">
-              <div class="w-full rounded border" v-for="review in reviews">
-                <div class="items-center md:flex lg:block xl:flex rounded-lg p-6">
-                  <!-- <img class="h-16 w-16 md:h-16 md:w-16 rounded-full mx-auto xl:mx-0 xl:mr-6 "
-                    src="https://i.pravatar.cc/150?img=68"> -->
-                  <div class="text-center md:text-left">
-                    <!-- <h2 class="text-2xl">Erwin Jeager</h2> -->
-                    <div class="text-purple-500 font-medium text-base">Review for: {{review.productId}}</div>
+      <main id="app" class="mx-auto container">
+        <h1 class="mt-4 text-center font-extrabold text-2xl">
+          <span class="">
+            All Reviews
+          </span>
+        </h1>
+        <div class="lg:flex lg:justify-between">
 
-                    <div class="text-gray-600 leading-tight text-base  xl:text-base">{{review.comments}}</div>
+          <div class="w-full ">
+            <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" v-if="contract">
+              <div class="text-center relative text-4xl font-extrabold">Contract Info</div>
+              <div>Alias: {{contract.alias}}</div>
+            </div>
+
+            <div class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" v-if="reviews.length > 0">
+              <div class="text-center relative text-4xl font-extrabold">{{reviews.length}} review(s)</div>
+              <div class="overflow-auto h-screen">
+                <div class="w-full rounded border" v-for="review in reviews">
+                  <div class="items-center md:flex lg:block xl:flex rounded-lg p-6">
+                      src="https://i.pravatar.cc/150?img=68"> -->
+                    <div class="text-center md:text-left">
+                      <div class="text-purple-500 font-medium text-base">Review for: {{review.productId}}</div>
+
+                      <div class="text-gray-600 leading-tight text-base  xl:text-base">{{review.comments}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
 
           </div>
 
         </div>
 
+      </main>
       </div>
+    </container>
+  </template>
 
-    </main>
-  </div>
-  <script type="module">
+  <script>
+import Allrevnav from '@\components\Allrevnav.vue'
+
     import axios from 'axios'
     import Vue from 'vue'
 
-    import constantsObj from './constants/constants.js';
+    import constantsObj from '../constants/constants.js';
     const CHAINID = constantsObj.CHAINID;
     const PW = constantsObj.PW;
     const CONT_ADDY = constantsObj.CONT_ADDY;
@@ -105,14 +86,9 @@
     const POSTURL_w3 = constantsObj.POSTURL_w3;
     const POSTURL_w4 = constantsObj.POSTURL_w4;
 
-
-    Vue.use(VueLoading);
-
-    new Vue({
-      el: '#app',
+    export default {
       name: "AllReviews",
-
-      data: {
+      data: () ({
         contract: null,
         products: null,
         reviews: [],
@@ -122,7 +98,7 @@
         showReviewPrompt: false,
         reviewPosted: false,
         visible: false
-      },
+      }),
       components: {
         Loading: VueLoading
       },
@@ -214,10 +190,9 @@
       },
 
     })
-
-
   </script>
 
-</body>
 
-</html>
+
+  <style src="../styles/tailwind.css">
+  </style>
