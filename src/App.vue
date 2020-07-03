@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Index from './components/Inde';  //front landing page
+  import Index from './components/Index';  //front landing page
   // import store from './store'
 
   export default {
