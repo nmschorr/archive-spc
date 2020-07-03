@@ -73,7 +73,6 @@
 import Allrevnav from "./Allrevnav.vue";
 
 import axios from "axios";
-import Vue from "vue";
 
 import constantsObj from "../constants/constants.js";
 const CHAINID = constantsObj.CHAINID;
@@ -132,7 +131,9 @@ export default {
     visible: false,
     CHAINID
   }),
-  components: {},
+  components: {
+    Allrevnav
+  },
   async mounted() {
     await this.getAllProductIds();
     await this.getAllReviews();
@@ -145,7 +146,7 @@ export default {
       let REQUEST_TYPE = "getAllProductIds";
       let LASTLIST = [];
 
-      let ID_D = 900033;
+      // let ID_D = 900033;
       let PARAMS = [
         this.CHAINID,
         this.CONT_ADDY,
@@ -190,7 +191,7 @@ export default {
       let LASTLIST = [productId];
       let METHOD_D = "invokeView";
       let REQUEST_TYPE = "getReviews";
-      let ID_D = 900033;
+      // let ID_D = 900033;
       let PARAMS = [
         this.CHAINID,
         this.CONT_ADDY,
@@ -227,8 +228,5 @@ export default {
   }
 };
 </script>
-
-
-
-  <style src="../styles/tailwind.css">
+  <style src="../assets/styles/tailwind.css">
   </style>

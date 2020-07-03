@@ -16,7 +16,7 @@
             <a href="index.html" class="font-semibold text-xl tracking-tight">Space Exploration</a>
           </div>
           <div class="flex-1 items-center ml-6">
-            <a class="text-white font-black  mr-8" href="index.html">Home<a>
+            <a class="text-white font-black  mr-8" href="index.html">Home</a>
                 <a class="text-white font-black  mr-8" href="reviews.html?products=1">List ProductIds</a>
                 <a class="text-white font-black  mr-8" href="allreviews.html">List Reviews</a>
           </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-export default {
-  name: "Navsam"
-}
+  export default {
+    name: "Navsam"
+  }
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import IndexComp from './components/IndexComp.vue'
+import Index from './components/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-      component: IndexComp
+      component: Index
   },
   // {
   //   path: '/about',
