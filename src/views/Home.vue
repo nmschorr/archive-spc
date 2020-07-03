@@ -1,18 +1,18 @@
 <template>
   <div class="home">
     <img alt="NULS logo" src="../assets/logo.png">
-    <IndexComp msg="Welcome to NULS Tokenomics"/>
+    <Index msg="Welcome to NULS Tokenomics"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-  import IndexComp from '@/components/IndexComp.vue'
+  import Index from '@/components/Index.vue'
 
   export default {
     name: 'Home',
     components: {
-      IndexComp
+      Index
     }
   }
   </script>

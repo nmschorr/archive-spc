@@ -1,17 +1,17 @@
 <template>
   <v-app>
-      <IndexComp/>
+      <Index/>
   </v-app>
 </template>
 
 <script>
-  import IndexComp from './components/IndexComp';  //front landing page
+  import Index from './components/Inde';  //front landing page
   // import store from './store'
 
   export default {
     name: 'App',
     components: {
-      IndexComp,
+      Index,
     },
     data: () => ({
       //

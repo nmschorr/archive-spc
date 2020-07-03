@@ -28,11 +28,8 @@
       </nav>
 </template>
 
-
 <script>
 export default {
-  name: "NavSam",
-	props: {
-  }
+  name: "Navsam"
 }
 </script>
