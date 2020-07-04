@@ -4,12 +4,12 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'hash',
+  // mode: 'hash',   hash is default
   // base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      component: () => import('../components/IndexComp'),
+      component: () => import('../components/HelloWorld'),
       children: [
         {
           name: 'AllReviews',

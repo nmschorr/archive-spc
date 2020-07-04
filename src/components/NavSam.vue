@@ -23,25 +23,34 @@
           class="font-semibold text-xl tracking-tight"
         >Space Exploration</a>
       </div>
+
       <div class="flex-1 items-center ml-6">
         <a
           class="text-white font-black  mr-8"
           href="index.html"
-        >Home</a>
+        >
+          Home
+        </a>
         <a
           class="text-white font-black  mr-8"
           href="reviews.html?products=1"
-        >List ProductIds</a>
+        >
+          List ProductIds
+        </a>
         <a
           class="text-white font-black  mr-8"
           href="allreviews.html"
-        >List Reviews</a>
+        >
+          List Reviews
+        </a>
       </div>
+      
       <a
         class="hover:bg-purple-700 hover:cursor-pointer rounded shadow-md text-white mr-2 font-bold py-2 px-5 bg-purple-600"
         href="reviews.html"
       >
-        Write Reviews</a>
+        Write Reviews
+      </a>
     </div>
   </nav>
 </template>
@@ -51,3 +60,5 @@ export default {
   name: 'Navsam'
 }
 </script>
+<style src="../assets/styles/tailwind.css">
+</style>

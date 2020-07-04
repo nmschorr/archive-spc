@@ -1,12 +1,11 @@
-/* eslint-disable camelcase */
+/* eslint-disable vue/max-attributes-per-line */
 <template>
-  <container class="antialiased font-sans">
+  <v-container>
     <v-app-bar
       app
-      color="primary"
+      color="green"
       dark
     />
-
     <Navsam />
     <v-card id="app">
       <v-card>
@@ -41,31 +40,41 @@
         </div>
       </v-card>
     </v-card>
-  </container>
-</template>>
+  </v-container>
+</template>
 
-<script lang="ts">
-import axios from 'axios'
-import cobj from '../constants/constants.js'
-import Navsam from './Navsam.vue'
+<script>
+  import axios from 'axios'
+  import cobj from '../constants/constants.js'
+  import Navsam from './Navsam.vue'
 
-const CHAINID = cobj.CHAINID
-const CONT_ADDY = cobj.CONT_ADDY
-const POSTURL_w3 = cobj.POSTURL_w3
-const GCMETHOD = 'getContract'
-const stringn = 'text-gray-700 text-3xl leading-tight font-medium'
-const stringn2 = 'block xl:w-1/2 lg:w-1/3 md:mt-auto md:mb-auto sm:mt-6'
-const stringn3 =
-  'hover:bg-purple-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-purple-400 text-center'
-const stringn4 =
-  'leading-none sm:leading-relaxed text-center block mt-24 w-full lg:w-2/3 xl:w-1/2'
-
-export default {
-  name: 'IndexComp',
+  const CHAINID = cobj.CHAINID
+  const CONT_ADDY = cobj.CONT_ADDY
+  const POSTURL_w3 = cobj.POSTURL_w3
+  const GCMETHOD = 'getContract'
+  const stringn = 'text-gray-700 text-3xl leading-tight font-medium'
+  const stringn2 = 'block xl:w-1/2 lg:w-1/3 md:mt-auto md:mb-auto sm:mt-6'
+  const stringn3 =
+    'hover:bg-purple-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-purple-400 text-center'
+  const stringn4 =
+    'leading-none sm:leading-relaxed text-center block mt-24 w-full lg:w-2/3 xl:w-1/2'
+  
+  
+  export default {
+  name: 'HelloWorld',
   components: {
-    Navsam
+    Navsam,
   },
+
+  props: {
+    msg: { type: String,
+           default: 'hi there'
+    }
+  },
+
   data: () => ({
+    // eslint-disable-next-line vue/require-default-prop
+    tmsg: 'hi there',
     stringn,
     stringn2,
     stringn3,
@@ -77,7 +86,7 @@ export default {
     POSTURL_w3,
     GCMETHOD
   }),
-  async mounted () {
+  mounted () {
     this.getContract()
   },
   methods: {
@@ -101,7 +110,7 @@ export default {
     }
   }
 }
-</script>
 
-  <style src="../assets/styles/tailwind.css">
-  </style>
+</script>
+<style src="../assets/styles/tailwind.css">
+</style>
