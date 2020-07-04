@@ -1,93 +1,93 @@
 <template>
   <container :class="containerfont">
-    <sheet 
-      id="app" 
+    <sheet
+      id="app"
     >
-      <loading 
-        :active.sync="visible" 
-        :can-cancel="true">
-      </loading>
+      <loading
+        :active.sync="visible"
+        :can-cancel="true"
+      />
 
-    <Allrevnav />
+      <Allrevnav />
 
       <card id="app">
         <h1 :class="h1style">
-            All Reviews
+          All Reviews
         </h1>
         <v-card :class="allrev">
-
-          <v-card 
+          <v-card
             width="100%"
           >
-            <v-card 
+            <v-card
+              v-if="contract"
               rounded
               color="white"
               class="pt-6 pb-8 mb-4"
-              v-if="contract"
             >
               <span :class="fonts10">Contract Info</span>
 
               <span>Alias: {{ contract.alias }}</span>
             </v-card>
 
-            <v-card 
-              :class="fonts9" 
+            <v-card
               v-if="reviews.length > 0"
+              :class="fonts9"
             >
-              <span :class="spanrev"  >
+              <span :class="spanrev">
                 {{ reviews.length }} review(s)
               </span>
 
               <v-card class="overflow-auto h-screen">
-                
                 <v-card
+                  v-for="review in reviews"
+                  :key="review"
                   rounded
                   border
                   width="100%"
-                  v-for="review in reviews"
-                  :key="review"
                 >
                   <v-card :class="reviewcard">
-                       
                     <v-card class="text-center md:text-left">
-                      <v-card :class="fontpurple">Review for: {{ review.productId }}</v-card>
+                      <v-card :class="fontpurple">
+                        Review for: {{ review.productId }}
+                      </v-card>
 
-                      <v-card :class="fontrevcomments">{{ review.comments }}</v-card>
+                      <v-card :class="fontrevcomments">
+                        {{ review.comments }}
+                      </v-card>
                     </v-card>
                   </v-card>
                 </v-card>
               </v-card>
-
             </v-card>
-
           </v-card>
-
         </v-card>
+      </card>
+    </sheet>
+  </container>
+</template>
 
-       </card>
-      </sheet>
-    </container>
-  </template>
-
-  <script lang="ts">
+<script lang="ts">
 import Allrevnav from "./Allrevnav.vue";
 
 import axios from "axios";
+// import '../constants/constants.js'
 
-import constantsObj from "../constants/constants.js";
-const CHAINID = constantsObj.CHAINID;
-const PW = constantsObj.PW;
-const CONT_ADDY = constantsObj.CONT_ADDY;
-const SENDER = constantsObj.SENDER;
-const OWNER = constantsObj.OWNER;
-const BUYER = constantsObj.BUYER;
+import cobj from "../constants/constants.js";
+var x = cobj.data.cobj.CHAINID;
 
-const VALUE_ASSET = constantsObj.VALUE_ASSET;
-const GAS_PRICE = constantsObj.GAS_PRICE;
-const GAS_LIMIT = constantsObj.GAS_LIMIT;
+var CHAINID = cobj.data.cobj.CHAINID;
+const PW = cobj.data.cobj.PW;
+const CONT_ADDY = cobj.data.cobj.CONT_ADDY;
+const SENDER = cobj.data.cobj.SENDER;
+const OWNER = cobj.data.cobj.OWNER;
+const BUYER = cobj.data.cobj.BUYER;
 
-const POSTURL_w3 = constantsObj.POSTURL_w3;
-const POSTURL_w4 = constantsObj.POSTURL_w4;
+const VALUE_ASSET = cobj.data.cobj.VALUE_ASSET;
+const GAS_PRICE = cobj.data.cobj.GAS_PRICE;
+const GAS_LIMIT = cobj.data.cobj.GAS_LIMIT;
+
+const POSTURL_w3 = cobj.data.cobj.POSTURL_w3;
+const POSTURL_w4 = cobj.data.cobj.POSTURL_w4;
 const h1style = "mt-4 text-center font-extrabold text-2xl";
 const containerfont = "antialiased font-sans";
 const fontpurple = "text-purple-500 font-medium text-base";
@@ -100,6 +100,9 @@ const allrev = "lg:flex lg:justify-between";
 
 export default {
   name: "AllReviews",
+  components: {
+    Allrevnav
+  },
   data: () => ({
     PW,
     CONT_ADDY,
@@ -131,9 +134,6 @@ export default {
     visible: false,
     CHAINID
   }),
-  components: {
-    Allrevnav
-  },
   async mounted() {
     await this.getAllProductIds();
     await this.getAllReviews();
@@ -141,13 +141,13 @@ export default {
   },
   methods: {
     async getAllProductIds() {
-      let RET_TYPE = "() return String";
-      let METHOD_D = "invokeView";
-      let REQUEST_TYPE = "getAllProductIds";
+      const RET_TYPE = "() return String";
+      const METHOD_D = "invokeView";
+      const REQUEST_TYPE = "getAllProductIds";
       let LASTLIST = [];
 
       // let ID_D = 900033;
-      let PARAMS = [
+      const PARAMS = [
         this.CHAINID,
         this.CONT_ADDY,
         REQUEST_TYPE,
@@ -155,7 +155,7 @@ export default {
         LASTLIST
       ];
 
-      let loader = this.$loading.show({
+      const loader = this.$loading.show({
         loader: "dots"
       });
       try {
@@ -187,12 +187,12 @@ export default {
       await Promise.all(promiseArray);
     },
     async getReviews(productId) {
-      let RET_TYPE = "(String productId) return Ljava/util/List;";
-      let LASTLIST = [productId];
-      let METHOD_D = "invokeView";
-      let REQUEST_TYPE = "getReviews";
+      const RET_TYPE = "(String productId) return Ljava/util/List;";
+      const LASTLIST = [productId];
+      const METHOD_D = "invokeView";
+      const REQUEST_TYPE = "getReviews";
       // let ID_D = 900033;
-      let PARAMS = [
+      const PARAMS = [
         this.CHAINID,
         this.CONT_ADDY,
         REQUEST_TYPE,
@@ -200,7 +200,7 @@ export default {
         LASTLIST
       ];
 
-      let loader = this.$loading.show({
+      const loader = this.$loading.show({
         loader: "dots"
       });
       try {
