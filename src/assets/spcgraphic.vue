@@ -37,3 +37,4 @@
       }
 
 </script>
+<style src="../assets/styles/tailwind.css" />

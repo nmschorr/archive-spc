@@ -4,18 +4,16 @@
       alt="Vue logo"
       src="../assets/logo.png"
     >
-    <Vuemain msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Vuemain from '@/components/Vuemain.vue'
+// import Vuemain from '@/components/Vuemain.vue'
 
 export default {
   name: 'Home',
   components: {
-    Vuemain
   }
 }
 </script>

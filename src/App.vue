@@ -2,9 +2,6 @@
   <v-app 
     id="app"
   >   
-    above bar
-    <Vuemainnav />
-    below bar
     <Vuemain />
 
     <v-footer
@@ -16,12 +13,13 @@
 </template>
 
 <script>
+  import Vuemain from './components/Vuemain.vue'
 
 export default {
-  name: 'App',
+  // name: 'App',
   components: {
-    Vuemainnav: () => './components/Vuemainnav.vue',
-    Vuemain: () => './components/Vuemain.vue'
+    // Vuemainnav,
+    Vuemain
   }
 }
 </script>

@@ -1,58 +1,66 @@
 <template>
-  <v-system-bar
-    window
-    absolute
-    app
-    color="indigo"
-    elevation="24"
-    min-width="200px"
-    shrink-on-scroll
-    prominent
-    scroll-target="#scrolling-techniques"
+  <div
+    id="appbar"
   >
-    <v-app-bar-nav-icon />
-
-    <v-toolbar-title>Welcome to Space Exploration</v-toolbar-title>
-    <v-spacer />
-
-    <v-btn
-      color="#280680"
-      min-width="40px"
-      min-height="40px"
-      @click="indi.plink"
+    <v-app-bar
+      color="#8a57d1"
+      dark
+      elevation="24"
+      height="120px"
+      width="90%"
+      class="ml-5"
+      clipped-left
+      rounded
+      prominent
     >
-      {{ indi.pname }}
-    </v-btn>
+      <v-app-bar-nav-icon />
 
-    <v-btn
-      min-width="40px"
-      min-height="40px"
-      @click="revs.plink"
-    >
-      {{ revs.pname }}
-    </v-btn>
+      <v-toolbar-title>Welcome to Space Exploration</v-toolbar-title>
+      <v-spacer />
 
-    <v-btn
-      min-width="40px"
-      min-height="40px"
-      @click="allrevs.plink"
-    >
-      {{ allrevs.pname }}
-    </v-btn>
-    <v-spacer />
+      <v-btn
+        color=""
+        min-width="40px"
+        min-height="100px"
+        @click="indi.plink"
+      >
+        {{ indi.pname }}
+      </v-btn>
+      <v-spacer />
 
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
+      <v-btn
+        min-width="40px"
+        min-height="100px"
+        color="#9f7aea"
+        @click="revs.plink"
+      >
+        {{ revs.pname }}
+      </v-btn>
+      <v-spacer />
 
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
+      <v-btn
+        color="#9f7aea"
+        min-width="40px"
+        min-height="100px"
+        @click="allrevs.plink"
+      >
+        {{ allrevs.pname }}
+      </v-btn>
+      <v-spacer />
 
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
-  </v-system-bar>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
@@ -64,7 +72,7 @@
     plink: "reviews.html?products=1",
     pname: "Show Products" 
     }
-  const listrevs = {
+  const allrevs = {
     plink: "Show Reviews",
     pname: "allreviews.html" 
     }
@@ -74,11 +82,11 @@
     }
 
   export default {
-    name: "Vuemainnav",
+    name: 'Vuemainnav',
     data: () => ({
       indi,
       revs,
-      listrevs,
+      allrevs,
       writerevs,
     })
   }

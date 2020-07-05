@@ -259,7 +259,7 @@ const newc =
 const flexj = 'flex justify-end mr-4 hover:cursor-pointer';
 const newc2 = 'block text-gray-700 text-sm font-bold mb-2';
 
-console.log('chainid: ' + CHAINID);
+// console.log('chainid: ' + CHAINID);
 
 export default {
   name: 'Reviews',

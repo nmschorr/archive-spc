@@ -222,5 +222,3 @@ export default {
   }
 };
 </script>
-  <style src="../assets/styles/tailwind.css">
-  </style>

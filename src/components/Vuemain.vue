@@ -1,23 +1,25 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
-  <!-- Provides the application the proper gutter -->
-  <v-main>
-    <v-container
-      id="mainc"
-      fluid
-    >
-      <Spcgraphic 
-        v-if="showgr"
-      />
-      <AllReviews 
-        v-if="showallrev"
-      />
+  <div>
+    <Vuemainnav />
+    <!-- Provides the application the proper gutter -->
+    <v-main>
+      <v-container
+        id="mainc"
+        fluid
+      >
+        <Spcgraphic />
 
-      <Reviews 
-        v-if="showrev"
-      />
-    </v-container>  
-  </v-main>
+        <AllReviews 
+          v-show="showallrev"
+        />
+
+        <Reviews 
+          v-show="showrev"
+        />
+      </v-container>  
+    </v-main>
+  </div>
 </template>
 
 <script>
@@ -28,6 +30,8 @@
   import Reviews from './Reviews'
   import Vuemainnav from './Vuemainnav'
 
+  // import Vuemainnav from './Vuemainnav'
+
   const CHAINID = cobj.data.cobj.CHAINID
   const CONT_ADDY = cobj.data.cobj.CONT_ADDY
   const POSTURL_w3 = cobj.data.cobj.POSTURL_w3
@@ -37,8 +41,7 @@
     name: 'Vuemain',
     components: {
       Spcgraphic,
-      Reviews,
-      AllReviews
+      Vuemainnav
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop
@@ -77,4 +80,3 @@
     }
   }
 </script>
-<style src="../assets/styles/tailwind.css" />
