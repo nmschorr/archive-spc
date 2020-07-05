@@ -1,61 +1,30 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
-  <v-container>
+  <v-app>
     <v-app-bar
       app
-      color="green"
+      color="deep-purple accent-4"
     />
     <Navsam />
-    <v-card id="app">
-      <v-card>
-        <div :class="stringn4">
-          <div :class="fontbigwt">
-            <div 
-              :class="fontpurple"
-            >
-              Genuine
-            </div> 
-            Reviews
-          </div>
 
-          <div :class="fontorange">
-            in
-          </div>
-          <div :class="fontbigwt">
-            the 
-            <div :class="fontbigwhite"> 
-              blockchain 
-            </div>
-          </div>
-
-          <div
-            :class="stringn"
-          >
-            Space Exploration provides users with genuine reviews validated by the blockchain
-          </div>
-        </div>
-
-        <div :class="stringn2">
-          <div :class="fontxtrbold">
-            Try Space Exploration
-          </div>
-          <a href="reviews.html">
-            <div
-              :class="stringn3"
-            >
-              Post a Review
-            </div>
-          </a>
-        </div>
-      </v-card>
-    </v-card>
-  </v-container>
+    <v-content>
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <router-view />
+        <Spcgraphic />
+      </v-container>  
+    </v-content>
+    <v-footer app>
+      NULS
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
   import axios from 'axios'
   import cobj from '../constants/constants.js'
   import Navsam from './Navsam.vue'
+  import Spcgraphic from './spcgraphic'
 
   const CHAINID = cobj.CHAINID
   const CONT_ADDY = cobj.CONT_ADDY
@@ -77,6 +46,7 @@
   name: 'HelloWorld',
   components: {
     Navsam,
+    Spcgraphic
   },
 
   props: {
