@@ -2,22 +2,34 @@
   <div>
     <v-app-bar
       color="deep-purple accent-4"
-      dense
       dark
+      min-height="9%"
     >
-      <v-app-bar-nav-icon />  
+      <!-- <v-app-bar-nav-icon />   -->
 
       <v-toolbar-title>NULS Tokenomics</v-toolbar-title>
 
-      <v-spacer /> 
+      <!-- <v-spacer />  -->
 
-      <v-btn icon>
+      <v-btn
+        @click="indi.plink"
+      >
+        {{ indi.pname }}
+      </v-btn>
+
+      <v-btn
+        @click="revs.plink"
+      >
+        {{ revs.pname }}
+      </v-btn>
+
+      <!-- <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
 
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <v-menu
         left
@@ -46,3 +58,33 @@
     </v-app-bar>
   </div>
 </template>
+
+<script>
+  const indi = {
+    plink: "index.html",
+    pname: "Home" 
+    }
+  const revs = {
+    plink: "reviews.html?products=1",
+    pname: "Show Products" 
+    }
+  const listrevs = {
+    plink: "Show Reviews",
+    pname: "allreviews.html" 
+    }
+  const writerevs = {
+    plink: "reviews.html",
+    pname: "Write Review" 
+    }
+
+  export default {
+    name: "Vuemainnav",
+    data: () => ({
+      indi,
+      revs,
+      listrevs,
+      writerevs,
+    })
+  }
+
+</script>

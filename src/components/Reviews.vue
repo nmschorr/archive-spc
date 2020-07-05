@@ -5,7 +5,6 @@
         :active.sync="visible"
         :can-cancel="true"
       />
-      <Revsnav />
 
       <v-card
         width="100%"
@@ -220,8 +219,7 @@
   </v-container>
 </template>
 
-<script lang='ts'>
-import Revsnav from './Revsnav.vue';
+<script>
 
 import axios from 'axios';
 import cobj from '../constants/constants.js';

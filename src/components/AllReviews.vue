@@ -1,15 +1,12 @@
 <template>
   <container :class="containerfont">
     <sheet
-      id="app"
+      id="app2"
     >
       <loading
         :active.sync="visible"
         :can-cancel="true"
       />
-
-      <Allrevnav />
-
       <card id="app">
         <h1 :class="h1style">
           All Reviews
@@ -66,14 +63,9 @@
   </container>
 </template>
 
-<script lang="ts">
-import Allrevnav from "./Allrevnav.vue";
-
+<script>
 import axios from "axios";
-// import '../constants/constants.js'
-
 import cobj from "../constants/constants.js";
-var x = cobj.data.cobj.CHAINID;
 
 var CHAINID = cobj.data.cobj.CHAINID;
 const PW = cobj.data.cobj.PW;
@@ -100,9 +92,6 @@ const allrev = "lg:flex lg:justify-between";
 
 export default {
   name: "AllReviews",
-  components: {
-    Allrevnav
-  },
   data: () => ({
     PW,
     CONT_ADDY,

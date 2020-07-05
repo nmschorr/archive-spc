@@ -16,20 +16,14 @@ var GAS_LIMIT = 9000000
 var POSTURL_w3 = 'http://westteam.nulstar.com:18003'
 var POSTURL_w4 = 'http://westteam.nulstar.com:18004/jsonrpc'
 
+const cobj = {
+  CHAINID, PW, CONT_ADDY, SENDER, OWNER, BUYER, VALUE_ASSET,
+  GAS_PRICE, GAS_LIMIT, POSTURL_w3, POSTURL_w4
+}
+
+// cobj  = "constants obj"
 export default {
   data: {
-    cobj: {
-      CHAINID,
-      PW,
-      CONT_ADDY,
-      SENDER,
-      OWNER,
-      BUYER,
-      VALUE_ASSET,
-      GAS_PRICE,
-      GAS_LIMIT,
-      POSTURL_w3,
-      POSTURL_w4
-    }
+    cobj,
   }
 }

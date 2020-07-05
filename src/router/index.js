@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: () => import('../components/HelloWorld'),
+      component: () => import('../components/Vuemain'),
       children: [
         {
           name: 'AllReviews',
