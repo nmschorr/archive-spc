@@ -1,25 +1,28 @@
 <template>
-  <v-app id="app">
+  <v-app 
+    id="app"
+  >   
+    above bar
     <Vuemainnav />
-    <v-main>
-      <img 
-        alt="Vue logo" 
-        src="./assets/logo.png"
-      >
-      <Vuemain />
-    </v-main>
-    <v-footer app>
+    below bar
+    <Vuemain />
+
+    <v-footer
+      app
+    >
       NULS
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import Vuemain from './components/Vuemain.vue'
-import Vuemainnav from './components/navs/Vuemainnav'
 
 export default {
   name: 'App',
+  components: {
+    Vuemainnav: () => './components/Vuemainnav.vue',
+    Vuemain: () => './components/Vuemain.vue'
+  }
 }
 </script>
 

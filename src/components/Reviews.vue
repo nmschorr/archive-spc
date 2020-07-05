@@ -263,7 +263,7 @@ console.log('chainid: ' + CHAINID);
 
 export default {
   name: 'Reviews',
-  components: {},
+
   data: () => ({
     dispprod,
     disprevprompt,

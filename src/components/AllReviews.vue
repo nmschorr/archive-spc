@@ -1,65 +1,70 @@
 <template>
-  <container :class="containerfont">
-    <sheet
-      id="app2"
-    >
-      <loading
-        :active.sync="visible"
-        :can-cancel="true"
-      />
-      <card id="app">
-        <h1 :class="h1style">
-          All Reviews
-        </h1>
-        <v-card :class="allrev">
+  <container 
+    id="allrevs"
+    :class="containerfont"
+  >
+    <loading
+      :active.sync="visible"
+      :can-cancel="true"
+    />
+    <v-card id="app">
+      <v-card-title
+        id="vct1"
+        :class="h1style"
+      >
+        All Reviews
+      </v-card-title>
+
+      <v-card :class="allrev">
+        <v-card
+          width="100%"
+        >
           <v-card
-            width="100%"
+            v-if="contract"
+            rounded
+            color="white"
+            class="pt-6 pb-8 mb-4"
           >
-            <v-card
-              v-if="contract"
-              rounded
-              color="white"
-              class="pt-6 pb-8 mb-4"
+            <v-card-title 
+              :class="fonts10"
             >
-              <span :class="fonts10">Contract Info</span>
+              Contract Info
+            </v-card-title>
 
-              <span>Alias: {{ contract.alias }}</span>
-            </v-card>
+            <span>Alias: {{ contract.alias }}</span>
+          </v-card>
 
-            <v-card
-              v-if="reviews.length > 0"
-              :class="fonts9"
-            >
-              <span :class="spanrev">
-                {{ reviews.length }} review(s)
-              </span>
+          <v-card
+            v-if="reviews.length > 0"
+            :class="fonts9"
+          >
+            <v-card-sub-title :class="spanrev">
+              {{ reviews.length }} review(s)
+            </v-card-sub-title>
 
-              <v-card class="overflow-auto h-screen">
-                <v-card
-                  v-for="review in reviews"
-                  :key="review"
-                  rounded
-                  border
-                  width="100%"
-                >
-                  <v-card :class="reviewcard">
-                    <v-card class="text-center md:text-left">
-                      <v-card :class="fontpurple">
-                        Review for: {{ review.productId }}
-                      </v-card>
+            <v-card class="overflow-auto h-screen">
+              <v-card-sub-title
+                v-for="review in reviews"
+                :key="review"
+                rounded
+                border
+                width="100%"
+              >
+                <v-card class="text-center md:text-left reviewcard">
+                  <v-card-title :class="fontpurple">
+                    Review for: {{ review.productId }}
+                  </v-card-title>
 
-                      <v-card :class="fontrevcomments">
-                        {{ review.comments }}
-                      </v-card>
-                    </v-card>
-                  </v-card>
+                  <v-card-sub-title :class="fontrevcomments">
+                    {{ review.comments }}
+                  </v-card-sub-title>
                 </v-card>
-              </v-card>
+              </v-card-sub-title>
             </v-card>
           </v-card>
         </v-card>
-      </card>
-    </sheet>
+      </v-card>
+    </v-card>
   </container>
 </template>
 

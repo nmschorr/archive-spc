@@ -32,8 +32,8 @@
   </div>
 </template>
 <script>
-export default {
-  name: "Spcgraphic"
-    }
+  export default {
+    name: "Spcgraphic"
+      }
 
 </script>

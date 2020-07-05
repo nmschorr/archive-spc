@@ -1,11 +1,23 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
   <!-- Provides the application the proper gutter -->
-  <v-container fluid>
-    <router-view />
-    <Spcgraphic />
-    <AllReviews />
-  </v-container>  
+  <v-main>
+    <v-container
+      id="mainc"
+      fluid
+    >
+      <Spcgraphic 
+        v-if="showgr"
+      />
+      <AllReviews 
+        v-if="showallrev"
+      />
+
+      <Reviews 
+        v-if="showrev"
+      />
+    </v-container>  
+  </v-main>
 </template>
 
 <script>
@@ -14,6 +26,7 @@
   import Spcgraphic from '../assets/spcgraphic'
   import AllReviews from './AllReviews'
   import Reviews from './Reviews'
+  import Vuemainnav from './Vuemainnav'
 
   const CHAINID = cobj.data.cobj.CHAINID
   const CONT_ADDY = cobj.data.cobj.CONT_ADDY
@@ -24,16 +37,14 @@
     name: 'Vuemain',
     components: {
       Spcgraphic,
+      Reviews,
+      AllReviews
     },
-
-    props: {
-      msg: { type: String,
-            default: 'Welcome to NULS'
-      }
-    },
-
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop
+      showrev: false,
+      showallrev: false,
+      showgr: true,
       contract: null,
       products: null,
       CHAINID,
