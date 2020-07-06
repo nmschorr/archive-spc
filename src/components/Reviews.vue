@@ -472,4 +472,4 @@ export default {
   }
 };
 </script>
-    <style src='../assets/styles/allrev.css' />
+    <style src='../assets/styles/twsummary.css' />

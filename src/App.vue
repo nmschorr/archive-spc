@@ -15,14 +15,13 @@
 <script>
   import Vuemain from './components/Vuemain.vue'
 
-export default {
-  // name: 'App',
-  components: {
-    // Vuemainnav,
-    Vuemain
+  export default {
+    name: 'App',
+    components: {
+      Vuemain
+    }
   }
-}
 </script>
 
-<style src="./assets/styles/app.css">
+<style src="./assets/styles/twsummary.css">
 </style>

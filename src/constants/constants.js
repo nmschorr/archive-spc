@@ -21,7 +21,6 @@ const cobj = {
   GAS_PRICE, GAS_LIMIT, POSTURL_w3, POSTURL_w4
 }
 
-// cobj  = "constants obj"
 export default {
   data: {
     cobj,

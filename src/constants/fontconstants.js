@@ -1,5 +1,4 @@
- 
-const GCMETHOD = 'getContract'
+require("../assets/styles/twsummary.css")
 const stringn = 'text-gray-700 text-3xl leading-tight font-medium'
 const stringn2 = 'block xl:w-1/2 lg:w-1/3 md:mt-auto md:mb-auto sm:mt-6'
 const stringn3 =
@@ -13,7 +12,6 @@ const fontxtrbold = "text-center relative text-6xl font-extrabold"
 const fontbigwt = "text-6xl font-extrabold"
 
 export default {
-  GCMETHOD,
   stringn , 
   stringn2,
   stringn3,
@@ -23,7 +21,4 @@ export default {
   fontbigwhite,
   fontxtrbold,
   fontbigwt,
-
-
 }
-  

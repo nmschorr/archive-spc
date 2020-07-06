@@ -27,7 +27,8 @@
       </div> 
       <a href="reviews.html">
         <div class="hover:bg-purple-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-purple-400 text-center">
-          Post a Review</div></a>
+          Post a Review</div>
+      </a>
     </div>
   </div>
 </template>
@@ -37,4 +38,4 @@
       }
 
 </script>
-<style src="../assets/styles/tailwind.css" />
+<style src="../assets/styles/twsummary.css" />

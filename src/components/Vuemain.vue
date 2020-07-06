@@ -1,11 +1,11 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
-  <div>
+  <div id="vuemaintop">
     <Vuemainnav />
     <!-- Provides the application the proper gutter -->
     <v-main>
       <v-container
-        id="mainc"
+        id="maincontainer"
         fluid
       >
         <Spcgraphic />
@@ -25,12 +25,10 @@
 <script>
   import axios from 'axios'
   import cobj from '../constants/constants.js'
-  import Spcgraphic from '../assets/spcgraphic'
+  import Spcgraphic from './spcgraphic'
   import AllReviews from './AllReviews'
   import Reviews from './Reviews'
   import Vuemainnav from './Vuemainnav'
-
-  // import Vuemainnav from './Vuemainnav'
 
   const CHAINID = cobj.data.cobj.CHAINID
   const CONT_ADDY = cobj.data.cobj.CONT_ADDY
