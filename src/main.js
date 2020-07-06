@@ -4,7 +4,6 @@ import store from './store'
 import router from './router'
 import './plugins/vuetify'
 import App from './App.vue'
-require('./assets/styles/twsummary.css')
 
 Vue.config.productionTip = false
 

@@ -14,9 +14,9 @@ const theme = {
   warning: '#455A64',
   darkgrey: '#212121',
   orangeaccent: '#f6ad55',
-  twpurple: "#805ad5",
-  twpurplelight: "#b794f4",
-  tworange: "#f6ad55"
+  purple1: "#805ad5",
+  purple2: "#b794f4",
+  orange1: "#f6ad55"
 }
 
 export default new Vuetify({

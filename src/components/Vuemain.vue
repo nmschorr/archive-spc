@@ -1,6 +1,9 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
-  <div id="vuemaintop">
+  <div
+    id="vuemaintop"
+    app 
+  >
     <Vuemainnav />
     <!-- Provides the application the proper gutter -->
     <v-main>
@@ -11,11 +14,11 @@
         <Spcgraphic />
 
         <AllReviews 
-          v-show="showallrev"
+          v-if="$store.state.showprod"
         />
 
         <Reviews 
-          v-show="showrev"
+          v-if="$store.state.showrev"
         />
       </v-container>  
     </v-main>
@@ -39,7 +42,9 @@
     name: 'Vuemain',
     components: {
       Spcgraphic,
-      Vuemainnav
+      Vuemainnav,
+      AllReviews,
+      Reviews
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop

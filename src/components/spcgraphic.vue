@@ -17,6 +17,7 @@
       </div>
 
       <div class="text-gray-700 text-3xl leading-tight font-medium">
+        <br>
         Space Exploration provides users with genuine reviews validated by the blockchain
       </div>
     </div>

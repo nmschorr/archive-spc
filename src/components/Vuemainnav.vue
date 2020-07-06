@@ -3,15 +3,15 @@
     id="appbar"
   >
     <v-app-bar
-      color="#8a57d1"
+      app
+      color="purple2"
       dark
       elevation="24"
       height="120px"
-      width="90%"
-      class="ml-5"
-      clipped-left
+      min-height="30px"
       rounded
       prominent
+      class="mx-4"
     >
       <v-app-bar-nav-icon />
 
@@ -19,30 +19,39 @@
       <v-spacer />
 
       <v-btn
-        color=""
+        color="purple2"
+        elevation="0"
+        large
+        class="mt-9 font-sans9"
         min-width="40px"
-        min-height="100px"
-        @click="indi.plink"
+        min-height="20px"
+        @click="prodclick"
       >
         {{ indi.pname }}
       </v-btn>
       <v-spacer />
 
       <v-btn
+        color="purple2"
+        flat
+        large
+        class="mt-9 font-sans9"
         min-width="40px"
-        min-height="100px"
-        color="#9f7aea"
-        @click="revs.plink"
+        min-height="20px"
+        @click="prodclick"
       >
         {{ revs.pname }}
       </v-btn>
       <v-spacer />
 
       <v-btn
-        color="#9f7aea"
+        color="purple2"
+        flat
+        large
+        class="mt-9 font-sans9"
         min-width="40px"
-        min-height="100px"
-        @click="allrevs.plink"
+        min-height="20px"
+        @click="revclick"
       >
         {{ allrevs.pname }}
       </v-btn>
@@ -64,17 +73,20 @@
 </template>
 
 <script>
+  import { mapState, mapMutations, mapActions, mapGetter } from "vuex";
+  import store from  '../store'
+
   const indi = {
     plink: "index.html",
     pname: "Home" 
     }
   const revs = {
     plink: "reviews.html?products=1",
-    pname: "Show Products" 
+    pname: "Show Products"
     }
   const allrevs = {
-    plink: "Show Reviews",
-    pname: "allreviews.html" 
+    plink: "showreviews",
+    pname: "Show Reviews" 
     }
   const writerevs = {
     plink: "reviews.html",
@@ -88,7 +100,38 @@
       revs,
       allrevs,
       writerevs,
-    })
+
+    }),
+    computed: {
+
+    },
+
+    methods: {
+      revclick () {
+        this.$store.dispatch('showrev_a', true)
+      },
+      prodclick () {
+        this.$store.dispatch('showprod_a', true)
+      },    
+      newclick () {
+        this.$store.dispatch('showprod_a', true)
+      },
+            //    this.$store.dispatch('showprod_a', true)
+            //    this.$store.dispatch('showprev_a', true)
+
+    }
   }
 
 </script>
+<style>
+  .v-btn.v-size--large {
+    font-size: 1rem;
+  
+  }
+  .font-sans9 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, 
+  \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI 
+  Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";
+  }
+
+</style>

@@ -1,21 +1,19 @@
 <template>
   <container 
     id="allrevs"
-    :class="containerfont"
   >
-    <loading
+    <!-- <loading
       :active.sync="visible"
       :can-cancel="true"
-    />
-    <v-card id="app">
+    /> -->
+    <v-card id="appcard">
       <v-card-title
         id="vct1"
-        :class="h1style"
       >
         All Reviews
       </v-card-title>
 
-      <v-card :class="allrev">
+      <v-card>
         <v-card
           width="100%"
         >
@@ -36,7 +34,6 @@
 
           <v-card
             v-if="reviews.length > 0"
-            :class="fonts9"
           >
             <v-card-sub-title :class="spanrev">
               {{ reviews.length }} review(s)
@@ -72,7 +69,7 @@
 import axios from "axios";
 import cobj from "../constants/constants.js";
 
-var CHAINID = cobj.data.cobj.CHAINID;
+const CHAINID = cobj.data.cobj.CHAINID;
 const PW = cobj.data.cobj.PW;
 const CONT_ADDY = cobj.data.cobj.CONT_ADDY;
 const SENDER = cobj.data.cobj.SENDER;
@@ -85,38 +82,24 @@ const GAS_LIMIT = cobj.data.cobj.GAS_LIMIT;
 
 const POSTURL_w3 = cobj.data.cobj.POSTURL_w3;
 const POSTURL_w4 = cobj.data.cobj.POSTURL_w4;
-const h1style = "mt-4 text-center font-extrabold text-2xl";
-const containerfont = "antialiased font-sans";
-const fontpurple = "text-purple-500 font-medium text-base";
-const fontrevcomments = "text-gray-600 leading-tight text-base  xl:text-base";
-const reviewcard = "items-center md:flex lg:block xl:flex rounded-lg p-6";
-const fonts9 = "bg-white shadow rounded px-8 pt-6 pb-8 mb-4";
-const fonts10 = "text-center relative text-4xl font-extrabold";
-const spanrev = "text-center relative text-4xl font-extrabold";
-const allrev = "lg:flex lg:justify-between";
 
 export default {
   name: "AllReviews",
   data: () => ({
-    PW,
-    CONT_ADDY,
-    SENDER,
-    OWNER,
-    BUYER,
-    VALUE_ASSET,
-    GAS_PRICE,
-    GAS_LIMIT,
-    POSTURL_w3,
-    POSTURL_w4,
+    CHAINID: cobj.data.cobj.CHAINID,
+    PW: cobj.data.cobj.PW,
+    CONT_ADDY: cobj.data.cobj.CONT_ADDY,
+    SENDER: cobj.data.cobj.SENDER,
+    OWNER: cobj.data.cobj.OWNER,
+    BUYER: cobj.data.cobj.BUYER,
+    VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
+    GAS_PRICE: cobj.data.cobj.GAS_PRICE,
+    GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
+    POSTURL_w3: cobj.data.cobj.POSTURL_w3,
+    POSTURL_w4: cobj.data.cobj.POSTURL_w4,
     h1style,
     spanrev,
     allrev,
-    fonts9,
-    fonts10,
-    reviewcard,
-    containerfont,
-    fontpurple,
-    fontrevcomments,
     contract: null,
     products: null,
     reviews: [],
@@ -126,7 +109,6 @@ export default {
     showReviewPrompt: false,
     reviewPosted: false,
     visible: false,
-    CHAINID
   }),
   async mounted() {
     await this.getAllProductIds();
