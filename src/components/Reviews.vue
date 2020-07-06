@@ -472,4 +472,3 @@ export default {
   }
 };
 </script>
-    <style src='../assets/styles/twsummary.css' />

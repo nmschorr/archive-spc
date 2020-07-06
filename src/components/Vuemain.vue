@@ -13,13 +13,18 @@
       >
         <Spcgraphic />
 
-        <AllReviews 
-          v-if="$store.state.showprod"
-        />
-
-        <Reviews 
-          v-if="$store.state.showrev"
-        />
+        <v-container
+          id="maincontainer2"
+          fluid
+        >
+          <!-- <Reviews 
+            v-if="$store.state.showrev"
+          />         -->
+          
+          <AllReviews 
+            v-if="$store.state.showprod"
+          />
+        </v-container>  
       </v-container>  
     </v-main>
   </div>
@@ -44,7 +49,7 @@
       Spcgraphic,
       Vuemainnav,
       AllReviews,
-      Reviews
+      // Reviews
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop
