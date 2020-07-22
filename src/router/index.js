@@ -13,12 +13,12 @@ export default new Router({
       children: [
         {
           name: 'AllReviews',
-          path: 'components',
+          path: 'allreviews',
           component: () => import('../components/AllReviews')
         },
         {
           name: 'Reviews',
-          path: 'components',
+          path: 'reviews',
           component: () => import('../components/Reviews')
         }
 

@@ -1,20 +1,20 @@
-//var CHAINID = 4810
-var CHAINID = 18462
+
+var CHAINID = 4810
 var PW = 'kathy123'
-var CONT_ADDY = 'SPEXdKRT56gn8YfFy8DjSgQbkoVaTkn6XxrLL7'
+var CONT_ADDY = 'SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe'
 var SENDER = 'SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa'
-var OWNER = 'SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa'
-var BUYER = 'SPEXdKRT4nswCgHUv1YfuC9DK2u8etwpPbx8Np'
+var OWNER = 'SPEXdKRT4nfcKKVqSt1XLdJYMp2H1nwy3oZ1nJ'
+var BUYER = 'SPEXdKRT4nfcKKVqSt1XLdJYMp2H1nwy3oZ1nJ'
 
 var VALUE_ASSET = 25
 var GAS_PRICE = 25
 var GAS_LIMIT = 9000000
 
-// var POSTURL_w3 = 'http://westteam.nulstar.com:8003'
-// var POSTURL_w4 = 'http://westteam.nulstar.com:8004/jsonrpc'
+var POSTURL_w3 = 'http://westteam.nulstar.com:8003'
+var POSTURL_w4 = 'http://westteam.nulstar.com:8004/jsonrpc'
 
-var POSTURL_w3 = 'http://westteam.nulstar.com:18003'
-var POSTURL_w4 = 'http://westteam.nulstar.com:18004/jsonrpc'
+// var POSTURL_w3 = 'http://westteam.nulstar.com:18003'
+// var POSTURL_w4 = 'http://westteam.nulstar.com:18004/jsonrpc'
 
 const cobj = {
   CHAINID, PW, CONT_ADDY, SENDER, OWNER, BUYER, VALUE_ASSET,
