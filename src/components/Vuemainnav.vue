@@ -33,7 +33,6 @@
 
       <v-btn
         color="purple2"
-        flat
         large
         class="mt-9 font-sans9"
         min-width="40px"
@@ -46,7 +45,6 @@
 
       <v-btn
         color="purple2"
-        flat
         large
         class="mt-9 font-sans9"
         min-width="40px"
