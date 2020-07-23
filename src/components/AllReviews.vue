@@ -13,7 +13,7 @@
 
     <v-card
       width="100%"
-      color="teal"
+      color="teal lighten-2"
       min-height="300px"
     >
       <v-card-title>
@@ -25,7 +25,7 @@
 
     <v-card                      
       min-height="300px"
-      color="teal lighten-2"
+      color="blue-grey lighten-3"
     >     <!-- v-if="reviews.length > 0" -->
         { reviews.length } review(s)
 
@@ -41,16 +41,16 @@
       Get Products
       </v-btn>
       <v-card
-        color="orange1"
+        color="teal darken-1"
         min-height="300px"
       >
         <v-card-title 
-          color="purple1"
+          color="purple"
         >
           Review for: { review.productId }
         </v-card-title>
 
-          {{ review.contractAddress }}
+          { review.contractAddress }
       </v-card>
     </v-card>
   </v-card>
@@ -84,7 +84,7 @@ export default {
   mounted() {
     // await this.getAllProductIds();
     // await this.getAllReviews();
-    console.log(this.reviews);
+    // console.log(this.reviews);
   },
   methods: {
     gettheproducts () {
@@ -93,15 +93,21 @@ export default {
       // this.getAllProductIds()
     },
     async axiosPost() {
+      console.log("inside axiosPost");
       var acceptStr = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
       var restTypes = "GET, POST, HEAD, UPDATE, PUT";
       var acctlMeths = "Access-Control-Allow-Methods";
       var acctlOrig = "Access-Control-Allow-Origin";
-      var appJson = "application/json";
-      var ctType = "Content-Type";   
-      var tUrl1 = `{"jsonrpc": "2.0", "method": "invokeView", "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
-      var tUrl = `{ "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
-     
+      const appJson = "application/json";
+      const ctType = "Content-Type";   
+      // var tUrl1 = `{"jsonrpc": "2.0", "method": "invokeView", "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
+      // var tUrl = `{ "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
+      const jsonV = "2.0"
+      const invMethod = "invokeView"
+      const REQUEST_TYPE = "getAllProductIds"
+      const RET_TYPE = "() return String"
+      var LASTLIST = []
+
     //   const PARAMS = [
     //     this.CHAINID,
     //     this.CONT_ADDY,
@@ -109,6 +115,14 @@ export default {
     //     RET_TYPE,
     //     LASTLIST
     //   ];
+      console.log("inside axiosPost");
+
+      var vPARAMS =  
+        [ this.CHAINID, 
+          this.CONT_ADDY,
+          REQUEST_TYPE,
+          RET_TYPE,
+          LASTLIST ]
 
       const axiosi = axios.create({
         defaults: {
@@ -119,18 +133,36 @@ export default {
           },
         });
       try { 
-        console.log("inside axiosPost: " + tUrl);
-        const result = await axiosi.post(this.POSTURL_w3, {
-          jsonrpc: "2.0",
-          method:  "invokeView",
-          params: PARAMS
+        var axresult
+        console.log("inside axiosPost vPARAMS: " + vPARAMS);
+        const url = this.POSTURL_w3
+        console.log("inside axiosPost url: " + url);
+
+        axresult = await axiosi.post(url, {
+          jsonrpc: jsonV,
+          method:  invMethod,
+          id: 900099,
+          params:  vPARAMS
         });
       } catch (e) {
         console.log(e);
         }
-        console.log("DONE");
-        console.log(result)
-      },
+        const products = JSON.parse(axresult.data.result.result);
+
+        console.log("DONE products: " + products)
+
+        console.log(axresult.count);
+        console.log(axresult.data.toString());
+        console.log("DONE result: " + axresult.status)
+
+     },
+
+
+
+
+
+
+
     // async getAllProductIds() {
     //   console.log("in getallproductids")
     //   const METHOD_D = "invokeView";
