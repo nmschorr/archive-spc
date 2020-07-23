@@ -1,88 +1,113 @@
 <template>
   <v-card 
     id="mainappcard"
-    color="#E1BEE7"
-    height="1200px"
-    class="d-flex justify-left pa-2 gradientpur1"
+    height="1600px"
+    color="teal lighten-3"
+    outlined
+    class="d-flex align-start flex-column mt-auto"
+    width="1400px"
   >
-    <v-card
-      id="getprodcard"
-      mainappcard
-      :key="cardkey"
-      v-bind="cardprops"
-      height="500px"
-      width="400px"
-      class="d-flex justify-left gradientpur1 ma-2 pa-2"
-    >
-      <v-btn
-        id="getprodsbtn"
-        getprodcard
-        color="deep-purple"
-        v-bind="btnprops"
-        class="mb-2 mt-2 ml-7 pa-2"
-        @click="axiosPost"
+    <v-row>
+      <v-col
+        cols="6"
+        md="6"
       >
-        <span class="font-bold text-2xl white--text">Get the Products</span>
-      </v-btn>
-      <div mainappcard
-        v-for="product in products"
-        :key="product"
-      >          
-        {{ product }}
-      </div>
-    </v-card>
-          <!-- end product card -->
-          <!--reviews card -->
-
-    <v-card
-      id="getrevscard"
-      v-bind="cardprops"
-      height="500px"
-      width="400px"
-      class="d-flex justify-left gradientg2 ma-2 pa-2"
-
-    >
-      <v-btn
-        id="getrevssbtn"
-        v-bind="btnprops"
-        color="teal"
-        class="mb-2 mt-2 ml-7 pa-2"
-        :style="bgig1"
-        @click="axiosPost"
-      >
-        <span class="font-bold text-2xl white--text">Get the Reviews</span>
-      </v-btn>
-       <v-card
-        id="showprodscard"
-        v-for="product in products"
-        :key="product"
-      >          
-        <v-card-title
-          id="vct1"
+        <v-card
+          id="firstcard"
+          mainappcard
+          height="700px"
+          width="450px"
+          outlined
+          class="ml-4"
+          color="orange lighten-3"
         >
-          All Reviews
-        </v-card-title>
+          <v-btn
+            id="getprodsbtn"
+            color="deep-purple"
+            v-bind="btnprops"
+            firstcard
+            :class="btnclss"
+            @click="axiosPost"
+          >
+            <span :class="btnfontclss">
+              Get the Products
+            </span>
+          </v-btn>
+          
+          <v-card
+            v-for="product in products"
+            color="grey lighten-2"
+            id="showprodscard"
+            :key="product"      
+            width="400px"
+            :class="cardclss"
+            firstcard
+          >      
+            {{ product }}
 
-        {{ product }}
-      </v-card>
-    </v-card>
-          <!-- end reviews card -->
+          <v-select
+            v-model="vmm"
+            id="vsel1"
+            firstcard
+            v-for="x in yyy"
+            :key="x"      
+          >
+            myvsel
+          </v-select>
+          </v-card>
+          <!-- end product card  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!--reviews card -->
+          <!-- getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        </v-card>
+      </v-col>
+
+      <v-col
+        cols="6"
+        md="6"
+      >
+        <v-card
+          id="firstcard2"
+          mainappcard
+          height="700px"
+          width="450px"
+          outlined
+          color="teal lighten-3"
+
+        >
+          <v-btn
+            id="getrevssbtn"
+            v-bind="btnprops"
+            color="teal"
+            firstcard2
+            :class="btnclss"
+            :style="bgig1"
+            @click="axiosPost"
+          >    
+            <span :class="btnfontclss">
+              Get the Reviews
+            </span>
+          </v-btn>      
+        <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-    <v-card
-      width="300px"
-      height="400px"
-      v-bind="cardprops"
-      color="teal lighten-2"
-      min-height="70px"
-      class="gradientd  ma-2 pa-2"
-    >
-      <v-card-title>
-        Contract Info - add?
-      </v-card-title>
-    </v-card>
-
+        </v-card>
+      
+      <!-- end reviews card -->
+      </v-col>
+      <v-col>
+        <v-card
+          v-bind="cardyprops"
+          color="teal lighten-2"
+          mainappcard
+          min-height="70px"
+          :class="cardclss"
+        >
+          Contract Info - add?
+        </v-card>
+      </v-col>
+    </v-row>
   </v-card>
+
 </template>
 
 <script>
@@ -92,10 +117,15 @@ import cobj from "../constants/constants.js";
 export default {
   name: "AllReviews",
   data: () => ({
-    cardprops: { elevation: 24, raised: true, shaped: true},
+    vmm: '',
+    yy: ['yes', 'no'],
+    btnclss: "mb-2 mt-2 ml-7 pa-2",
+    btnfontclss: "font-bold text-l white--text",
+    cardyprops: { elevation: 24, raised: true, shaped: true, width: "450px", 
+      height: "400px", "d-flex": true, outlined: true },
     btnprops: { elevation: 24, raised: true, shaped: true, large: true, height: "42px",
-      width: "90%", rounded: true },
-
+      width: "242px", rounded: true },
+    cardclss: "d-flex justify-left ma-2 pa-2",
     CHAINID: cobj.data.cobj.CHAINID,
     PW: cobj.data.cobj.PW,
     CONT_ADDY: cobj.data.cobj.CONT_ADDY,
