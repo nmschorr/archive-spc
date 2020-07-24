@@ -41,21 +41,11 @@
             :key="product"      
             width="400px"
             :class="cardclss"
-            color="grey lighten-2"
+            color="grey lighten-3"
             shaped
             firstcard
           >      
             {{ product }}
-
-            <v-select
-              v-for="prds in products"
-              id="vsel1"
-              :key="prds"      
-              v-model="vmm"
-              firstcard
-            >
-              myvsel
-            </v-select>
           </v-card>
           <!-- end product card  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <!--reviews card -->
@@ -67,6 +57,20 @@
         cols="6"
         md="6"
       >
+        <v-select
+          id="vselone"
+          v-model="vmd1"
+          width="330px"
+          height="50px"
+          type="string"
+          label="Select a Product Categories"
+          color="deep-purple lighten-1"
+          shaped
+          outlined
+          :style="`max-width:320px;`"        
+          :items="products"
+        />
+
         <v-card
           id="firstcard2"
           v-bind="cardyprops"
@@ -77,7 +81,8 @@
           height="700px"
           width="450px"
           outlined
-          color="red"
+          color="deep-purple lighten-2"
+          class="mt-15"
         >
           <v-btn
             id="getrevssbtn"
@@ -94,13 +99,7 @@
           <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <!-- * * *  - - - - - -- "test select" -->
 
-          <v-select
-            id="vselone"
-            v-model="vmd1"
-            type="string"
-            label="Current Product Categories"
-            :items="products"
-          />
+
         </v-card>
       
       <!-- end reviews card -->
@@ -122,11 +121,6 @@
 import axios from "axios";
 import ccodes from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
-
-// const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
-//   invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
-// console.log("accStr: ", accStr)
-
 
 export default {
   name: "AllReviews",
@@ -175,12 +169,7 @@ export default {
       console.log("accStr: ", accStr)
       const LASTLIST =[]
 
-      var vPARAMS =  
-        [ this.CHAINID, 
-          this.CONT_ADDY,
-          REQtype,
-          RETtype,
-          LASTLIST ]
+      var vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST]
 
       const axiosi = axios.create({
         defaults: {
