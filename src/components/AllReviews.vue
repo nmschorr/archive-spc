@@ -18,6 +18,7 @@
           height="700px"
           width="450px"
           outlined
+          shaped
           class="ml-4"
           color="orange lighten-3"
         >
@@ -36,24 +37,25 @@
           
           <v-card
             v-for="product in products"
-            color="grey lighten-2"
             id="showprodscard"
             :key="product"      
             width="400px"
             :class="cardclss"
+            color="grey lighten-2"
+            shaped
             firstcard
           >      
             {{ product }}
 
-          <v-select
-            v-model="vmm"
-            id="vsel1"
-            firstcard
-            v-for="x in yyy"
-            :key="x"      
-          >
-            myvsel
-          </v-select>
+            <v-select
+              v-for="prds in products"
+              id="vsel1"
+              :key="prds"      
+              v-model="vmm"
+              firstcard
+            >
+              myvsel
+            </v-select>
           </v-card>
           <!-- end product card  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <!--reviews card -->
@@ -67,17 +69,19 @@
       >
         <v-card
           id="firstcard2"
+          v-bind="cardyprops"
           mainappcard
+          shaped
+          elevation-24
+          raised
           height="700px"
           width="450px"
           outlined
-          color="teal lighten-3"
-
+          color="red"
         >
           <v-btn
             id="getrevssbtn"
             v-bind="btnprops"
-            color="teal"
             firstcard2
             :class="btnclss"
             :style="bgig1"
@@ -87,9 +91,16 @@
               Get the Reviews
             </span>
           </v-btn>      
-        <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!-- * * *  - - - - - -- "test select" -->
 
-
+          <v-select
+            id="vselone"
+            v-model="vmd1"
+            type="string"
+            label="Current Product Categories"
+            :items="products"
+          />
         </v-card>
       
       <!-- end reviews card -->
@@ -101,27 +112,30 @@
           mainappcard
           min-height="70px"
           :class="cardclss"
-        >
-          Contract Info - add?
-        </v-card>
+        />
       </v-col>
     </v-row>
   </v-card>
-
 </template>
 
 <script>
 import axios from "axios";
-import cobj from "../constants/constants.js";
+import ccodes from '@/constants/constantsnew.js'
+import cobj from '@/constants/constants.js';
+
+// const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
+//   invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
+// console.log("accStr: ", accStr)
+
 
 export default {
   name: "AllReviews",
   data: () => ({
     vmm: '',
-    yy: ['yes', 'no'],
+    vmd1: '',
     btnclss: "mb-2 mt-2 ml-7 pa-2",
     btnfontclss: "font-bold text-l white--text",
-    cardyprops: { elevation: 24, raised: true, shaped: true, width: "450px", 
+    cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
     btnprops: { elevation: 24, raised: true, shaped: true, large: true, height: "42px",
       width: "242px", rounded: true },
@@ -148,31 +162,30 @@ export default {
     selectedProductId: null,
     visible: false,
     }),
+  created () {
+    this.axiosPost()  // get the prod list
+    console.log()
+  },
   methods: {
     async axiosPost() {
+
       console.log("inside axiosPost");
-      var acceptStr = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-      var restTypes = "GET, POST, HEAD, UPDATE, PUT";
-      var acctlMeths = "Access-Control-Allow-Methods";
-      var acctlOrig = "Access-Control-Allow-Origin";
-      const appJson = "application/json";
-      const ctType = "Content-Type";   
-       const jsonV = "2.0"
-      const invMethod = "invokeView"
-      const REQUEST_TYPE = "getAllProductIds"
-      const RET_TYPE = "() return String"
-      var LASTLIST = []
-      console.log("inside axiosPost");
+      const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
+        invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
+      console.log("accStr: ", accStr)
+      const LASTLIST =[]
+
       var vPARAMS =  
         [ this.CHAINID, 
           this.CONT_ADDY,
-          REQUEST_TYPE,
-          RET_TYPE,
+          REQtype,
+          RETtype,
           LASTLIST ]
+
       const axiosi = axios.create({
         defaults: {
           headers: {
-            post: { Accept: acceptStr, acctlMeths: restTypes, ctType: appJson },
+            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
             common: { acctlOrig: "*" }
             },
           },
@@ -198,29 +211,6 @@ export default {
         this.cardkey += 1;
      },
 
-      // 2 for each product id - get the reviews
-      // return this.getReviews(productId)
-
-
-
-    // contractAddy: "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe",
-
-     // var tUrl1 = `{"jsonrpc": "2.0", "method": "invokeView", "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
-      // var tUrl = `{ "params": [4810, "SPEXdKRT4yJrChYu5KfusRJrLMpJ8qRmitSHxe", "getAllProductIds", "() return String", []], "id": 900003}` 
-
-    // },
-    // async getReviews(productId) {
-    //   const RET_TYPE = "(String productId) return Ljava/util/List;";
-    //   const LASTLIST = [productId];
-    //   const METHOD_D = "invokeView";
-    //   const REQUEST_TYPE = "getReviews";
-    //   const PARAMS = [
-    //     this.CHAINID,
-    //     this.CONT_ADDY,
-    //     REQUEST_TYPE,
-    //     RET_TYPE,
-    //     LASTLIST
-        
   },
 }
 </script>
@@ -254,3 +244,5 @@ export default {
 
 
 </style>
+
+        

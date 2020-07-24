@@ -12,10 +12,15 @@
       rounded
       prominent
       class="mx-4"
+      :style="`background-image: linear-gradient(306deg, #9873d6 0%, #b794f4 100%)`"
     >
       <v-app-bar-nav-icon />
-
-      <v-toolbar-title>Welcome to Space Exploration</v-toolbar-title>
+        
+      <v-toolbar-title
+        :style="`text-shadow: 1px 1px 4px grey;`"
+      >
+        Welcome to Space Exploration
+      </v-toolbar-title>
       <v-spacer />
 
       <v-btn
@@ -107,9 +112,14 @@
     methods: {
       revclick () {
         this.$store.dispatch('showrev_a', true)
+        this.$store.dispatch('gshowtrueAct', false)
+
       },
       prodclick () {
         this.$store.dispatch('showprod_a', true)
+        this.$store.dispatch('gshowtrueAct', false)
+
+        this.spacetrue = false;
       },    
       newclick () {
         this.$store.dispatch('showprod_a', true)

@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     showrev: false,
-    showprod: false
+    showprod: false,
+    gshowtrue: true  // main page graphic
   },
   mutations: {
     showrev_m(state, theval) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     showprod_m(state, theval) {
       state.showprod = theval
+    },
+    gshowtrueMut(state, theval) {
+      state.gshowtrue = theval
     },
   },
   getters: {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     },
     showprod_a(context, theval) {
       context.commit('showprod_m', theval)
+    },
+    gshowtrueAct(context, theval) {
+      context.commit('gshowtrueMut', theval)
     },
   },
   modules: {

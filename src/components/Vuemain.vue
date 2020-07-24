@@ -11,7 +11,10 @@
         id="maincontainer"
         fluid
       >
-        <Spcgraphic />
+        <Spcgraphic 
+          v-if="$store.state.gshowtrue"
+          :key="$store.state.gshowtrue"
+        />
 
         <v-container
           id="maincontainer2"
@@ -53,6 +56,7 @@
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop
+      spacetrue: true,
       showrev: false,
       showallrev: false,
       showgr: true,
@@ -64,7 +68,7 @@
       GCMETHOD
     }),
     mounted () {
-      this.getContract()
+      // this.getContract()
     },
     methods: {
       async getContract () {
