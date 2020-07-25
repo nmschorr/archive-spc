@@ -62,9 +62,11 @@
           v-model="vmd1"
           width="330px"
           height="50px"
+          labelWidth="100px"
           type="string"
-          label="Select a Product Categories"
+          label="Select a Product"
           color="deep-purple lighten-1"
+          append-icon="mdi-plus"
           shaped
           outlined
           :style="`max-width:320px;`"        
