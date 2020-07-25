@@ -9,17 +9,19 @@
   >
     <v-row>
       <v-col
-        cols="6"
-        md="6"
-      >
+        cols="5"
+        md="5"
+      >             <!-- * * * * * * *  main peachy card on left -->
         <v-card
           id="firstcard"
           mainappcard
           height="700px"
-          width="450px"
+          width="500px"
+          elevation="24"
+          raised
           outlined
           shaped
-          class="ml-4"
+          class="ml-5"
           color="deep-orange lighten-4"
         >
           <v-btn
@@ -56,34 +58,60 @@
       <v-col
         cols="6"
         md="6"
-      >
-       <v-card
-          id="vselcard"
-          mainappcard
-          shaped
-          height="90px"
-          width="340px"
-          color="primary lighten-5"
-          class="d-flex align-center mt-4 pa-2"
-        >
-        <v-select
-          id="vselone"
-          v-model="prodchoice"
-          width="330px"
-          height="50px"
-          labelWidth="140px"
-          type="string"
-          label="Select a Product"
-          color="primary"
-          append-icon="mdi-plus"
-          shaped
-          outlined
-          :style="`max-width:320px;`"        
-          :items="products"
-          vselcard
-          class="mt-9"
-        />
-      </v-card>
+      >        <!-- ****** column 2 -->
+        <!-- ****** vselcard greencard GREENCARD  -->
+        <v-card
+          id="greencard"
+          width="90%"
+          flat
+          color="teal lighten-3"
+        >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
+          <v-card        
+            id="vselbackgroundcard"
+            greencard
+            shaped
+            height="120px"
+            width="229px"
+            color="colors.deepOrange.lighten4"
+            class="d-inline-flex flex-wrap justify-left pa-2"
+          >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
+            <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
+            <v-select
+              id="vselone"
+              v-model="prodchoice"
+              width="170px"
+              height="50px"
+              labelWidth="140px"
+              type="string"
+              label="Select a Product"
+              color="primary"
+              append-icon="mdi-plus"
+              shaped
+              outlined
+              :style="`max-width:320px;`"        
+              :items="products"
+              vselcard
+              class="mt-9"
+            />
+          </v-card>  
+          <v-btn
+            id="getrevssbtn"
+            v-bind="btnprops"
+            color="tertiary"
+            greencard
+            shaped
+            class="mb-2 mt-2 ml-1 pa-3"
+            @click=axiosGetReviews()
+          >    
+          <span :class="btnfontclss">
+            Get the Reviews
+          </span>
+        </v-btn>   
+         <!-- end select a product -->
+        </v-card>     <!-- ******end green card -->
+      <!-- ****** column 2 -->
+
+
       <v-card
         id="secondcard"
         v-bind="cardyprops"
@@ -95,20 +123,9 @@
         width="550px"
         outlined
         color="primary"
-        class="mt-15 d-flex align center"
+        class="mt-15 d-inline-flex"
       >
-        <v-btn
-          id="getrevssbtn"
-          v-bind="btnprops"
-          secondcard
-          :class="btnclss"
-          :style="bgig1"
-          @click=axiosGetReviews()
-        >    
-          <span :class="btnfontclss">
-            Get the Reviews
-          </span>
-        </v-btn>   
+        
         <v-card
           width="400px"
           height="40px"
@@ -178,7 +195,7 @@ export default {
   data: () => ({
     vmm: '',
     prodchoice: '',
-    btnclss: "mb-2 mt-2 ml-7 pa-2",
+    btnclss: "mb-2 mt-2 ml-7 pa-3",
     btnfontclss: "font-bold text-l white--text",
     cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
@@ -285,6 +302,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
 
 .btnfnt {
   font-size: 16px;
@@ -310,7 +328,6 @@ export default {
 .gradientg3 {
   background-image: linear-gradient(306deg, #47886d 0%, #116479 100%)
 }
-
 
 </style>
 
