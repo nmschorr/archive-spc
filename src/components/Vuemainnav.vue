@@ -4,7 +4,7 @@
   >
     <v-app-bar
       app
-      color="purple2"
+      color="primary"
       dark
       elevation="24"
       height="120px"
@@ -24,7 +24,7 @@
       <v-spacer />
 
       <v-btn
-        color="purple2"
+        color="primary"
         elevation="0"
         large
         class="mt-9 font-sans9"
@@ -37,7 +37,7 @@
       <v-spacer />
 
       <v-btn
-        color="purple2"
+        color="primary"
         large
         class="mt-9 font-sans9"
         min-width="40px"
@@ -49,7 +49,7 @@
       <v-spacer />
 
       <v-btn
-        color="purple2"
+        color="primary"
         large
         class="mt-9 font-sans9"
         min-width="40px"

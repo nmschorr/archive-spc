@@ -20,11 +20,11 @@
           outlined
           shaped
           class="ml-4"
-          color="orange lighten-3"
+          color="deep-orange lighten-4"
         >
           <v-btn
             id="getprodsbtn"
-            color="deep-purple"
+            color="primary"
             v-bind="btnprops"
             firstcard
             :class="btnclss"
@@ -41,7 +41,7 @@
             :key="product"      
             width="400px"
             :class="cardclss"
-            color="grey lighten-3"
+            color="orangeaccent"
             shaped
             firstcard
           >      
@@ -57,47 +57,85 @@
         cols="6"
         md="6"
       >
+       <v-card
+          id="vselcard"
+          mainappcard
+          shaped
+          height="90px"
+          width="340px"
+          color="primary lighten-5"
+          class="d-flex align-center mt-4 pa-2"
+        >
         <v-select
           id="vselone"
-          v-model="vmd1"
+          v-model="prodchoice"
           width="330px"
           height="50px"
-          labelWidth="100px"
+          labelWidth="140px"
           type="string"
           label="Select a Product"
-          color="deep-purple lighten-1"
+          color="primary"
           append-icon="mdi-plus"
           shaped
           outlined
           :style="`max-width:320px;`"        
           :items="products"
+          vselcard
+          class="mt-9"
         />
+      </v-card>
+      <v-card
+        id="secondcard"
+        v-bind="cardyprops"
+        mainappcard
+        shaped
+        elevation-24
+        raised
+        height="700px"
+        width="550px"
+        outlined
+        color="primary"
+        class="mt-15 d-flex align center"
+      >
+        <v-btn
+          id="getrevssbtn"
+          v-bind="btnprops"
+          secondcard
+          :class="btnclss"
+          :style="bgig1"
+          @click=axiosGetReviews()
+        >    
+          <span :class="btnfontclss">
+            Get the Reviews
+          </span>
+        </v-btn>   
+        <v-card
+          width="400px"
+          height="40px"
+          color="transparent"
+          class="ma-2 pa-1"
+          secondcard
+        >
+        <h3>Reviews Found</h3> 
+        </v-card>     
 
         <v-card
-          id="firstcard2"
-          v-bind="cardyprops"
-          mainappcard
+          v-for="review in reviews"
+          :key="review"      
+          id="showrevscard"
+          width="500px"
+          height="600px"
+          class="d-flex align-left"
+          :class="cardclss"
+          color="orangeaccent"
           shaped
-          elevation-24
-          raised
-          height="700px"
-          width="450px"
-          outlined
-          color="deep-purple lighten-2"
-          class="mt-15"
-        >
-          <v-btn
-            id="getrevssbtn"
-            v-bind="btnprops"
-            firstcard2
-            :class="btnclss"
-            :style="bgig1"
-            @click="axiosPost"
-          >    
-            <span :class="btnfontclss">
-              Get the Reviews
-            </span>
-          </v-btn>      
+          secondcard
+        >      
+
+
+          <br><br>
+          {{ review }}
+        </v-card>   
           <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <!-- * * *  - - - - - -- "test select" -->
 
@@ -123,12 +161,23 @@
 import axios from "axios";
 import ccodes from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
+import colors from 'vuetify/lib/util/colors'
 
+  // primary: colors.deepPurple.lighten1, // purple was tw 805ad5
+  // secondary: colors.deepPurple.accent1,  //was tw light purple b794f4
+  // tertiary: colors.teal.base,  //md teal  009688
+  // success: colors.teal.accent4,  // md teal accent-4 00BFA5
+  // accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
+  // info: colors.grey.lighten2,  // md deep-purple accent-3  651fff
+  // error: colors.red.base,   //md deep-purple darken-2 455A64
+  // warning: colors.orange.lighten2,  //md blue-grey darken-2  455A64
+  // darkgrey: colors.grey.darken4, // 212121
+  // orangeaccent: colors.deepOrange.lighten5, // for text
 export default {
   name: "AllReviews",
   data: () => ({
     vmm: '',
-    vmd1: '',
+    prodchoice: '',
     btnclss: "mb-2 mt-2 ml-7 pa-2",
     btnfontclss: "font-bold text-l white--text",
     cardyprops: { elevation: 24, raised: true, width: "450px", 
@@ -149,7 +198,6 @@ export default {
     POSTURL_w4: cobj.data.cobj.POSTURL_w4,
     products: null,
     cardkey: 0,
-    firstprod: '',
     reviews: [],
     bgipur1: `background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)`,
     bgig1: `background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))`,
@@ -163,30 +211,37 @@ export default {
     console.log()
   },
   methods: {
-    async axiosPost() {
+    makeaxiosi () {
+      var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, ddunused, 
+        ccunused, aaunused, bbunused] = Object.values(ccodes.data.ccodes)
+      var axio = axios.create({
+        defaults: {
+          headers: {
+            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
+            },
+          },
+        });
+      return axio
+    },
 
-      console.log("inside axiosPost");
+    async axiosPost() {
       const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
         invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
-      console.log("accStr: ", accStr)
       const LASTLIST =[]
-
+      console.log("inside axiosPost accStr: ", accStr)
       var vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST]
-
+      
       const axiosi = axios.create({
         defaults: {
           headers: {
             post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            common: { acctlOrig: "*" }
             },
           },
         });
       try { 
         var axresult
         console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        const url = this.POSTURL_w3
-        console.log("inside axiosPost url: " + url);
-        axresult = await axiosi.post(url, {
+        axresult = await axiosi.post(this.POSTURL_w3, {
           jsonrpc: jsonV,
           method:  invMethod,
           id: 900099,
@@ -195,13 +250,36 @@ export default {
       } catch (e) {
         console.log(e);
         }
-        var products = JSON.parse(axresult.data.result.result)
-        console.log("products: " + products)
-        this.products = products
+        this.products = JSON.parse(axresult.data.result.result)
         console.log("this.products: " + this.products)
         this.cardkey += 1;
      },
+    async axiosGetReviews() {
+      var productId = this.prodchoice
+      const invMethod = 'invokeView'
+      const RETtype = "(String productId) return Ljava/util/List;";
+      const LASTLIST = [productId];
+      const jsonV = '2.0'
 
+      const REQtype = "getReviews";
+      const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
+      const axiosi = this.makeaxiosi()
+      try { 
+        var axresult
+        console.log("inside axiosPost vPARAMS: " + vPARAMS);
+        axresult = await axiosi.post(this.POSTURL_w3, {
+          jsonrpc: jsonV,
+          method:  invMethod,
+          id: 900092,
+          params:  vPARAMS
+        });
+      } catch (e) {
+        console.log(e);
+        }
+        this.reviews = JSON.parse(axresult.data.result.result)
+        console.log("this.reviews: " + this.reviews)
+        this.cardkey += 1;
+     },
   },
 }
 </script>
