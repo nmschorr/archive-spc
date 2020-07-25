@@ -13,10 +13,14 @@ const theme = {
   success: colors.teal.accent4,  // md teal accent-4 00BFA5
   accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
   info: colors.grey.lighten2,  // md deep-purple accent-3  651fff
-  error: colors.red.base,   //md deep-purple darken-2 455A64
+  error: colors.red.lighten1,   //md deep-purple darken-2 455A64
   warning: colors.orange.lighten2,  //md blue-grey darken-2  455A64
-  darkgrey: colors.grey.darken4, // 212121
-  orangeaccent: colors.deepOrange.lighten5, // for text
+  darkgrey: colors.grey.darken3, // 212121
+  orangetext: colors.deepOrange.lighten5, // for text
+  peachy: colors.deepOrange.lighten4,
+  pinkish: colors.deepPurple.lighten4,
+  tealish: colors.teal.lighten4,
+  greyish: colors.blueGrey.lighten4
   // purple1: primary,
   // purple2: secondary,
   // orange1: accent  // was tw f6ad55 orange400
@@ -63,7 +67,7 @@ export default new Vuetify({
   // error: '#512DA8',   //md deep-purple darken-2 455A64
   // warning: '#455A64',  //md blue-grey darken-2  455A64
   // darkgrey: '#212121', // 212121
-  // orangeaccent: accent,
+  // orangetext: accent,
   // purple1: primary,
   // purple2: secondary,
   // orange1: accent  // was tw f6ad55 orange400
