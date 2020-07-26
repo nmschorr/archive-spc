@@ -1,120 +1,135 @@
 <template>
-  <v-card 
-    id="mainappcard"
-    height="1600px"
-    color="teal lighten-3"
-    outlined
-    class="d-flex align-start flex-column mt-auto"
-    width="1400px"
-  >
-    <v-row>
-      <v-col
-        cols="5"
-        md="5"
-      >             <!-- * * * * * * *  main peachy card on left -->
-        <v-card
-          id="firstcard"
-          mainappcard
-          height="700px"
-          width="500px"
-          elevation="24"
-          raised
-          outlined
-          shaped
-          class="ml-5"
-          color="peachy"
-        >
-          <v-btn
-            id="getprodsbtn"
-            color="primary"
-            v-bind="btnprops"
-            firstcard
-            :class="btnclss"
-            @click="axiosPost"
-          >
-            <span :class="btnfontclss">
-              Current Products
-            </span>
-          </v-btn>
-          
+  <v-row>
+            <!-- top level col -->
+    <v-col
+      cols="12"
+    >  
+      <v-card
+        id="mainappcard"
+        color="teal lighten-3"
+        class="d-inline-flex"
+      > 
+           <!-- second level col -->
+        <v-col
+          cols="4"
+        >     
+        <!-- * * * * * * *  main peachy card on left -->
           <v-card
-            v-for="product in products"
-            id="showprodscard"
-            :key="product"      
-            width="400px"
-            :class="cardclss"
-            color="orangetext"
+            id="firstcard"
+            mainappcard
+            height="700px"
+            width="500px"
+            elevation="24"
+            raised
+            outlined
             shaped
-            firstcard
-          >      
-            {{ product }}
-          </v-card>
+            class="ml-5"
+            color="peachy"
+          >
+            <v-btn
+              id="getprodsbtn"
+              color="primary"
+              x-large
+              v-bind="btnprops"
+              firstcard
+              :class="btnclss"
+              @click="axiosPost"
+            >
+              <span :class="btnfontclss">
+                Current Products
+              </span>
+            </v-btn>
+            <v-card
+              v-for="product in products"
+              id="showprodscard"
+              :key="product"      
+              width="400px"
+              :class="cardclss"
+              color="orangetext"
+              shaped
+              firstcard
+            >      
+              {{ product }}
+            </v-card>
+          </v-card>>
           <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
           <!--reviews card -->
           <!-- getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-        </v-card>
-      </v-col>
+          
+        </v-col>
+            <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <v-col
+          cols="1"
+        >
+        </v-col>
 
-      <v-col
-        cols="6"
-        md="6"
-      >        <!-- ****** column 2 -->
-        <!-- ****** vselcard greencard GREENCARD  -->
-        <v-card
-          id="greencard"
-          width="90%"
-          flat
-          color="teal lighten-3"
-        >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
-          <v-card        
-            id="vselbackgroundcard"
-            greencard
-            shaped
-            height="73px"
-            width="270px"
-            color="deep-orange lighten-4"
-            class="d-inline-flex align-center justify-left pa-2"
-          >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
-            <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
-            <v-select
-              id="vselone"
-              v-model="prodchoice"
-              width="230px"
-              height="30px"
-              labelWidth="140px"
-              type="string"
-              label="Select a Product"
-              color="deep-purple"
-              append-icon="mdi-plus"
+            <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+        <v-col
+          cols="7"
+        >        <!-- ****** column 2 -->
+          <!-- <v-card
+            width="100%"
+            height="100%"
+            color="red"
+          />               -->
+                              <!-- ****** vselcard greencard GREENCARD  -->
+          <v-card
+            id="greencard"
+            width="100%"
+            flat
+            color="transparent"
+            class="d-inline-flex justify-left"
+          >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
+            <v-card        
+              id="vselbackgroundcard"
+              greencard
               shaped
-              outlined
-              :style="`max-width:230px;`"        
-              :items="products"
-              vselcard
-              class="mt-9"
+              height="73px"
+              width="270px"
+              color="deep-orange lighten-5"
+              class="d-inline-flex align-center justify-left pa-2"
+            >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
+              <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
+              <v-select
+                id="vselone"
+                v-model="prodchoice"
+                width="230px"
+                height="30px"
+                labelWidth="140px"
+                type="string"
+                label="Select a Product"
+                color="deep-purple"
+                append-icon="mdi-plus"
+                shaped
+                outlined
+                :style="`max-width:230px;`"        
+                :items="products"
+                vselcard
+                class="mt-9"
 
-            />
-          </v-card>  
-          <v-btn
-            id="getrevssbtn"
-            v-bind="btnprops"
-            color="deep-orange lighten-3"
-            greencard
-            shaped
-            elevation-4
-            class="mb-2 mt-2 ml-6 pa-3"
-            @click=axiosGetReviews()
-          >    
-          <span 
-            :class="btnfontclss"
-            :style="`text-shadow: 1px 1px 4px grey;`"
-          >
-            Get the Reviews
-          </span>
-        </v-btn>   
-         <!-- end select a product -->
-        </v-card>     <!-- ******end green card -->
-      <!-- ****** column 2 -->
+              />
+              </v-card>  
+              
+              <v-btn
+                id="getrevssbtn"
+                v-bind="btnprops"
+                color="deep-orange lighten-3"
+                greencard
+                shaped
+                elevation-4
+                class="mb-2 mt-2 ml-6 pa-3"
+                @click=axiosGetReviews()
+              >    
+              <span 
+                :class="btnfontclss"
+                :style="`text-shadow: 1px 1px 4px grey;`"
+              >
+                Get the Reviews
+              </span>
+            </v-btn>   
+            <!-- end select a product -->
+          </v-card>     <!-- ******end green card -->
+          <!-- ****** column 2 -->
 
       <!-- ****** data results -->
       <v-card
@@ -142,7 +157,14 @@
         :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
 
       >
-        
+      <div
+
+        width="90%"
+        class="headline pt-5"
+      > 
+        Reviews for Product Category   {{ prodchoice  }}
+        <br>
+      </div>        
         <v-card
           v-for="review in reviews"
           :key="review"      
@@ -150,15 +172,19 @@
           width="630px"
           elevation-24
           raised
-          height="650px"
-          class="d-flex align-left mt-5 ml-3"
-          :class="cardclss"
+          height="auto"
+          class="d-flex flex-column align-left ml-3 mt-2"
           color="teal lighten-5"
           shaped
           secondcard
         >      
-          <br><br>
-          {{ review }}
+          <v-card-text 
+            :style="`font-size:16px;font-weight:bold;`"
+          > 
+            {{ review.comments }} 
+          </v-card-text>
+
+
         </v-card>   
           <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <!-- * * *  - - - - - -- "test select" -->
@@ -166,17 +192,18 @@
       
       <!-- end reviews card -->
       </v-col>
-      <v-col>
-        <v-card
-          v-bind="cardyprops"
-          color="teal lighten-2"
-          mainappcard
-          min-height="70px"
-          :class="cardclss"
-        />
-      </v-col>
-    </v-row>
-  </v-card>
+        <v-col>
+          <v-card
+            v-bind="cardyprops"
+            color="teal lighten-2"
+            mainappcard
+            min-height="70px"
+            :class="cardclss"
+          />
+        </v-col>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -332,7 +359,12 @@ export default {
 .gradientg3 {
   background-image: linear-gradient(306deg, #47886d 0%, #116479 100%)
 }
-
+.gradientprime {
+  background-image: linear-gradient(306deg,  #7e57c2 0%, #9871DC 100%)
+}
+.gradientprime2 {
+  background-image: linear-gradient(306deg,  #7e57c2, #9871DC)
+}
 </style>
 
         

@@ -30,6 +30,7 @@
         </v-container>  
       </v-container>  
     </v-main>
+    <v-footer />
   </div>
 </template>
 
