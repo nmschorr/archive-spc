@@ -73,7 +73,7 @@
             height="73px"
             width="270px"
             color="deep-orange lighten-4"
-            class="d-inline-flex align-center justify-left pa-2 ml-n12"
+            class="d-inline-flex align-center justify-left pa-2"
           >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
             <v-select
