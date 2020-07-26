@@ -7,8 +7,8 @@ import colors from 'vuetify/lib/util/colors'
 Vue.use(Vuetify, VueAxios, axios)
 
 const theme = {
-  primary: colors.deepPurple.lighten1, // purple was tw 805ad5
-  secondary: colors.deepPurple.accent1,  //was tw light purple b794f4
+  primary: colors.deepPurple.lighten1, // md #7e57c2  [10% light-#9871DC]  deep-purple (was tw 805ad5)
+  secondary: colors.deepPurple.accent1, // md: #b388ff  //was tw light purple b794f4
   tertiary: colors.teal.base,  //md teal  009688
   success: colors.teal.accent4,  // md teal accent-4 00BFA5
   accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
@@ -24,8 +24,16 @@ const theme = {
   // purple1: primary,
   // purple2: secondary,
   // orange1: accent  // was tw f6ad55 orange400
-}
-
+}  // deep-purple: #9C27B0
+// const deepPurple = Object.freeze({
+//   base: '#673ab7',
+//   lighten5: '#ede7f6',
+//   lighten4: '#d1c4e9',
+//   lighten3: '#b39ddb',
+//   lighten2: '#9575cd',
+//   lighten1: '#7e57c2',
+//   darken1: '#5e35b1',
+//   darken2: '#512da8',
 
 // const dtheme = {
 //   primary: colors.teal.base, // #009688

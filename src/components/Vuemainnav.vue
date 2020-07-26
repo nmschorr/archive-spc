@@ -5,18 +5,18 @@
     <v-app-bar
       app
       color="primary"
-      dark
       elevation="24"
       height="120px"
       min-height="30px"
       rounded
       prominent
       class="mx-4"
-      :style="`background-image: linear-gradient(306deg, #9873d6 0%, #b794f4 100%)`"
-    >
+      :style="`background-image: linear-gradient(60deg, #b794f4, #673ab7)`"
+    >  
       <v-app-bar-nav-icon />
         
       <v-toolbar-title
+        class="white--text"
         :style="`text-shadow: 1px 1px 4px grey;`"
       >
         Welcome to Space Exploration
