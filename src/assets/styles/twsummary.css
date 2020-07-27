@@ -498,5 +498,40 @@ Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";
 .z-50 {
   z-index: 50;
 }
+.bg-teal-400 {
+  --bg-opacity: 1;
+  background-color: #4fd1c5;
+  background-color: rgba(79, 209, 197, var(--bg-opacity));
+}
+.bg-teal-500 {
+  --bg-opacity: 1;
+  background-color: #38b2ac;
+  background-color: rgba(56, 178, 172, var(--bg-opacity));
+}
+
+.bg-teal-600 {
+  --bg-opacity: 1;
+  background-color: #319795;
+  background-color: rgba(49, 151, 149, var(--bg-opacity));
+}
+
+.bg-teal-700 {
+  --bg-opacity: 1;
+  background-color: #2c7a7b;
+  background-color: rgba(44, 122, 123, var(--bg-opacity));
+}
+
+.bg-teal-800 {
+  --bg-opacity: 1;
+  background-color: #285e61;
+  background-color: rgba(40, 94, 97, var(--bg-opacity));
+}
+
+.bg-teal-900 {
+  --bg-opacity: 1;
+  background-color: #234e52;
+  background-color: rgba(35, 78, 82, var(--bg-opacity));
+}
+
 
 

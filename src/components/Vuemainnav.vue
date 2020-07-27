@@ -4,30 +4,29 @@
   >
     <v-app-bar
       app
-      color="primary"
       elevation="24"
       height="120px"
       min-height="30px"
       rounded
       prominent
       class="mx-4"
-      :style="`background-image: linear-gradient(60deg, #b794f4, #673ab7)`"
+      :style="`background-image: linear-gradient(60deg, teal, black)`"
     >  
       <v-app-bar-nav-icon />
         
       <v-toolbar-title
         class="white--text"
-        :style="`text-shadow: 1px 1px 4px grey;`"
+        :style="`font-size:32px!important;text-shadow: 1px 1px 4px grey;`"
       >
         Welcome to Space Exploration
       </v-toolbar-title>
       <v-spacer />
 
       <v-btn
-        color="primary"
-        elevation="0"
+        color="blue-grey"
+        elevation="24"
         large
-        class="mt-9 font-sans9"
+        class="mt-9"
         min-width="40px"
         min-height="20px"
         @click="prodclick"
@@ -37,9 +36,9 @@
       <v-spacer />
 
       <v-btn
-        color="primary"
+        color="blue-grey"
         large
-        class="mt-9 font-sans9"
+        class="mt-9"
         min-width="40px"
         min-height="20px"
         @click="prodclick"
@@ -49,9 +48,9 @@
       <v-spacer />
 
       <v-btn
-        color="primary"
+        color="blue-grey"
         large
-        class="mt-9 font-sans9"
+        class="mt-9"
         min-width="40px"
         min-height="20px"
         @click="revclick"
@@ -133,8 +132,8 @@
 </script>
 <style>
   .v-btn.v-size--large {
-    font-size: 1rem;
-  
+    font-size: 18px;
+    color: white;
   }
   .font-sans9 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, 

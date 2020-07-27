@@ -3,7 +3,7 @@
   <div class="lg:flex">
     <div class="leading-none sm:leading-relaxed text-center block mt-24 w-full lg:w-2/3 xl:w-1/2">
       <div class="text-6xl font-extrabold">
-        <span class="leading-tight text-white rounded p-2 shadow-md bg-purple-400">
+        <span class="leading-tight text-white rounded p-2 shadow-md bg-teal-400">
           Genuine
         </span> 
         Reviews
@@ -27,8 +27,8 @@
         Try Space Exploration
       </div> 
       <a href="reviews.html">
-        <div class="hover:bg-purple-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-purple-400 text-center">
-          Post a Review</div>
+        <div class="hover:bg-teal-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-teal-400 text-center">
+          </div>
       </a>
     </div>
   </div>

@@ -6,8 +6,9 @@
     >  
       <v-card
         id="mainappcard"
-        color="teal lighten-3"
         class="d-inline-flex"
+        :style="`background-image: linear-gradient(306deg, teal 0%, black 100% )`"
+        
       > 
            <!-- second level col -->
         <v-col
@@ -24,11 +25,11 @@
             outlined
             shaped
             class="ml-5"
-            color="peachy"
+            color="#EFEBE9"
           >
             <v-btn
               id="getprodsbtn"
-              color="primary"
+              color="blue-grey"
               x-large
               v-bind="btnprops"
               firstcard
@@ -86,7 +87,7 @@
               shaped
               height="73px"
               width="270px"
-              color="deep-orange lighten-5"
+              color="#EFEBE9"
               class="d-inline-flex align-center justify-left pa-2"
             >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
               <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
@@ -139,7 +140,7 @@
         elevation-24
         :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
         height="45px"
-        color="teal lighten-1"
+        color="teal accent-4"
         class="pa-2 ml-n3 mt-7 text-uppercase white--text"
         secondcard
       >
@@ -152,7 +153,7 @@
         shaped
         height="700px"
         width="675px"
-        color="teal lighten-4"
+        color="#ECEFF1"
         class="mt-n4 pa-2 d-flex flex-column"
         :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
 
@@ -179,9 +180,9 @@
           secondcard
         >      
           <v-card-text 
-            :style="`font-size:16px;font-weight:bold;`"
+            :style="`font-size:16px;font-weight:light;`"
           > 
-            {{ review.comments }} 
+            {{ review.comments }} <br> Reviewer: {{ review.writer }}
           </v-card-text>
 
 
@@ -192,7 +193,7 @@
       
       <!-- end reviews card -->
       </v-col>
-        <v-col>
+        <!-- <v-col>
           <v-card
             v-bind="cardyprops"
             color="teal lighten-2"
@@ -200,8 +201,8 @@
             min-height="70px"
             :class="cardclss"
           />
-        </v-col>
-      </v-card>
+        </v-col>-->
+      </v-card> 
     </v-col>
   </v-row>
 </template>
@@ -308,6 +309,7 @@ export default {
       const RETtype = "(String productId) return Ljava/util/List;";
       const LASTLIST = [productId];
       const jsonV = '2.0'
+      const queryId = 900092
 
       const REQtype = "getReviews";
       const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
@@ -318,7 +320,7 @@ export default {
         axresult = await axiosi.post(this.POSTURL_w3, {
           jsonrpc: jsonV,
           method:  invMethod,
-          id: 900092,
+          id: queryId,
           params:  vPARAMS
         });
       } catch (e) {
