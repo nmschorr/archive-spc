@@ -30,7 +30,7 @@
         </v-container>  
       </v-container>  
     </v-main>
-    <v-footer />
+    <CoreFooter />
   </div>
 </template>
 
@@ -41,6 +41,7 @@
   import AllReviews from './AllReviews'
   import Reviews from './Reviews'
   import Vuemainnav from './Vuemainnav'
+  import CoreFooter from './Footer'
 
   const CHAINID = cobj.data.cobj.CHAINID
   const CONT_ADDY = cobj.data.cobj.CONT_ADDY
@@ -53,6 +54,8 @@
       Spcgraphic,
       Vuemainnav,
       AllReviews,
+      CoreFooter: () => import('./Footer'),
+
       // Reviews
     },
     data: () => ({

@@ -27,11 +27,29 @@
         Try Space Exploration
       </div> 
       <a href="reviews.html">
-        <div class="hover:bg-teal-500 cursor-pointer max-w-full text-2xl p-4 shadow rounded font-bold text-white bg-teal-400 text-center">
-          </div>
       </a>
+
+          <v-card
+            color="transparent"
+            height="90px"
+            width="100%"
+            flat
+            class="d-flex justify-center"
+          >
+            <v-card
+              color="teal accent-4"
+              flat
+              outlined="false"
+              height="30px"
+              width="60%"
+              class="d-flex justify-center"
+              :style="`background-image: linear-gradient(60deg, cyan, teal accent-4)`"
+            >
+            </v-card>
+          </v-card>
+
+          </div>
     </div>
-  </div>
 </template>
 <script>
   export default {

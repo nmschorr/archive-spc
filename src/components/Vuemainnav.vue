@@ -5,11 +5,13 @@
     <v-app-bar
       app
       elevation="24"
-      height="120px"
-      min-height="30px"
+      :height="appbarheight"
+      :key="appbarheight"
+      raised
+      min-height="100px"
       rounded
       prominent
-      class="mx-4"
+      class="mx-4 align-bottom"
       :style="`background-image: linear-gradient(60deg, teal, black)`"
     >  
       <v-app-bar-nav-icon />
@@ -25,6 +27,7 @@
       <v-btn
         color="blue-grey"
         elevation="24"
+        raised
         large
         class="mt-9"
         min-width="40px"
@@ -37,6 +40,8 @@
 
       <v-btn
         color="blue-grey"
+        elevation="24"
+        raised
         large
         class="mt-9"
         min-width="40px"
@@ -50,6 +55,8 @@
       <v-btn
         color="blue-grey"
         large
+        elevation="24"
+        raised
         class="mt-9"
         min-width="40px"
         min-height="20px"
@@ -84,7 +91,7 @@
     }
   const revs = {
     plink: "reviews.html?products=1",
-    pname: "Show Products"
+    pname: "Show Reviews"
     }
   const allrevs = {
     plink: "showreviews",
@@ -92,12 +99,13 @@
     }
   const writerevs = {
     plink: "reviews.html",
-    pname: "Write Review" 
+    pname: "List Contracts" 
     }
 
   export default {
     name: 'Vuemainnav',
     data: () => ({
+      appbarheight: "300px",
       indi,
       revs,
       allrevs,
@@ -117,7 +125,7 @@
       prodclick () {
         this.$store.dispatch('showprod_a', true)
         this.$store.dispatch('gshowtrueAct', false)
-
+        this.appbarheight = "300px",
         this.spacetrue = false;
       },    
       newclick () {
@@ -130,15 +138,10 @@
   }
 
 </script>
-<style>
+<style scoped>
   .v-btn.v-size--large {
     font-size: 18px;
     color: white;
+    text-transform: capitalize;
   }
-  .font-sans9 {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, 
-  \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI 
-  Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";
-  }
-
 </style>

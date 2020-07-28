@@ -7,7 +7,7 @@
       <v-card
         id="mainappcard"
         class="d-inline-flex"
-        :style="`background-image: linear-gradient(306deg, teal 0%, black 100% )`"
+        :style="`background-image: linear-gradient(306deg, teal 70%, black 30% )`"
         
       > 
            <!-- second level col -->
@@ -336,6 +336,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap'
 
 .btnfnt {
   font-size: 16px;

@@ -1,11 +1,13 @@
 <template>
   <v-footer
     id="dashboard-core-footer"
+    color="teal lighten-4"
+    app
+    class="mb-0"
   >
     <v-container>
       <v-row
         align="center"
-        no-gutters
       >
         <v-col
           v-for="(link, i) in links"
@@ -34,7 +36,7 @@
               size="18"
               color="red"
             >
-              mdi-heart
+              {{  mdih }}
             </v-icon>
             by <a href="https://nuls.io">NULS</a> for a better blockchain.
           </div>
@@ -46,9 +48,14 @@
 
 <script>
   export default {
-    name: 'DashboardCoreFooter',
+    name: 'CoreFooter',
 
     data: () => ({
+      mhome: 'mdi-home',
+      mem: 'mdi-email',
+      mcal: 'mdi-calendar',
+      mdel: 'mdi-delete',
+      mdih: 'mdi-heart',
       links: [
         {
           href: '#',
