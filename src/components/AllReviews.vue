@@ -335,9 +335,36 @@ export default {
         console.log("this.reviews: " + this.reviews)
         this.cardkey += 1;
      },
+    async axiosGetContracts() {
+      var productId = this.prodchoice
+      const invMethod = 'invokeView'
+      const RETtype = "(String productId) return Ljava/util/List;";
+      const LASTLIST = [productId];
+      const jsonV = '2.0'
+      const queryId = 900097
+
+      const REQtype = "getAccountContractList";
+      const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
+      const axiosi = this.makeaxiosi()
+      try { 
+        var axresult
+        console.log("inside axiosPost vPARAMS: " + vPARAMS);
+        axresult = await axiosi.post(this.POSTURL_w3, {
+          jsonrpc: jsonV,
+          method:  invMethod,
+          id: queryId,
+          params:  vPARAMS
+        });
+      } catch (e) {
+        console.log(e);
+        }
+        this.reviews = JSON.parse(axresult.data.result.result)
+        console.log("this.reviews: " + this.reviews)
+        this.cardkey += 1;
+     },
   },
 }
-//await this.$post('/', 'getAccountContractList', [this.pageIndex, this.pageSize, address, -1, false])
+//await this.$post('/', 'getAccountContractList', [this.pageIndex, this.pageSize, address, -1, false]) SENDER
 
 
 </script>
