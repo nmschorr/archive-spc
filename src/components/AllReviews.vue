@@ -25,7 +25,7 @@
             outlined
             shaped
             class="ml-5"
-            color="#EFEBE9"
+            color="grey lighten-3"
           >
             <v-btn
               id="getprodsbtn"
@@ -49,7 +49,9 @@
               color="orangetext"
               shaped
               firstcard
+              icon
             >      
+            <v-icon :style="`padding-right:4px;`"> mdi-nfc </v-icon>
               {{ product }}
             </v-card>
           </v-card>>
@@ -87,7 +89,7 @@
               shaped
               height="73px"
               width="270px"
-              color="#EFEBE9"
+              color="grey lighten-3"
               class="d-inline-flex align-center justify-left pa-2"
             >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
               <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
@@ -121,11 +123,13 @@
                 class="mb-2 mt-2 ml-6 pa-3"
                 @click=axiosGetReviews()
               >    
+              <v-icon :style="`padding-right:9px;`"> mdi-newspaper </v-icon>
+             
               <span 
                 :class="btnfontclss"
                 :style="`text-shadow: 1px 1px 4px grey;`"
               >
-                Get the Reviews
+                Get Reviews
               </span>
             </v-btn>   
             <!-- end select a product -->
@@ -153,7 +157,7 @@
         shaped
         height="700px"
         width="675px"
-        color="#ECEFF1"
+        color="grey lighten-3"
         class="mt-n4 pa-2 d-flex flex-column"
         :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
 
@@ -226,6 +230,7 @@ export default {
   name: "AllReviews",
   data: () => ({
     vmm: '',
+    myspace: "--",
     prodchoice: '',
     btnclss: "mb-2 mt-2 ml-7 pa-3",
     btnfontclss: "font-bold text-l white--text",
@@ -332,6 +337,9 @@ export default {
      },
   },
 }
+//await this.$post('/', 'getAccountContractList', [this.pageIndex, this.pageSize, address, -1, false])
+
+
 </script>
 
 <style scoped>

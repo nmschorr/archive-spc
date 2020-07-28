@@ -37,13 +37,13 @@
             class="d-flex justify-center"
           >
             <v-card
-              color="teal accent-4"
+              color="white"
               flat
               outlined="false"
               height="30px"
               width="60%"
               class="d-flex justify-center"
-              :style="`background-image: linear-gradient(60deg, cyan, teal accent-4)`"
+              :style="`background-image: linear-gradient(60deg, cyan, teal)`"
             >
             </v-card>
           </v-card>
