@@ -4,11 +4,6 @@
   >   
     <Vuemain />
 
-    <v-footer
-      app
-    >
-      NULS
-    </v-footer>
   </v-app>
 </template>
 

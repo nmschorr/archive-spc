@@ -125,7 +125,7 @@
       prodclick () {
         this.$store.dispatch('showprod_a', true)
         this.$store.dispatch('gshowtrueAct', false)
-        this.appbarheight = "300px",
+        this.appbarheight = "150px",
         this.spacetrue = false;
       },    
       newclick () {

@@ -54,7 +54,7 @@
       Spcgraphic,
       Vuemainnav,
       AllReviews,
-      CoreFooter: () => import('./Footer'),
+      CoreFooter,
 
       // Reviews
     },
