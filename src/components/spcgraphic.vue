@@ -39,7 +39,6 @@
             <v-card
               color="white"
               flat
-              outlined="false"
               height="30px"
               width="60%"
               class="d-flex justify-center"
