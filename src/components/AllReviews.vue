@@ -35,7 +35,7 @@
                 v-bind="btnprops"
                 firstcard
                 :class="btnclss"
-                @click="axiosPost"
+                @click="axiosGetProds"
               >
                 <span 
                   :class="btnfontclss" 
@@ -130,7 +130,7 @@
                   labelWidth="140px"
                   type="string"
                   label="Select a Product"
-                  color="deep-purple"
+                  color="deep-purple accent-3"
                   shaped
                   outlined
                   :style="`max-width:230px;font-weight:700;`"        
@@ -144,10 +144,10 @@
                 <v-btn
                   id="getrevssbtn"
                   color="red lighten-1"
-                  fab=true
+                  fab
                   left
                   vselbackgroundcard
-                  class="ml-n15"
+                  class="ml-n15 mt-2"
                   @click=axiosGetReviews2()
                 >    
                 <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
@@ -244,7 +244,7 @@
 
 <script>
 import axios from "axios";
-import ccodes from '@/constants/constantsnew.js'
+import { ccodes, ccodes2} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 import colors from '../../node_modules/vuetify/lib/util/colors'
 require('./queries.js')
@@ -280,14 +280,14 @@ export default {
     cardclss: "d-flex justify-left ma-2 pa-1",
     CHAINID: cobj.data.cobj.CHAINID,
     PW: cobj.data.cobj.PW,
-    CONT_ADDY: cobj.data.cobj.CONT_ADDY,
+    contractaddy: cobj.data.cobj.contractaddy,
     SENDER: cobj.data.cobj.SENDER,
     OWNER: cobj.data.cobj.OWNER,
     BUYER: cobj.data.cobj.BUYER,
     VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
     GAS_PRICE: cobj.data.cobj.GAS_PRICE,
     GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
-    POSTURL_w3: cobj.data.cobj.POSTURL_w3,
+    URL3: cobj.data.cobj.URL3,
     POSTURL_w4: cobj.data.cobj.POSTURL_w4,
     products: null,
     cardkey: 0,
@@ -308,14 +308,21 @@ export default {
     showit: false,
     }),
   created () {
-    this.axiosPost()  // get the prod list
+    this.axiosGetProds()  // get the prod list
     console.log()
   },
   methods: {
     async axiosGetReviews2 () {
-      let axr = await MyFunctions.axiosGetRs( this.CHAINID, this.CONT_ADDY, this.prodchoice, this.POSTURL_w3)
+      let axr = await MyFunctions.axiosGetRs( this.CHAINID, this.contractaddy, this.prodchoice, this.URL3)
       this.reviews = JSON.parse(axr.data.result.result)
       console.log("this.reviews: " + this.reviews)
+      this.cardkey += 1; 
+      this.showit = true
+    },
+    async axiosGetProds () {
+      let axr = await MyFunctions.axiosGetProducts( this.CHAINID, this.contractaddy, this.URL3)
+      this.products = JSON.parse(axr.data.result.result)
+      console.log("this.products: " + this.products)
       this.cardkey += 1; 
       this.showit = true
     },
@@ -332,66 +339,36 @@ export default {
       return axio
     },
 
-    async axiosPost() {
-      const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
-        invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
-      const LASTLIST =[]
-      console.log("inside axiosPost accStr: ", accStr)
-      var vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST]
+    // async axiosGetProds5() {
+    //   const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
+    //     invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
+    //   const LASTLIST =[]
+    //   console.log("inside axiosGetProds accStr: ", accStr)
+    //   var vPARAMS = [this.CHAINID, this.contractaddy, REQtype, RETtype, LASTLIST]
       
-      const axiosi = axios.create({
-        defaults: {
-          headers: {
-            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            },
-          },
-        });
-      try { 
-        var axresult
-        console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.POSTURL_w3, {
-          jsonrpc: jsonV,
-          method:  invMethod,
-          id: 900099,
-          params:  vPARAMS
-        });
-      } catch (e) {
-        console.log(e);
-        }
-        this.products = JSON.parse(axresult.data.result.result)
-        console.log("this.products: " + this.products)
-        this.cardkey += 1;
-     },
-     // axios  this.CHAINID, this.CONT_ADDY, axiosi
-
-
-    async axiosGetReviews() {
-      var productId = this.prodchoice
-      const invMethod = 'invokeView'
-      const RETtype = "(String productId) return Ljava/util/List;";
-      const LASTLIST = [productId];
-      const jsonV = '2.0'
-      const queryId = 900092
-
-      const REQtype = "getReviews";
-      const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
-      const axiosi = this.makeaxiosi()
-      try { 
-        var axresult
-        console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.POSTURL_w3, {
-          jsonrpc: jsonV,
-          method:  invMethod,
-          id: queryId,
-          params:  vPARAMS
-        });
-      } catch (e) {
-        console.log(e);
-        }
-        this.reviews = JSON.parse(axresult.data.result.result)
-        console.log("this.reviews: " + this.reviews)
-        this.cardkey += 1;
-     },
+    //   const axiosi = axios.create({
+    //     defaults: {
+    //       headers: {
+    //         post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
+    //         },
+    //       },
+    //     });
+    //   try { 
+    //     var axresult
+    //     console.log("inside axiosGetProds vPARAMS: " + vPARAMS);
+    //     axresult = await axiosi.post(this.URL3, {
+    //       jsonrpc: jsonV,
+    //       method:  invMethod,
+    //       id: 900099,
+    //       params:  vPARAMS
+    //     });
+    //   } catch (e) {
+    //     console.log(e);
+    //     }
+    //     this.products = JSON.parse(axresult.data.result.result)
+    //     console.log("this.products: " + this.products)
+    //     this.cardkey += 1;
+    //  },
     async axiosGetContracts() {
       var productId = this.prodchoice
       const invMethod = 'invokeView'
@@ -401,12 +378,12 @@ export default {
       const queryId = 900097
 
       const REQtype = "getAccountContractList";
-      const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
+      const vPARAMS = [this.CHAINID, this.contractaddy, REQtype, RETtype, LASTLIST];
       const axiosi = this.makeaxiosi()
       try { 
         var axresult
-        console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.POSTURL_w3, {
+        console.log("axiosGetContracts vPARAMS: " + vPARAMS);
+        axresult = await axiosi.post(this.URL3, {
           jsonrpc: jsonV,
           method:  invMethod,
           id: queryId,
