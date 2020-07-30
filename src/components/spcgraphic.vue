@@ -1,6 +1,6 @@
 /* eslint-disable vue/name-property-casing */
 <template>
-  <div class="lg:flex">
+  <div class="lg:flexx">
     <div class="leading-none sm:leading-relaxed text-center block mt-24 w-full lg:w-2/3 xl:w-1/2">
       <div class="text-6xl font-extrabold">
         <span class="leading-tight text-white rounded p-2 shadow-md bg-teal-400">
@@ -26,34 +26,34 @@
       <div class="text-center relative text-6xl font-extrabold">
         Try Space Exploration
       </div> 
-      <a href="reviews.html">
-      </a>
-
-          <v-card
-            color="transparent"
-            height="90px"
-            width="100%"
-            flat
-            class="d-flex justify-center"
-          >
-            <v-card
-              color="white"
-              flat
-              height="30px"
-              width="60%"
-              class="d-flex justify-center"
-              :style="`background-image: linear-gradient(60deg, cyan, teal)`"
-            >
-            </v-card>
-          </v-card>
-
-          </div>
+      <v-card
+        id="spacercard"
+        color="transparent"
+        height="90px"
+        width="100%"
+        flat
+        class="d-flex justify-center"
+      >
+        <v-card
+          id="colorcard"
+          color="white"
+          spacercard
+          flat
+          height="30px"
+          width="60%"
+          class="d-flex justify-center"
+          :style="`background-image: linear-gradient(60deg, cyan, teal)`"
+        >
+        </v-card>
+      </v-card>
     </div>
+  </div>
 </template>
+
 <script>
   export default {
-    name: "Spcgraphic"
-      }
-
+    name: "Spcgraphic",
+  }
 </script>
-<style src="../assets/styles/twsummary.css" />
+
+<style src="../assets/styles/twsmall.css" />

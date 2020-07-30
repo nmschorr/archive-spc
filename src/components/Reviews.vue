@@ -225,14 +225,14 @@ import axios from 'axios';
 import cobj from '../constants/constants.js';
 const CHAINID = cobj.CHAINID;
 const PW = cobj.PW;
-const CONT_ADDY = cobj.CONT_ADDY;
+const contaddy = cobj.contaddy;
 const SENDER = cobj.SENDER;
 const OWNER = cobj.OWNER;
 const BUYER = cobj.BUYER;
 const VALUE_ASSET = cobj.VALUE_ASSET;
 const GAS_PRICE = cobj.GAS_PRICE;
 const GAS_LIMIT = cobj.GAS_LIMIT;
-const POSTURL_w3 = cobj.POSTURL_w3;
+const Url3 = cobj.Url3;
 const POSTURL_w4 = cobj.POSTURL_w4;
 const MULTIPLY = 100000000;
 const revfont =
@@ -282,14 +282,14 @@ export default {
     revfont,
     spantxt,
     PW,
-    CONT_ADDY,
+    contaddy,
     SENDER,
     OWNER,
     BUYER,
     VALUE_ASSET,
     GAS_PRICE,
     GAS_LIMIT,
-    POSTURL_w3,
+    Url3,
     POSTURL_w4,
     MULTIPLY,
     contract: null,
@@ -333,7 +333,7 @@ export default {
         BIG_VALUE,
         this.GAS_LIMIT,
         this.GAS_PRICE,
-        this.CONT_ADDY,
+        this.contaddy,
         REQUEST_TYPE,
         DESCRIPTION,
         PRODUCTID_REVIEW,
@@ -377,13 +377,13 @@ export default {
     },
     async getContract() {
       const METHOD_D = 'getContract';
-      const PARAMS = [this.CHAINID, this.CONT_ADDY];
+      const PARAMS = [this.CHAINID, this.contaddy];
       const ID_D = 900032;
 
       const loader = this.$loading.show({
         loader: 'dots'
       });
-      const result = await axios.post(POSTURL_w3, {
+      const result = await axios.post(Url3, {
         jsonrpc: '2.0',
         method: METHOD_D,
         params: PARAMS,
@@ -406,7 +406,7 @@ export default {
       // let ID_D = 900033;
       const PARAMS = [
         this.CHAINID,
-        this.CONT_ADDY,
+        this.contaddy,
         REQUEST_TYPE,
         RET_TYPE,
         LASTLIST
@@ -416,7 +416,7 @@ export default {
         loader: 'dots'
       });
       try {
-        const result = await axios.post(POSTURL_w3, {
+        const result = await axios.post(Url3, {
           jsonrpc: '2.0',
           method: METHOD_D,
           params: PARAMS
@@ -441,7 +441,7 @@ export default {
       // let ID_D = 900033;
       const PARAMS = [
         this.CHAINID,
-        this.CONT_ADDY,
+        this.contaddy,
         REQUEST_TYPE,
         RET_TYPE,
         LASTLIST
@@ -450,7 +450,7 @@ export default {
         loader: 'dots'
       });
       try {
-        const result = await axios.post(POSTURL_w3, {
+        const result = await axios.post(Url3, {
           jsonrpc: '2.0',
           method: METHOD_D,
           params: PARAMS

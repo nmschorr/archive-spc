@@ -18,5 +18,4 @@
   }
 </script>
 
-<style src="./assets/styles/twsummary.css">
-</style>
+

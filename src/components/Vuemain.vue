@@ -43,9 +43,9 @@
   import Vuemainnav from './Vuemainnav'
   import CoreFooter from './Footer'
 
-  const CHAINID = cobj.data.cobj.CHAINID
-  const CONT_ADDY = cobj.data.cobj.CONT_ADDY
-  const POSTURL_w3 = cobj.data.cobj.POSTURL_w3
+  const chainid = cobj.data.cobj.chainid
+  const contaddy = cobj.data.cobj.contaddy
+  const Url3 = cobj.data.cobj.Url3
   const GCMETHOD = 'getContract'
   const vjson = '{ "jsonrpc": "2.0"}'
   export default {
@@ -66,9 +66,9 @@
       showgr: true,
       contract: null,
       products: null,
-      CHAINID,
-      CONT_ADDY,
-      POSTURL_w3,
+      chainid,
+      contaddy,
+      Url3,
       GCMETHOD
     }),
     mounted () {
@@ -77,10 +77,10 @@
     methods: {
       async getContract () {
         const METHOD_D = this.GCMETHOD
-        const PARAMS = [this.CHAINID, this.CONT_ADDY]
+        const PARAMS = [this.chainid, this.contaddy]
         const ID_D = 900032
 
-        const result = await axios.post(this.POSTURL_w3, {
+        const result = await axios.post(this.Url3, {
           jsonrpc: '2.0',
           method: METHOD_D,
           params: PARAMS,

@@ -18,7 +18,7 @@
         
       <v-toolbar-title
         class="white--text"
-        :style="`font-size:32px!important;text-shadow: 1px 1px 4px grey;`"
+        :style="`font-size:32px!important;text-shadow: 1px 1px 4px grey;font-family:Montserrat,sans-serif;`"
       >
         Welcome to Space Exploration
       </v-toolbar-title>
@@ -139,6 +139,8 @@
 
 </script>
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
   .v-btn.v-size--large {
     font-size: 18px;
     color: white;

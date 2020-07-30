@@ -1,15 +1,15 @@
 import axios from "axios";
-import { ccodes2, ccodes } from '../constants/constantsnew.js'
 // import cobj from '../constants/constants.js';
- 
-  
-  
+require('../constants/constantsnew.js')
+import Hcont from '../constants/constantsnew.js'
+var [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
+
 function makeaxio() {
-  var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, ddunused] = Object.values(ccodes.data.ccodes2)
-  var axio = axios.create({
+    // [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont.Hcont)
+    var axio = axios.create({
     defaults: {
       headers: {
-        post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
+        post: { Accept: accStr, acctlMeths: restTyps, ctType: aJson },
         },
       },
     });
@@ -17,24 +17,24 @@ function makeaxio() {
 }
 
 
-async function axiosGetRs(chainid, contaddy, productId, POSTURL3) {
+async function axiosGetRs(chainid, contaddy, productId, Url3) {
   const invMethod = 'invokeView'
   const RETtype = "(String productId) return Ljava/util/List;";
-  const LASTLIST = [productId];
+  const lastlist = [productId];
   const jsonV = '2.0'
   const queryId = 900092
 
   const REQtype = "getReviews";
-  const vPARAMS = [chainid, contaddy, REQtype, RETtype, LASTLIST];
-  const axiosi = makeaxio()
+  const vParams = [chainid, contaddy, REQtype, RETtype, lastlist];
+  const axiosi = this.makeaxio()
   try { 
     var axresult
-    console.log("inside axiosPost vPARAMS: " + vPARAMS);
-    axresult = await axiosi.post(POSTURL3, {
+    console.log("inside axiosPost vParams: " + vParams);
+    axresult = await axiosi.post(Url3, {
       jsonrpc: jsonV,
       method:  invMethod,
       id: queryId,
-      params:  vPARAMS
+      params:  vParams
     });
   } catch (e) {
     console.log(e);
@@ -42,30 +42,28 @@ async function axiosGetRs(chainid, contaddy, productId, POSTURL3) {
   return axresult
 }
 
-async function axiosGetProducts(chainid, contaddy, postu3) {
-      const [accStr, restTypes, aunused, bunused, appJson, cunused, jsonV] = Object.values(ccodes.data.ccodes2)
+async function axiosGetProducts(chainid, contaddy, Url3) {
+      console.log(Hcont)
+      console.log(Hcont.Hcont)
+      console.log("here now")  
+      // [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
       const invMethod = 'invokeView'
       const REQtype = 'getAllProductIds'
       const RETtype = '() return String'
-      const lastlist =[]
+      const lastlist = []
+      const jsonV = '2.0'
+
       console.log("inside axiosGetProds accStr: ", accStr)
-      var vparams = [chainid, contaddy, REQtype, RETtype, lastlist]
-      
-      const axiosi = axios.create({
-        defaults: {
-          headers: {
-            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            },
-          },
-        });
+      var vParams = [chainid, contaddy, REQtype, RETtype, lastlist]
+      const axiosi = makeaxio()
       try { 
         var axresult
-        console.log("inside axiosGetProds vparams: " + vparams);
-        axresult = await axiosi.post(postu3, {
+        console.log("inside axiosGetProds vParams: " + vParams);
+        axresult = await axiosi.post(Url3, {
           jsonrpc: jsonV,
           method:  invMethod,
           id: 900099,
-          params:  vparams
+          params:  vParams
         });
       } catch (e) {
         console.log(e);
@@ -75,8 +73,6 @@ async function axiosGetProducts(chainid, contaddy, postu3) {
         // this.cardkey += 1;
         return thisproducts
      }
-
-
 
 export const MyFunctions = {
   makeaxio,

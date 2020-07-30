@@ -32,7 +32,7 @@
           <div class="body-1 font-weight-600 pt-2 pt-md-0 text-center">
             &copy; 2020, made with
             <v-icon
-              size="18"
+              size="14"
               color="red"
             >
               mdi-heart
@@ -75,7 +75,7 @@
 <style lang="sass">
   #dashboard-core-footer
     a
-      font-size: 18px
+      font-size: 14px
       text-decoration: none
       text-transform: uppercase
 
@@ -85,17 +85,17 @@
   position: relative
   a
     padding: 5px 6px 5px 6px
-    font-size: 18px !important
+    font-size: 14px !important
 
   .body-1
-    font-size: 18px !important
+    font-size: 14px !important
     padding-right: 18px
     letter-spacing: 0px !important
     a
       color: #9c27b0 !important
       padding: 0
       text-transform: inherit !important
-      font-size: 18px !important
+      font-size: 14px !important
 
   .v-icon
     margin-top: -3px

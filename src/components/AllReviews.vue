@@ -52,31 +52,40 @@
                 :class="cardclss"
                 color="orangetext"
                 shaped
+                elevation-24
+                raised
+                filled
                 firstcard
               >      
                 <span style="font-size:12px;margin-left:12px;">  {{ contract }} </span>
               </v-card>
-              <v-container class="px-0" fluid>
-                <v-checkbox
-                  v-model="checkbox"
-                  :label="`Contract 1: ${checkbox.toString()}`"
-                >
-                </v-checkbox>
 
-                <v-radio-group v-model="radioGroup">
-                  <v-radio
-                    v-for="n in 3"
-                    :key="n"
-                    :label="`Contract ${n}`"
-                    :value="n"
-                  ></v-radio>
-                </v-radio-group>
-                <v-switch
-                  v-model="switch1"
-                  :label="`Switch 1: ${switch1.toString()}`"
+              <v-card
+                id="radiocard"
+                color="deep-orange lighten-5"
+                class="ml-5 pa-2"
+                shaped
+                elevation-24
+                raised
+                filled
+                width="400px"
+              >
+                <v-radio-group 
+                  v-model="radioGroup"
+                  dense
+                  radiocard
                 >
-                    </v-switch>
-                  </v-container>
+                  <v-radio
+                    v-for="contract in contracts"
+                    dense
+                    :key="contract"
+                    :label="`${contract}`"
+                    :value="contract"
+                    class="ml-1"
+                  />
+                </v-radio-group>
+
+              </v-card>
 
 
 
@@ -171,7 +180,7 @@
           secondcard
         >
           <span
-            v-if="showit"
+            v-if="showRevs"
             class="text-h6 text-bold text-uppercase"
           >
             Reviews Found</span> 
@@ -189,7 +198,7 @@
 
         >
         <div
-          v-if="showit"
+          v-if="showRevs"
           width="90%"
           class="headline pt-5"
         > 
@@ -211,7 +220,7 @@
           secondcard
         >      
           <v-card-text 
-            :style="`font-size:16px;font-weight:light;`"
+            :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
           > 
             {{ review.comments }} <br> Reviewer: {{ review.writer }}
           </v-card-text>
@@ -244,7 +253,7 @@
 
 <script>
 import axios from "axios";
-import { ccodes, ccodes2} from '@/constants/constantsnew.js'
+import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 import colors from '../../node_modules/vuetify/lib/util/colors'
 require('./queries.js')
@@ -262,6 +271,8 @@ import Vue from 'vue'
   // warning: colors.orange.lighten2,  //md blue-grey darken-2  455A64
   // darkgrey: colors.grey.darken4, // 212121
   // orangetext: colors.deepOrange.lighten5, // for text
+const contractaddy = cobj.data.cobj.contaddy
+
 export default {
   name: "AllReviews",
   data: () => ({
@@ -278,19 +289,20 @@ export default {
     btnprops: { elevation: 24, raised: true, shaped: true, large: true, height: "42px",
       width: "242px", rounded: true },
     cardclss: "d-flex justify-left ma-2 pa-1",
-    CHAINID: cobj.data.cobj.CHAINID,
+    chainid: cobj.data.cobj.chainid,
     PW: cobj.data.cobj.PW,
-    contractaddy: cobj.data.cobj.contractaddy,
+    contractaddy,
     SENDER: cobj.data.cobj.SENDER,
     OWNER: cobj.data.cobj.OWNER,
     BUYER: cobj.data.cobj.BUYER,
     VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
     GAS_PRICE: cobj.data.cobj.GAS_PRICE,
     GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
-    URL3: cobj.data.cobj.URL3,
+    Url3: cobj.data.cobj.Url3,
     POSTURL_w4: cobj.data.cobj.POSTURL_w4,
     products: null,
     cardkey: 0,
+    cardkey2: 0,
     reviews: [],
     bgipur1: `background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)`,
     bgig1: `background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))`,
@@ -305,30 +317,35 @@ export default {
 
     review: null,
     selectedProductId: null,
-    showit: false,
+    showProds: false,
+    showRevs: false,
     }),
-  created () {
+  mounted () {
     this.axiosGetProds()  // get the prod list
     console.log()
   },
   methods: {
     async axiosGetReviews2 () {
-      let axr = await MyFunctions.axiosGetRs( this.CHAINID, this.contractaddy, this.prodchoice, this.URL3)
+      this.showRevs = false
+
+      let axr = await MyFunctions.axiosGetRs( this.chainid, this.contractaddy, this.prodchoice, this.Url3)
       this.reviews = JSON.parse(axr.data.result.result)
       console.log("this.reviews: " + this.reviews)
+      this.showRevs = true
       this.cardkey += 1; 
-      this.showit = true
     },
     async axiosGetProds () {
-      let axr = await MyFunctions.axiosGetProducts( this.CHAINID, this.contractaddy, this.URL3)
-      this.products = JSON.parse(axr.data.result.result)
+      console.log("thedata: " +  this.chainid + " " + this.contractaddy + " " + this.Url3)
+
+      let axr = await MyFunctions.axiosGetProducts( this.chainid, this.contractaddy, this.Url3)
+      console.log(axr)
+      this.products = axr
       console.log("this.products: " + this.products)
-      this.cardkey += 1; 
-      this.showit = true
+      // this.cardkey += 1; 
+      this.showProds = true
     },
     makeaxiosi () {
-      var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, ddunused, 
-        ccunused, aaunused, bbunused] = Object.values(ccodes.data.ccodes)
+      var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV] = Object.values(Hcont.data.Hcont)
       var axio = axios.create({
         defaults: {
           headers: {
@@ -339,36 +356,6 @@ export default {
       return axio
     },
 
-    // async axiosGetProds5() {
-    //   const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
-    //     invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
-    //   const LASTLIST =[]
-    //   console.log("inside axiosGetProds accStr: ", accStr)
-    //   var vPARAMS = [this.CHAINID, this.contractaddy, REQtype, RETtype, LASTLIST]
-      
-    //   const axiosi = axios.create({
-    //     defaults: {
-    //       headers: {
-    //         post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-    //         },
-    //       },
-    //     });
-    //   try { 
-    //     var axresult
-    //     console.log("inside axiosGetProds vPARAMS: " + vPARAMS);
-    //     axresult = await axiosi.post(this.URL3, {
-    //       jsonrpc: jsonV,
-    //       method:  invMethod,
-    //       id: 900099,
-    //       params:  vPARAMS
-    //     });
-    //   } catch (e) {
-    //     console.log(e);
-    //     }
-    //     this.products = JSON.parse(axresult.data.result.result)
-    //     console.log("this.products: " + this.products)
-    //     this.cardkey += 1;
-    //  },
     async axiosGetContracts() {
       var productId = this.prodchoice
       const invMethod = 'invokeView'
@@ -378,12 +365,12 @@ export default {
       const queryId = 900097
 
       const REQtype = "getAccountContractList";
-      const vPARAMS = [this.CHAINID, this.contractaddy, REQtype, RETtype, LASTLIST];
+      const vPARAMS = [this.chainid, this.contractaddy, REQtype, RETtype, LASTLIST];
       const axiosi = this.makeaxiosi()
       try { 
         var axresult
         console.log("axiosGetContracts vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.URL3, {
+        axresult = await axiosi.post(this.Url3, {
           jsonrpc: jsonV,
           method:  invMethod,
           id: queryId,
@@ -398,15 +385,25 @@ export default {
      },
   },
 }
-//await this.$post('/', 'getAccountContractList', [this.pageIndex, this.pageSize, address, -1, false]) SENDER
-
 
 </script>
 
-<style scoped>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
-@import 'https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap'
 
+.v-label  {
+  font-size: 12px!important;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  
+}
+.vinput2  {
+  font-size: 10px!important;
+}
 .btnfnt {
   font-size: 16px;
   font-weight: 700
