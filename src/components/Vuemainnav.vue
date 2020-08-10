@@ -28,7 +28,7 @@
         color="blue-grey"
         elevation="24"
         raised
-        large
+        medium
         class="mt-9"
         min-width="40px"
         min-height="20px"
@@ -42,7 +42,7 @@
         color="blue-grey"
         elevation="24"
         raised
-        large
+        medium
         class="mt-9"
         min-width="40px"
         min-height="20px"
@@ -54,7 +54,7 @@
 
       <v-btn
         color="blue-grey"
-        large
+        medium
         elevation="24"
         raised
         class="mt-9"
@@ -63,6 +63,20 @@
         @click="revclick"
       >
         {{ allrevs.pname }}
+      </v-btn>
+      <v-spacer />
+
+      <v-btn
+        color="blue-grey"
+        medium
+        elevation="24"
+        raised
+        class="mt-9"
+        min-width="40px"
+        min-height="20px"
+        @click="revclick"
+      >
+        {{ writerevs.pname }}
       </v-btn>
       <v-spacer />
 
@@ -95,8 +109,13 @@
     }
   const allrevs = {
     plink: "showreviews",
-    pname: "Show Reviews" 
+    pname: "Show All Reviews" 
     }
+  const listcontracts = {
+    plink: "reviews.html",
+    pname: "List Contracts" 
+    }
+
   const writerevs = {
     plink: "reviews.html",
     pname: "List Contracts" 
@@ -109,6 +128,7 @@
       indi,
       revs,
       allrevs,
+      listcontracts,
       writerevs,
 
     }),

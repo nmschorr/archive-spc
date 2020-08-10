@@ -407,6 +407,7 @@ export default {
 .btnfnt {
   font-size: 16px;
   font-weight: 700
+  
 }
 .gradpink1 {
   background-image: linear-gradient(to right, #c19dc7, #884997)
