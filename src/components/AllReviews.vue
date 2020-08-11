@@ -25,7 +25,7 @@
               filled
               shaped
               class="ml-5"
-              color="cyan darken-1"
+              color="transparent"
             > 
         
               <v-btn
@@ -46,56 +46,27 @@
                   contract
                 </span>
               </v-btn>
+              <!-- orange small tab card with contract # - - - -   -->
               <v-card
                 v-for="contract in contracts"
                 id="showprodscard"
                 :key="contract"      
                 width="400px"
-                :class="cardclss"
-                color="orangetext"
+                class="d-flex justify-left ma-2 pl-3 pr-4 py-3"
+                color="deep-orange lighten-4"
                 shaped
+                filled
                 elevation-24
                 raised
-                filled
                 firstcard
               >      
                 <span style="font-size:16px;margin-left:7px;">  {{ contract }} </span>
               </v-card>
 
-              <!-- <v-card
-                id="radiocard"
-                color="deep-orange lighten-5"
-                class="ml-5 pa-2"
-                shaped
-                elevation-24
-                raised
-                filled
-                width="400px"
-              >
-                <v-radio-group 
-                  v-model="radioGroup"
-                  dense
-                  radiocard
-                >
-                  <v-radio
-                    v-for="contract in contracts"
-                    dense
-                    :key="contract"
-                    :label="`${contract}`"
-                    :value="contract"
-                    class="ml-1"
-                  />
-                </v-radio-group>
-
-              </v-card> -->
-
-
-
 
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
             <!--reviews card -->
-            <!-- getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
             
           </v-col>
               <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -103,16 +74,11 @@
             cols="1"
           >
           </v-col>
-
               <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <v-col
             cols="7"
           >        <!-- ****** column 2 -->
-            <!-- <v-card
-              width="100%"
-              height="100%"
-              color="red"
-            />               -->
+
                                 <!-- ****** vselcard greencard GREENCARD  -->
             <v-card
               id="greencard"
@@ -127,7 +93,7 @@
                 shaped
                 filled
                 height="73px"
-                width="320px"
+                width="520px"
                 color="teal lighten-4"
                 class="d-inline-flex align-center justify-left pa-2"
               >        
@@ -136,15 +102,15 @@
                 <v-select
                   id="vselone"
                   v-model="prodchoice"
-                  width="230px"
+                  width="430px"
                   height="30px"
-                  labelWidth="140px"
+                  labelWidth="340px"
                   type="string"
                   label="Select a Product"
                   color="deep-purple accent-3"
                   shaped
                   outlined
-                  :style="`max-width:230px;font-weight:700;`"        
+                  :style="`max-width:430px;font-weight:700;`"        
                   :items="products"
                   vselcard
                   class="mt-9"
@@ -159,7 +125,7 @@
                   left
                   vselbackgroundcard
                   class="ml-n15 mt-2"
-                  @click=axiosGetReviews2()
+                  @click=axiosGetReviewsMain()
                 >    
                 <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
               
@@ -169,7 +135,7 @@
              <!-- ******end green card -->
             <!-- ****** column 2 -->
 
-        <!-- ****** data results -->
+        <!-- ****** data results - reviews listed here -->
         <v-card
           id="reviewsfoundback"
           width="250px"
@@ -197,26 +163,19 @@
           :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
 
         >
-        <div
-          v-if="showRevs"
-          width="90%"
-          class="headline pt-5"
-        > 
-          Category:   {{ prodchoice  }}
-          <br>
-        </div>        
+
         <v-card
           v-for="review in reviews"
           :key="review.id"      
           id="rightbtmsheet"
           width="630px"
+          height="auto"
+          shaped
+          filled          
           elevation-24
           raised
-          height="auto"
           class="d-flex flex-column align-left ml-3 mt-2"
           color="teal lighten-5"
-          shaped
-          filled
           secondcard
         >      
           <v-card-text 
@@ -224,13 +183,11 @@
           > 
             {{ review.comments }} 
           </v-card-text>
-
-
           </v-card>   
             <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
             <!-- * * *  - - - - - -- "test select" -->
           </v-sheet>
-        
+      
           <!-- end reviews card -->
           </v-col>
         </v-card>
@@ -257,37 +214,24 @@ import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 import colors from '../../node_modules/vuetify/lib/util/colors'
 require('./queries.js')
-import  { MyFunctions } from './queries.js'
+import MyQueries from './queries.js'
 import Vue from 'vue'
-
-
-  // primary: colors.deepPurple.lighten1, // purple was tw 805ad5
-  // secondary: colors.deepPurple.accent1,  //was tw light purple b794f4
-  // tertiary: colors.teal.base,  //md teal  009688
-  // success: colors.teal.accent4,  // md teal accent-4 00BFA5
-  // accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
-  // info: colors.grey.lighten2,  // md deep-purple accent-3  651fff
-  // error: colors.red.base,   //md deep-purple darken-2 455A64
-  // warning: colors.orange.lighten2,  //md blue-grey darken-2  455A64
-  // darkgrey: colors.grey.darken4, // 212121
-  // orangetext: colors.deepOrange.lighten5, // for text
 const contractaddy = cobj.data.cobj.contaddy
+const makeaxio = MyQueries.makeaxio
+
+const axiosGetRs = MyQueries.axiosGetRs
+const axiosGetProducts = MyQueries.axiosGetProducts
+const axiosGetContracts = MyQueries.axiosGetContracts
+const axiosGetReviewsMain = MyQueries.axiosGetReviewsMain
+const axiosGetProds = MyQueries.axiosGetProds
+
 
 export default {
   name: "AllReviews",
   data: () => ({
-    vmm: '',
-    checkbox: true,
-    radioGroup: 1,
-    switch1: true,
-    myspace: "--",
     prodchoice: '',
-    btnclss: "mb-2 mt-2 ml-7 pa-3",
-    btnfontclss: "font-bold text-l white--text",
     cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
-    btnprops: { elevation: 24, raised: true, shaped: true, large: true, height: "42px",
-      width: "242px", rounded: true },
     cardclss: "d-flex justify-left ma-2 pa-1",
     chainid: cobj.data.cobj.chainid,
     PW: cobj.data.cobj.PW,
@@ -304,87 +248,23 @@ export default {
     cardkey: 0,
     cardkey2: 0,
     reviews: [],
-    bgipur1: `background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)`,
-    bgig1: `background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))`,
-    // contracts:  ["SPEXdKRT4iLwhSaXEhLDR4YNL9WkKsPRjKWb4z", 
-    //     "SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa", 
-    //     "SPEXdKRT4u1Y38BVnjxCcnY33E5y3e3rfnwNv3", 
-    //     "SPEXdKRT4yQDZXwNJJQn3HbAGBR4p8QMKvZBVC"], 
     contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
-
-    radioGroup:  ["SPEXdKRT4iLwhSaXEhLDR4YNL9WkKsPRjKWb4z", 
-        "SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa", 
-        "SPEXdKRT4u1Y38BVnjxCcnY33E5y3e3rfnwNv3", 
-        "SPEXdKRT4yQDZXwNJJQn3HbAGBR4p8QMKvZBVC"], 
-// SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC new contract aug10
     review: null,
-    selectedProductId: null,
     showProds: false,
     showRevs: false,
+    MyQueries,
     }),
   mounted () {
     this.axiosGetProds()  // get the prod list
     console.log()
   },
   methods: {
-    async axiosGetReviews2 () {
-      this.showRevs = false
-
-      let axr = await MyFunctions.axiosGetRs( this.chainid, this.contractaddy, this.prodchoice, this.Url3)
-      this.reviews = JSON.parse(axr.data.result.result)
-      console.log("this.reviews: " + this.reviews)
-      this.showRevs = true
-      this.cardkey += 1; 
-    },
-    async axiosGetProds () {
-      console.log("thedata: " +  this.chainid + " " + this.contractaddy + " " + this.Url3)
-
-      let axr = await MyFunctions.axiosGetProducts( this.chainid, this.contractaddy, this.Url3)
-      console.log(axr)
-      this.products = axr
-      console.log("this.products: " + this.products)
-      // this.cardkey += 1; 
-      this.showProds = true
-    },
-    makeaxiosi () {
-      var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV] = Object.values(Hcont.data.Hcont)
-      var axio = axios.create({
-        defaults: {
-          headers: {
-            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            },
-          },
-        });
-      return axio
-    },
-
-    async axiosGetContracts() {
-      var productId = this.prodchoice
-      const invMethod = 'invokeView'
-      const RETtype = "(String productId) return Ljava/util/List;";
-      const LASTLIST = [productId];
-      const jsonV = '2.0'
-      const queryId = 900097
-
-      const REQtype = "getAccountContractList";
-      const vPARAMS = [this.chainid, this.contractaddy, REQtype, RETtype, LASTLIST];
-      const axiosi = this.makeaxiosi()
-      try { 
-        var axresult
-        console.log("axiosGetContracts vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.Url3, {
-          jsonrpc: jsonV,
-          method:  invMethod,
-          id: queryId,
-          params:  vPARAMS
-        });
-      } catch (e) {
-        console.log(e);
-        }
-        this.reviews = JSON.parse(axresult.data.result.result)
-        console.log("this.reviews: " + this.reviews)
-        this.cardkey += 1;
-     },
+    makeaxio,
+    axiosGetRs,
+    axiosGetProducts,
+    axiosGetContracts,
+    axiosGetReviewsMain,
+    axiosGetProds,
   },
 }
 

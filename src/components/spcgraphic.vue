@@ -42,7 +42,7 @@
           height="30px"
           width="60%"
           class="d-flex justify-center"
-          :style="`background-image: linear-gradient(60deg, cyan, teal)`"
+          :style="`background-image: linear-gradient(60deg, cyan, #008080)`"
         >
         </v-card>
       </v-card>

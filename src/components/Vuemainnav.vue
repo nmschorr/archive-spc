@@ -12,7 +12,7 @@
       rounded
       prominent
       class="mx-4 align-bottom"
-      :style="`background-image: linear-gradient(60deg, teal, black)`"
+      :style="`background-image: linear-gradient(60deg, #008080, black)`"
     >  
       <v-app-bar-nav-icon />
         
