@@ -1,23 +1,26 @@
+
 import axios from "axios";
 require('../constants/constantsnew.js')
 import Hcont from '../constants/constantsnew.js'
 var [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
 import cobj from '@/constants/constants.js';
+    // contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
+var Url3 = cobj.data.cobj.Url3
+var chainid = cobj.data.cobj.chainid
+     
 
-
-      
 function makeaxio() {
-    var axio = axios.create({
-    defaults: {
-      headers: {
-        post: { Accept: accStr, acctlMeths: restTyps, ctType: aJson },
-        },
+  const axio = axios.create({
+  defaults: {
+    headers: {
+      post: { Accept: accStr, acctlMeths: restTyps, ctType: aJson },
       },
-    });
+    },
+  });
   return axio
 }
 
-async function axiosGetRs(chainid, contaddy, productId, Url3) {
+export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   const invMethod = 'invokeView'
   const RETtype = "(String productId) return Ljava/util/List;";
   const lastlist = [productId];
@@ -25,7 +28,7 @@ async function axiosGetRs(chainid, contaddy, productId, Url3) {
   const queryId = 900092
   const REQtype = "getReviews";
   const vParams = [chainid, contaddy, REQtype, RETtype, lastlist];
-  const axiosi = this.makeaxio()
+  const axiosi = makeaxio()
   try { 
     var axresult
     console.log("inside axiosPost vParams: " + vParams);
@@ -41,24 +44,30 @@ async function axiosGetRs(chainid, contaddy, productId, Url3) {
   return axresult
 }
 
-async function axiosGetProducts(chainid, contaddy, Url3) {
-  console.log(Hcont)
-  console.log(Hcont.Hcont)
+export async function axiosGetProducts(chainid, contaddy, u3) {
+  // console.log(Hcont)
+  // console.log(Hcont.Hcont)
   console.log("here now")  
-  // [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
   const invMethod = 'invokeView'
   const REQtype = 'getAllProductIds'
   const RETtype = '() return String'
   const lastlist = []
   const jsonV = '2.0'
-  console.log("inside axiosGetProds accStr: ", accStr)
-  var vParams = [chainid, contaddy, REQtype, RETtype, lastlist]
+  const vParams = [chainid, contaddy, REQtype, RETtype, lastlist]
+  var axresult
+  var thisproducts
 
-  const axiosi = makeaxio()
+  const axio = axios.create({
+    defaults: {
+      headers: {
+        post: { Accept: accStr, acctlMeths: restTyps, ctType: aJson },
+        },
+      },
+    });
+  console.log("inside axiosGetProducts accStr & vParams: " + accStr + " - " + vParams);
+
   try { 
-    var axresult
-    console.log("inside axiosGetProds vParams: " + vParams);
-    axresult = await axiosi.post(Url3, {
+    axresult = await axio.post(u3, {
       jsonrpc: jsonV,
       method:  invMethod,
       id: 900099,
@@ -66,13 +75,13 @@ async function axiosGetProducts(chainid, contaddy, Url3) {
     });
   } catch (e) {
     console.log(e);
-    }
-    let thisproducts = JSON.parse(axresult.data.result.result)
-    console.log("thisproducts: " + thisproducts)
-    // this.cardkey += 1;
-    return thisproducts
   }
-    
+  thisproducts = JSON.parse(axresult.data.result.result)
+  console.log("thisproducts: " + thisproducts)
+  // this.cardkey += 1;
+  return thisproducts
+}
+         
 async function axiosGetContracts() {
   var productId = this.prodchoice
   const invMethod = 'invokeView'
@@ -83,7 +92,7 @@ async function axiosGetContracts() {
 
   const REQtype = "getAccountContractList";
   const vPARAMS = [this.chainid, this.contractaddy, REQtype, RETtype, LASTLIST];
-  const axiosi = this.makeaxio()
+  const axiosi = makeaxio()
   try { 
     var axresult
     console.log("axiosGetContracts vPARAMS: " + vPARAMS);
@@ -100,36 +109,12 @@ async function axiosGetContracts() {
     console.log("this.reviews: " + this.reviews)
     this.cardkey += 1;
 }
-async function axiosGetReviewsMain () {
-  this.showRevs = false
-  let axr = await axiosGetRs( this.chainid, this.contractaddy, this.prodchoice, this.Url3)
-  this.reviews = JSON.parse(axr.data.result.result)
-  console.log("this.reviews: " + this.reviews)
-  this.showRevs = true
-  this.cardkey += 1; 
-}
+
   
-async function axiosGetProds () {
-  console.log("thedata: " +  this.chainid + " " + this.contractaddy + " " + this.Url3)
-  let axr = await axiosGetProducts( this.chainid, this.contractaddy, this.Url3)
-  console.log(axr)
-  this.products = axr
-  console.log("this.products: " + this.products)
-  // this.cardkey += 1; 
-  this.showProds = true
-}
-      
 async function writeReview() {
-  // var productId = "helmet"
-  const chainid = cobj.data.cobj.chainid
   const contract = cobj.data.cobj.contaddy
-  const jsonV = '2.0'
-  const queryId = 900099
-  const pw = cobj.data.cobj.PW
   const sender = cobj.data.cobj.SENDER
   const value_asset = cobj.data.cobj.VALUE_ASSET  // val * multiplier
-  const Url4 = cobj.data.cobj.Url4
-
   const gas_price = cobj.data.cobj.GAS_PRICE
   const gas_limit = cobj.data.cobj.GAS_LIMIT
   const args= ["helmet", "too large"]
@@ -138,37 +123,33 @@ async function writeReview() {
   const remark = "call contract"
   const contract_desc = "(String productId, String reviewComments) return LReviewContract$Review;"
 
-  const vPARAMS = [chainid, sender, pw, value_asset, gas_limit, gas_price,
+  const vPARAMS = [cobj.data.cobj.chainid, sender, cobj.data.cobj.PW, value_asset, gas_limit, gas_price,
     contract, contract_methodname, contract_desc, args, remark];
   
-  const axiosi = this.makeaxio()
+  const axiosi = makeaxio()
   try { 
     var axresult
     console.log("axiosGetContracts vPARAMS: " + vPARAMS);
-    axresult = await axiosi.post(Url4, {
-      jsonrpc: jsonV,
+    axresult = await axiosi.post(cobj.data.cobj.Url4, {
+      jsonrpc: '2.0',
       method:  invMethod,
-      id: queryId,
+      id: 900099,
       params:  vPARAMS
     });
-  } catch (e) {
-    console.log(e);
-    }
+  } catch (e) {  console.log(e);  }
     var response = JSON.parse(axresult.data.result.result)
     console.log("the response: " + response)
-    // this.cardkey += 1;
 } 
 
-const MyQueries = {
-  makeaxio,
-  axiosGetRs,
-  axiosGetProducts,
+export const MyQueries = {
   axiosGetContracts,
-  axiosGetReviewsMain,
-  axiosGetProds,
+  writeReview,
 }
 
 export default {
-  MyQueries,
- }
+  methods: {
+    makeaxio,   
+    }
+}
+ 
 

@@ -66,7 +66,7 @@
 
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
-            <!--reviews card -->
+            <!--revs card -->
             
           </v-col>
               <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -125,7 +125,7 @@
                   left
                   vselbackgroundcard
                   class="ml-n15 mt-2"
-                  @click=axiosGetReviewsMain()
+                  @click=axiosGetRevs(prodchoice)
                 >    
                 <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
               
@@ -135,7 +135,7 @@
              <!-- ******end green card -->
             <!-- ****** column 2 -->
 
-        <!-- ****** data results - reviews listed here -->
+        <!-- ****** data results - revs listed here -->
         <v-card
           id="reviewsfoundback"
           width="250px"
@@ -165,7 +165,7 @@
         >
 
         <v-card
-          v-for="review in reviews"
+          v-for="review in reviewlist"
           :key="review.id"      
           id="rightbtmsheet"
           width="630px"
@@ -188,7 +188,7 @@
             <!-- * * *  - - - - - -- "test select" -->
           </v-sheet>
       
-          <!-- end reviews card -->
+          <!-- end revs card -->
           </v-col>
         </v-card>
       </v-col>
@@ -209,21 +209,39 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from "axios";
 import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
-import colors from '../../node_modules/vuetify/lib/util/colors'
 require('./queries.js')
-import MyQueries from './queries.js'
-import Vue from 'vue'
-const contractaddy = cobj.data.cobj.contaddy
-const makeaxio = MyQueries.makeaxio
-const axiosGetRs = MyQueries.axiosGetRs
-const axiosGetProducts = MyQueries.axiosGetProducts
-const axiosGetContracts = MyQueries.axiosGetContracts
-const axiosGetReviewsMain = MyQueries.axiosGetReviewsMain
-const axiosGetProds = MyQueries.axiosGetProds
+import { axiosGetProducts, axiosGetReviewsMain, MyQueries } from './queries.js'
 
+// const writeReview = MyQueries.axiosGetRevs
+
+async function axiosGetRevs (prodchoice) {
+  var contaddy = this.cobj.data.cobj.contaddy
+  const cid = this.cobj.data.cobj.chainid
+  const u3 = this.cobj.data.cobj.Url3
+
+  let axr = await this.axiosGetReviewsMain( cid, contaddy, prodchoice, u3)
+  var trevs = JSON.parse(axr.data.result.result)
+  console.log("trevs: " + trevs)
+  this.reviewlist = trevs
+  this.cardkey += 1; 
+}  
+
+async function axiosGetProds () {
+  const cid = cobj.data.cobj.chainid
+  const ctaddy = cobj.data.cobj.contaddy
+  const u3 = cobj.data.cobj.Url3
+  console.log("thedata: " +  cid + " " + ctaddy + " " + u3)
+  let axr = await this.axiosGetProducts( cid, ctaddy, u3)
+  this.products = axr
+  console.log("this.products: " + axr)
+  // this.cardkey += 1; 
+  this.showProds = true
+}
+   
 
 export default {
   name: "AllReviews",
@@ -233,37 +251,27 @@ export default {
       height: "400px", "d-flex": true, outlined: true },
     cardclss: "d-flex justify-left ma-2 pa-1",
     chainid: cobj.data.cobj.chainid,
-    PW: cobj.data.cobj.PW,
-    contractaddy,
     SENDER: cobj.data.cobj.SENDER,
     OWNER: cobj.data.cobj.OWNER,
     BUYER: cobj.data.cobj.BUYER,
     VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
     GAS_PRICE: cobj.data.cobj.GAS_PRICE,
     GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
-    Url3: cobj.data.cobj.Url3,
-    POSTURL_w4: cobj.data.cobj.POSTURL_w4,
-    products: null,
-    cardkey: 0,
-    cardkey2: 0,
-    reviews: [],
+    products: [],
+    reviewlist: [],
     contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
     review: null,
     showProds: false,
-    showRevs: false,
     MyQueries,
     }),
   mounted () {
     this.axiosGetProds()  // get the prod list
-    console.log()
   },
   methods: {
-    makeaxio,
-    axiosGetRs,
+    axiosGetRevs,
     axiosGetProducts,
-    axiosGetContracts,
-    axiosGetReviewsMain,
     axiosGetProds,
+    // writeReview,
   },
 }
 
@@ -280,42 +288,8 @@ export default {
   font-weight: 700;
   font-family: 'Raleway', sans-serif;
   color: black;
-  
-}
-.vinput2  {
-  font-size: 10px!important;
-}
-.btnfnt {
-  font-size: 16px;
-  font-weight: 700
-  
-}
-.gradpink1 {
-  background-image: linear-gradient(to right, #c19dc7, #884997)
 }
 
-.gradientpur1 {
-  background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)
-}
-.gradientpur2 {
-  background-image: linear-gradient(306deg, #83578b 0%, #896bbb 100%)
-}
-
-.gradientg1 {
-  background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))
-}
-.gradientg2 {
-  background-image: linear-gradient(306deg, #2f996d 0%, #198ca8 100%)
-}
-.gradientg3 {
-  background-image: linear-gradient(306deg, #47886d 0%, #116479 100%)
-}
-.gradientprime {
-  background-image: linear-gradient(306deg,  #7e57c2 0%, #9871DC 100%)
-}
-.gradientprime2 {
-  background-image: linear-gradient(306deg,  #7e57c2, #9871DC)
-}
 </style>
 
         
