@@ -28,6 +28,7 @@
         color="blue-grey"
         elevation="24"
         raised
+        dark
         medium
         class="mt-9"
         min-width="40px"
@@ -41,6 +42,7 @@
       <v-btn
         color="blue-grey"
         elevation="24"
+        dark
         raised
         medium
         class="mt-9"
@@ -54,6 +56,7 @@
 
       <v-btn
         color="blue-grey"
+        dark
         medium
         elevation="24"
         raised
@@ -69,6 +72,7 @@
       <v-btn
         color="blue-grey"
         medium
+        dark
         elevation="24"
         raised
         class="mt-9"
@@ -118,7 +122,7 @@
 
   const writerevs = {
     plink: "reviews.html",
-    pname: "List Contracts" 
+    pname: "Write Review" 
     }
 
   export default {

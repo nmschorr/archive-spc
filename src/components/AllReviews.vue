@@ -19,29 +19,31 @@
             <v-card
               id="firstcard"
               mainappcard
-              height="700px"
+              height="150px"
               width="500px"
               elevation="24"
-              raised
               filled
               shaped
               class="ml-5"
-              color="grey lighten-3"
-            >
+              color="cyan darken-1"
+            > 
+        
               <v-btn
                 id="getprodsbtn"
-                color="black"
-                x-large
-                v-bind="btnprops"
+                color="grey"
+                width="250px"
+                shaped
+                filled
+                dark
+                elevation-24
                 firstcard
-                :class="btnclss"
-                @click="axiosGetProds"
+                height="45px"               
+                class="py-2 pl-7 ml-n3 mt-3 mb-6 white--text"
               >
                 <span 
-                  :class="btnfontclss" 
-                  :style="`text-transform: capitalize;`" 
+                  style="font-family:'Montserrat', sans-serif; font-size:20px;text-transform:lowercase;font-weight:400;"
                 >
-                  Contracts
+                  contract
                 </span>
               </v-btn>
               <v-card
@@ -57,10 +59,10 @@
                 filled
                 firstcard
               >      
-                <span style="font-size:12px;margin-left:12px;">  {{ contract }} </span>
+                <span style="font-size:16px;margin-left:7px;">  {{ contract }} </span>
               </v-card>
 
-              <v-card
+              <!-- <v-card
                 id="radiocard"
                 color="deep-orange lighten-5"
                 class="ml-5 pa-2"
@@ -85,7 +87,7 @@
                   />
                 </v-radio-group>
 
-              </v-card>
+              </v-card> -->
 
 
 
@@ -172,18 +174,16 @@
           id="reviewsfoundback"
           width="250px"
           shaped
+          dark
           elevation-24
           :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
           height="45px"
           color="black lighten-1"
-          class="pa-2 ml-n3 mt-7 text-uppercase white--text"
+          class="py-2 pl-7 ml-n3 mt-9  white--text"
           secondcard
         >
-          <span
-            v-if="showRevs"
-            class="text-h6 text-bold text-uppercase"
-          >
-            Reviews Found</span> 
+          <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
+            reviews</span> 
         </v-card>   
 
         <v-sheet
@@ -222,7 +222,7 @@
           <v-card-text 
             :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
           > 
-            {{ review.comments }} <br> Reviewer: {{ review.writer }}
+            {{ review.comments }} 
           </v-card-text>
 
 
@@ -306,15 +306,17 @@ export default {
     reviews: [],
     bgipur1: `background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)`,
     bgig1: `background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))`,
-    contracts:  ["SPEXdKRT4iLwhSaXEhLDR4YNL9WkKsPRjKWb4z", 
-        "SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa", 
-        "SPEXdKRT4u1Y38BVnjxCcnY33E5y3e3rfnwNv3", 
-        "SPEXdKRT4yQDZXwNJJQn3HbAGBR4p8QMKvZBVC"], 
+    // contracts:  ["SPEXdKRT4iLwhSaXEhLDR4YNL9WkKsPRjKWb4z", 
+    //     "SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa", 
+    //     "SPEXdKRT4u1Y38BVnjxCcnY33E5y3e3rfnwNv3", 
+    //     "SPEXdKRT4yQDZXwNJJQn3HbAGBR4p8QMKvZBVC"], 
+    contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
+
     radioGroup:  ["SPEXdKRT4iLwhSaXEhLDR4YNL9WkKsPRjKWb4z", 
         "SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa", 
         "SPEXdKRT4u1Y38BVnjxCcnY33E5y3e3rfnwNv3", 
         "SPEXdKRT4yQDZXwNJJQn3HbAGBR4p8QMKvZBVC"], 
-
+// SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC new contract aug10
     review: null,
     selectedProductId: null,
     showProds: false,
