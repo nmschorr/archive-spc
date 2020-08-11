@@ -125,7 +125,7 @@
                   left
                   vselbackgroundcard
                   class="ml-n15 mt-2"
-                  @click=axiosGetRevs(prodchoice)
+                  @click=axiosGetRevs()
                 >    
                 <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
               
@@ -215,16 +215,30 @@ import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 require('./queries.js')
 import { axiosGetProducts, axiosGetReviewsMain, MyQueries } from './queries.js'
+var prodchoice
 
 // const writeReview = MyQueries.axiosGetRevs
 
-async function axiosGetRevs (prodchoice) {
-  var contaddy = this.cobj.data.cobj.contaddy
-  const cid = this.cobj.data.cobj.chainid
-  const u3 = this.cobj.data.cobj.Url3
+async function axiosGetRevs () {
+  var contaddy = 'SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC'
+  const cid = 4810
+  const u3 = 'http://westteam.nulstar.com:8003'
+  console.log("line225 ")
+  let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
 
-  let axr = await this.axiosGetReviewsMain( cid, contaddy, prodchoice, u3)
-  var trevs = JSON.parse(axr.data.result.result)
+  const json =  JSON.stringify(axr.data.result.result)
+
+
+  console.log(json)
+
+
+  let stringy = JSON.stringify(axr.data.result.result)
+
+  console.log(JSON.stringify(axr.data.result.result))
+  var trevs = JSON.parse(JSON.stringify(axr.data.result.result.comments))
+  console.log("axr.data.result: ", axr.data.result.result.comments)
+  console.log("trevs  " + trevs)
+
   console.log("trevs: " + trevs)
   this.reviewlist = trevs
   this.cardkey += 1; 
@@ -241,12 +255,13 @@ async function axiosGetProds () {
   // this.cardkey += 1; 
   this.showProds = true
 }
-   
+var review =''
 
 export default {
   name: "AllReviews",
   data: () => ({
-    prodchoice: '',
+    prodchoice,
+    review,
     cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
     cardclss: "d-flex justify-left ma-2 pa-1",
@@ -258,9 +273,8 @@ export default {
     GAS_PRICE: cobj.data.cobj.GAS_PRICE,
     GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
     products: [],
-    reviewlist: [],
+    reviewlist: '',
     contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
-    review: null,
     showProds: false,
     MyQueries,
     }),

@@ -29,6 +29,8 @@ export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   const REQtype = "getReviews";
   const vParams = [chainid, contaddy, REQtype, RETtype, lastlist];
   const axiosi = makeaxio()
+  console.log("line32 ")
+
   try { 
     var axresult
     console.log("inside axiosPost vParams: " + vParams);
@@ -41,6 +43,7 @@ export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   } catch (e) {
     console.log(e);
     }
+  console.log("line46 ")
   return axresult
 }
 
