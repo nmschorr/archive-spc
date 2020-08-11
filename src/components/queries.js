@@ -2,7 +2,10 @@ import axios from "axios";
 require('../constants/constantsnew.js')
 import Hcont from '../constants/constantsnew.js'
 var [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
+import cobj from '@/constants/constants.js';
 
+
+      
 function makeaxio() {
     var axio = axios.create({
     defaults: {
@@ -50,6 +53,7 @@ async function axiosGetProducts(chainid, contaddy, Url3) {
   const jsonV = '2.0'
   console.log("inside axiosGetProds accStr: ", accStr)
   var vParams = [chainid, contaddy, REQtype, RETtype, lastlist]
+
   const axiosi = makeaxio()
   try { 
     var axresult
@@ -115,6 +119,46 @@ async function axiosGetProds () {
   this.showProds = true
 }
       
+async function writeReview() {
+  // var productId = "helmet"
+  const chainid = cobj.data.cobj.chainid
+  const contract = cobj.data.cobj.contaddy
+  const jsonV = '2.0'
+  const queryId = 900099
+  const pw = cobj.data.cobj.PW
+  const sender = cobj.data.cobj.SENDER
+  const value_asset = cobj.data.cobj.VALUE_ASSET  // val * multiplier
+  const Url4 = cobj.data.cobj.Url4
+
+  const gas_price = cobj.data.cobj.GAS_PRICE
+  const gas_limit = cobj.data.cobj.GAS_LIMIT
+  const args= ["helmet", "too large"]
+  const contract_methodname = "writeReview"
+  const invMethod = 'contractCall'
+  const remark = "call contract"
+  const contract_desc = "(String productId, String reviewComments) return LReviewContract$Review;"
+
+  const vPARAMS = [chainid, sender, pw, value_asset, gas_limit, gas_price,
+    contract, contract_methodname, contract_desc, args, remark];
+  
+  const axiosi = this.makeaxio()
+  try { 
+    var axresult
+    console.log("axiosGetContracts vPARAMS: " + vPARAMS);
+    axresult = await axiosi.post(Url4, {
+      jsonrpc: jsonV,
+      method:  invMethod,
+      id: queryId,
+      params:  vPARAMS
+    });
+  } catch (e) {
+    console.log(e);
+    }
+    var response = JSON.parse(axresult.data.result.result)
+    console.log("the response: " + response)
+    // this.cardkey += 1;
+} 
+
 const MyQueries = {
   makeaxio,
   axiosGetRs,

@@ -218,7 +218,6 @@ import MyQueries from './queries.js'
 import Vue from 'vue'
 const contractaddy = cobj.data.cobj.contaddy
 const makeaxio = MyQueries.makeaxio
-
 const axiosGetRs = MyQueries.axiosGetRs
 const axiosGetProducts = MyQueries.axiosGetProducts
 const axiosGetContracts = MyQueries.axiosGetContracts
