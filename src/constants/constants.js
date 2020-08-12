@@ -8,8 +8,8 @@ var SENDER = 'SPEXdKRT4pz7ZhasM9pTK4fvGrJf8eod5ZqtXa'
 var OWNER = 'SPEXdKRT4hTzACffQBAP8jUwtJsaTg36b4uH7d'  //new aug10
 var BUYER = 'SPEXdKRT4nfcKKVqSt1XLdJYMp2H1nwy3oZ1nJ'
 
-var VALUE_ASSET = 25
-var GAS_PRICE = 25
+var VALUE_ASSET = 2500000000
+var GAS_PRICE = 25000000
 var GAS_LIMIT = 9000000
 
 var Url3 = 'http://westteam.nulstar.com:8003'

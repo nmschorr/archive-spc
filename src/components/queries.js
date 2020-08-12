@@ -112,13 +112,13 @@ async function axiosGetContracts() {
 }
 
   
-async function writeReview() {
+export async function writeReview(wprod, wreview) {
   const contract = cobj.data.cobj.contaddy
   const sender = cobj.data.cobj.SENDER
   const value_asset = cobj.data.cobj.VALUE_ASSET  // val * multiplier
   const gas_price = cobj.data.cobj.GAS_PRICE
   const gas_limit = cobj.data.cobj.GAS_LIMIT
-  const args= ["helmet", "too large"]
+  const args= [wprod, wreview]
   const contract_methodname = "writeReview"
   const invMethod = 'contractCall'
   const remark = "call contract"
@@ -138,13 +138,13 @@ async function writeReview() {
       params:  vPARAMS
     });
   } catch (e) {  console.log(e);  }
-    var response = JSON.parse(axresult.data.result.result)
-    console.log("the response: " + response)
+    var response = JSON.parse(axresult.data)
+  console.log("the response: " + response)
+  return response
 } 
 
 export const MyQueries = {
   axiosGetContracts,
-  writeReview,
 }
 
 export default {

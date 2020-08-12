@@ -191,14 +191,65 @@
     </v-row>
 
     <v-row>
-      <v-col>
+      <v-col
+        cols=12
+        md=6
+      >
         <v-card
+          id="writecard"
           v-bind="cardyprops"
-          color="teal lighten-2"
+          color="teal lighten-1"
           mainappcard
           min-height="70px"
+          min-width="550px"
+          class="d-flex flex-column justify-center align-center"
           :class="cardclss"
-        />
+          dark
+        >
+          <v-card-title>
+            Write Review
+          </v-card-title>
+
+          <v-card
+            id="write2"
+            writecard
+            color="deep-orange lighten-4"
+            width="500px"
+            class="my-3 mx-2 pa-3"
+            light
+          >
+            <v-form 
+              ref="wform" 
+              @submit.prevent="submit"
+            >
+              <v-text-field
+                v-model="vmcat"
+                height="20px"
+                color="purple darken-2"
+                label="Product Category"
+                class="mx-4 pa-3"
+                required
+              >
+              </v-text-field>
+              <v-text-field
+                v-model="vmrev"
+                color="blue darken-2"
+                label="Your Review"
+                required
+                class="mx-4 pa-3"
+                height="70px"
+              >
+              </v-text-field>
+              <v-btn
+                color="success"
+                class="ma-2"
+                @click="wreview"
+              >
+                Submit Review
+              </v-btn>
+            </v-form>
+          </v-card>
+        </v-card>
       </v-col>
     </v-row>
   </v-sheet>
@@ -210,7 +261,7 @@ import axios from "axios";
 import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 require('./queries.js')
-import { axiosGetProducts, axiosGetReviewsMain, MyQueries } from './queries.js'
+import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './queries.js'
 const dJSON = require('dirty-json');
 // const r = dJSON.parse("{ test: 'this is a test'}")
 // console.log(JSON.stringify(r));
@@ -271,6 +322,7 @@ async function axiosGetRevs () {
 
 }  
 
+
 async function axiosGetProds () {
   const cid = cobj.data.cobj.chainid
   const ctaddy = cobj.data.cobj.contaddy
@@ -284,11 +336,23 @@ async function axiosGetProds () {
 }
 var review =''
 
+async function wreview () {
+  const wcat = this.vmcat
+  const wrev = this.vmrev
+  console.log("wcat: " + wcat)
+  console.log("wrev: " + wrev)
+  let axr = await this.writeReview( wcat, wrev)
+
+  // this.cardkey += 1; 
+  // this.showProds = true
+}
 export default {
   name: "AllReviews",
   data: () => ({
     prodchoice,
     review,
+    vmcat: '',
+    vmrev: '',
     cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
     cardclss: "d-flex justify-left ma-2 pa-1",
@@ -312,6 +376,8 @@ export default {
     axiosGetRevs,
     axiosGetProducts,
     axiosGetProds,
+    writeReview,
+    wreview
     // writeReview,
   },
 }
