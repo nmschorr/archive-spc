@@ -5,8 +5,6 @@ import Hcont from '../constants/constantsnew.js'
 var [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
 import cobj from '@/constants/constants.js';
     // contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
-var Url3 = cobj.data.cobj.Url3
-var chainid = cobj.data.cobj.chainid
      
 
 function makeaxio() {
@@ -43,7 +41,7 @@ export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   } catch (e) {
     console.log(e);
     }
-  console.log("line46 ")
+  console.log("line46 returning: " + axresult)
   return axresult
 }
 

@@ -1,7 +1,7 @@
 <template>
   <v-sheet>
     <v-row>
-            <!-- top level col -->
+      <!-- top level col -->
       <v-col
         cols="12"
       >  
@@ -15,7 +15,7 @@
           <v-col
             cols="4"
           >     
-          <!-- * * * * * * *  main peachy card on left -->
+            <!-- * * * * * * *  main peachy card on left -->
             <v-card
               id="firstcard"
               mainappcard
@@ -27,7 +27,6 @@
               class="ml-5"
               color="transparent"
             > 
-        
               <v-btn
                 id="getprodsbtn"
                 color="grey"
@@ -62,12 +61,9 @@
               >      
                 <span style="font-size:16px;margin-left:7px;">  {{ contract }} </span>
               </v-card>
-
-
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
             <!--revs card -->
-            
           </v-col>
               <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <v-col
@@ -78,7 +74,6 @@
           <v-col
             cols="7"
           >        <!-- ****** column 2 -->
-
                                 <!-- ****** vselcard greencard GREENCARD  -->
             <v-card
               id="greencard"
@@ -97,7 +92,7 @@
                 color="teal lighten-4"
                 class="d-inline-flex align-center justify-left pa-2"
               >        
-              <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
+                <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
                 <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
                 <v-select
                   id="vselone"
@@ -114,9 +109,9 @@
                   :items="products"
                   vselcard
                   class="mt-9"
-
                 />
-                </v-card>  
+
+              </v-card>  
                 
                 <v-btn
                   id="getrevssbtn"
@@ -127,63 +122,62 @@
                   class="ml-n15 mt-2"
                   @click=axiosGetRevs()
                 >    
-                <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
+                  <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
               
-              </v-btn>   
-              <!-- end select a product -->
+                </v-btn>   
+                <!-- end select a product -->
             </v-card>    
-             <!-- ******end green card -->
+            <!-- ******end green card -->
             <!-- ****** column 2 -->
 
-        <!-- ****** data results - revs listed here -->
-        <v-card
-          id="reviewsfoundback"
-          width="250px"
-          shaped
-          dark
-          elevation-24
-          :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
-          height="45px"
-          color="black lighten-1"
-          class="py-2 pl-7 ml-n3 mt-9  white--text"
-          secondcard
-        >
-          <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
-            reviews</span> 
-        </v-card>   
+            <!-- ****** data results - revs listed here -->
+            <v-card
+              id="reviewsfoundback"
+              width="250px"
+              shaped
+              dark
+              elevation-24
+              :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+              height="45px"
+              color="black lighten-1"
+              class="py-2 pl-7 ml-n3 mt-9  white--text"
+              secondcard
+            >
+              <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
+                reviews</span> 
+            </v-card>   
 
-        <v-sheet
-          id="rightbtmsheet"
-          mainappcard
-          shaped
-          height="700px"
-          width="675px"
-          color="grey lighten-3"
-          class="mt-n4 pa-2 d-flex flex-column"
-          :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+            <v-sheet
+              id="rightbtmsheet"
+              mainappcard
+              shaped
+              height="700px"
+              width="675px"
+              color="grey lighten-3"
+              class="mt-n4 pa-2 d-flex flex-column"
+              :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+            >
 
-        >
-
-        <v-card
-          v-for="review in reviewlist"
-          :key="review.id"      
-          id="rightbtmsheet"
-          width="630px"
-          height="auto"
-          shaped
-          filled          
-          elevation-24
-          raised
-          class="d-flex flex-column align-left ml-3 mt-2"
-          color="teal lighten-5"
-          secondcard
-        >      
-          <v-card-text 
-            :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
-          > 
-            {{ review.comments }} 
-          </v-card-text>
-          </v-card>   
+            <v-card
+              v-for="review in reviewlist"
+              :key="review.id"      
+              id="rightbtmsheet"
+              width="630px"
+              height="auto"
+              shaped
+              filled          
+              elevation-24
+              raised
+              class="d-flex flex-column align-left ml-3 mt-2"
+              color="teal lighten-5"
+              secondcard
+            >      
+              <v-card-text 
+                :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
+              > 
+                {{ review.comments }} 
+              </v-card-text>
+            </v-card>   
             <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
             <!-- * * *  - - - - - -- "test select" -->
           </v-sheet>
@@ -215,9 +209,49 @@ import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
 require('./queries.js')
 import { axiosGetProducts, axiosGetReviewsMain, MyQueries } from './queries.js'
+const dJSON = require('dirty-json');
+// const r = dJSON.parse("{ test: 'this is a test'}")
+// console.log(JSON.stringify(r));
+ 
 var prodchoice
 
 // const writeReview = MyQueries.axiosGetRevs
+function jsonToMap(jsonStr) {
+  return new Map(JSON.parse(jsonStr));
+}
+
+function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    // We don’t escape the key '__proto__'
+    // which can cause problems on older engines
+    obj[k] = v;
+  }
+  return obj;
+}
+
+function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    console.log("converting...: " + k)
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+
+function strMapToJson(strMap) {
+  return JSON.stringify(strMapToObj(strMap));
+}
+
+function jsonToStrMap(jsonStr) {
+  return objToStrMap(JSON.parse(JSON.stringify(jsonStr)));
+}
+
+function ditchit(jstr) {
+  let nstr = jstr.replace("\"" , "")
+  console.log(nstr)
+  return nstr
+}
 
 async function axiosGetRevs () {
   var contaddy = 'SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC'
@@ -226,22 +260,12 @@ async function axiosGetRevs () {
   console.log("line225 ")
   let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
 
-  const json =  JSON.stringify(axr.data.result.result)
-
-
-  console.log(json)
-
-
-  let stringy = JSON.stringify(axr.data.result.result)
-
-  console.log(JSON.stringify(axr.data.result.result))
-  var trevs = JSON.parse(JSON.stringify(axr.data.result.result.comments))
-  console.log("axr.data.result: ", axr.data.result.result.comments)
-  console.log("trevs  " + trevs)
-
-  console.log("trevs: " + trevs)
-  this.reviewlist = trevs
+  const myresult =  axr.data.result.result // step 1 stringify
+  const myar2 = dJSON.parse(myresult)
+  console.log(myar2)
+  console.log(JSON.stringify(myar2));
   this.cardkey += 1; 
+
 }  
 
 async function axiosGetProds () {
@@ -288,6 +312,13 @@ export default {
     // writeReview,
   },
 }
+// from original vikingchain code:
+//  const vtext3 = result.data.result.result.replace(/\r\n/g, "")
+//               const vtext4 = vtext3.replace(/\n/g, "")
+
+//               const reviews = JSON.parse(vtext4.replace(/\\/g, ""))
+//               console.log(reviews)
+//               this.reviews.push(...reviews)
 
 </script>
 
