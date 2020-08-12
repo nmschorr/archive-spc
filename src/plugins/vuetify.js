@@ -9,7 +9,7 @@ Vue.use(Vuetify, VueAxios, axios)
 const theme = {
   primary: colors.deepPurple.lighten1, // md #7e57c2  [10% light-#9871DC]  deep-purple (was tw 805ad5)
   secondary: colors.deepPurple.accent1, // md: #b388ff  //was tw light purple b794f4
-  tertiary: colors.teal.base,  //md teal  009688
+  tertiary: colors.teal.base,  //md teal  009688   
   success: colors.teal.accent4,  // md teal accent-4 00BFA5
   accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
   info: colors.grey.lighten2,  // md deep-purple accent-3  651fff

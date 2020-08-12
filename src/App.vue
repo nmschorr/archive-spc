@@ -4,11 +4,6 @@
   >   
     <Vuemain />
 
-    <v-footer
-      app
-    >
-      NULS
-    </v-footer>
   </v-app>
 </template>
 
@@ -23,5 +18,4 @@
   }
 </script>
 
-<style src="./assets/styles/twsummary.css">
-</style>
+

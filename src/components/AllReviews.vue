@@ -1,370 +1,410 @@
 <template>
-  <v-row>
-            <!-- top level col -->
-    <v-col
-      cols="12"
-    >  
-      <v-card
-        id="mainappcard"
-        color="teal lighten-3"
-        class="d-inline-flex"
-      > 
-           <!-- second level col -->
-        <v-col
-          cols="4"
-        >     
-        <!-- * * * * * * *  main peachy card on left -->
-          <v-card
-            id="firstcard"
-            mainappcard
-            height="700px"
-            width="500px"
-            elevation="24"
-            raised
-            outlined
-            shaped
-            class="ml-5"
-            color="peachy"
-          >
-            <v-btn
-              id="getprodsbtn"
-              color="primary"
-              x-large
-              v-bind="btnprops"
-              firstcard
-              :class="btnclss"
-              @click="axiosPost"
-            >
-              <span :class="btnfontclss">
-                Current Products
-              </span>
-            </v-btn>
-            <v-card
-              v-for="product in products"
-              id="showprodscard"
-              :key="product"      
-              width="400px"
-              :class="cardclss"
-              color="orangetext"
-              shaped
-              firstcard
-            >      
-              {{ product }}
-            </v-card>
-          </v-card>>
-          <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
-          <!--reviews card -->
-          <!-- getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  <v-sheet>
+    <v-row>
+      <!-- top level col -->
+      <v-col
+        cols="12"
+      >  
+        <v-card
+          id="mainappcard"
+          class="d-inline-flex"
+          :style="`background-image: linear-gradient(306deg, teal 70%, black 30% )`"
           
-        </v-col>
-            <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-        <v-col
-          cols="1"
-        >
-        </v-col>
-
-            <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-        <v-col
-          cols="7"
-        >        <!-- ****** column 2 -->
-          <!-- <v-card
-            width="100%"
-            height="100%"
-            color="red"
-          />               -->
-                              <!-- ****** vselcard greencard GREENCARD  -->
-          <v-card
-            id="greencard"
-            width="100%"
-            flat
-            color="transparent"
-            class="d-inline-flex justify-left"
-          >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
-            <v-card        
-              id="vselbackgroundcard"
-              greencard
+        > 
+            <!-- second level col -->
+          <v-col
+            cols="4"
+          >     
+            <!-- * * * * * * *  main peachy card on left -->
+            <v-card
+              id="firstcard"
+              mainappcard
+              height="150px"
+              width="500px"
+              elevation="24"
+              filled
               shaped
-              height="73px"
-              width="270px"
-              color="deep-orange lighten-5"
-              class="d-inline-flex align-center justify-left pa-2"
-            >         <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
-              <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
-              <v-select
-                id="vselone"
-                v-model="prodchoice"
-                width="230px"
-                height="30px"
-                labelWidth="140px"
-                type="string"
-                label="Select a Product"
-                color="deep-purple"
-                append-icon="mdi-plus"
+              class="ml-5"
+              color="transparent"
+            > 
+              <v-card
+                id="getprodsbtn"
+                color="teal lighten-3"
+                width="250px"
                 shaped
-                outlined
-                :style="`max-width:230px;`"        
-                :items="products"
-                vselcard
-                class="mt-9"
-
-              />
-              </v-card>  
-              
-              <v-btn
-                id="getrevssbtn"
-                v-bind="btnprops"
-                color="deep-orange lighten-3"
+                filled
+                dark
+                elevation-24
+                firstcard
+                height="35px"               
+                class="py-2 pl-7 ml-n3 mt-6 white--text"
+                :style="`position:relative;z-index:999;`"
+              >
+                <span 
+                  style="font-family:'Montserrat',sans-serif;font-size:15px;text-transform:lowercase;font-weight:400;"
+                >
+                  contract
+                </span>
+              </v-card>
+              <!-- orange small tab card with contract # - - - -   -->
+              <v-card
+                v-for="contract in contracts"
+                id="showprodscard"
+                :key="contract"      
+                width="420px"
+                min-width="400"
+                class="d-flex justify-left flex-grow-1 flex mx-2 mt-n2 pl-3 pr-4 py-3"
+                color="deep-orange lighten-4"
+                shaped
+                filled
+                elevation-24
+                raised
+                firstcard
+              >      
+                <span showprodscard style="font-family:'PT Sans Narrow',sans-serif;font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">{{ contract }}</span>
+              </v-card>
+            </v-card>>
+            <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
+            <!--revs card -->
+          </v-col>
+              <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <v-col
+            cols="1"
+          >
+          </v-col>
+              <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <v-col
+            cols="7"
+          >        <!-- ****** column 2 -->
+                                <!-- ****** vselcard greencard GREENCARD  -->
+            <v-card
+              id="greencard"
+              width="100%"
+              flat
+              color="transparent"
+              class="d-inline-flex justify-left"
+            >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
+              <v-card        
+                id="vselbackgroundcard"
                 greencard
                 shaped
-                elevation-4
-                class="mb-2 mt-2 ml-6 pa-3"
-                @click=axiosGetReviews()
-              >    
-              <span 
-                :class="btnfontclss"
-                :style="`text-shadow: 1px 1px 4px grey;`"
-              >
-                Get the Reviews
-              </span>
-            </v-btn>   
-            <!-- end select a product -->
-          </v-card>     <!-- ******end green card -->
-          <!-- ****** column 2 -->
+                filled
+                height="73px"
+                width="520px"
+                color="teal lighten-4"
+                class="d-inline-flex align-center justify-left pa-2"
+              >        
+                <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
+                <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
+                <v-select
+                  id="vselone"
+                  v-model="prodchoice"
+                  width="430px"
+                  height="30px"
+                  labelWidth="340px"
+                  type="string"
+                  label="Select a Product"
+                  color="deep-purple accent-3"
+                  shaped
+                  outlined
+                  :style="`max-width:430px;font-weight:700;`"        
+                  :items="products"
+                  vselcard
+                  class="mt-9"
+                />
 
-      <!-- ****** data results -->
-      <v-card
-        id="reviewsfoundback"
-        width="250px"
-        shaped
-        elevation-24
-        :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
-        height="45px"
-        color="teal lighten-1"
-        class="pa-2 ml-n3 mt-7 text-uppercase white--text"
-        secondcard
-      >
-        <span class="text-h6 text-bold text-uppercase">Reviews Found</span> 
-      </v-card>   
+              </v-card>  
+                
+                <v-btn
+                  id="getrevssbtn"
+                  color="red lighten-1"
+                  fab
+                  left
+                  vselbackgroundcard
+                  class="ml-n15 mt-2"
+                  @click=axiosGetRevs()
+                >    
+                  <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
+              
+                </v-btn>   
+                <!-- end select a product -->
+            </v-card>    
+            <!-- ******end green card -->
+            <!-- ****** column 2 -->
 
-      <v-sheet
-        id="rightbtmsheet"
-        mainappcard
-        shaped
-        height="700px"
-        width="675px"
-        color="teal lighten-4"
-        class="mt-n4 pa-2 d-flex flex-column"
-        :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+            <!-- ****** data results - revs listed here -->
+            <v-card
+              id="reviewsfoundback"
+              width="250px"
+              shaped
+              dark
+              elevation-24
+              :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+              height="45px"
+              color="black lighten-1"
+              class="py-2 pl-7 ml-n3 mt-9  white--text"
+              secondcard
+            >
+              <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
+                reviews</span> 
+            </v-card>   
 
-      >
-      <div
+            <v-sheet
+              id="rightbtmsheet"
+              mainappcard
+              shaped
+              height="700px"
+              width="675px"
+              color="grey lighten-3"
+              class="mt-n4 px-2 pt-5 d-flex flex-column"
+              :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
+            >
 
-        width="90%"
-        class="headline pt-5"
-      > 
-        Reviews for Product Category   {{ prodchoice  }}
-        <br>
-      </div>        
-        <v-card
-          v-for="review in reviews"
-          :key="review"      
-          id="rightbtmsheet"
-          width="630px"
-          elevation-24
-          raised
-          height="auto"
-          class="d-flex flex-column align-left ml-3 mt-2"
-          color="teal lighten-5"
-          shaped
-          secondcard
-        >      
-          <v-card-text 
-            :style="`font-size:16px;font-weight:bold;`"
-          > 
-            {{ review.comments }} 
-          </v-card-text>
-
-
-        </v-card>   
-          <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-          <!-- * * *  - - - - - -- "test select" -->
-        </v-sheet>
+            <v-card
+              v-for="review in reviewlist"
+              :key="review.id"      
+              id="rightbtmsheet"
+              width="630px"
+              height="auto"
+              shaped
+              filled          
+              elevation-24
+              raised
+              class="d-flex flex-column align-left ml-3 mt-2"
+              color="teal lighten-5"
+              secondcard
+            >      
+              <v-card-text 
+                :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
+              > 
+                {{ review.comments }} 
+              </v-card-text>
+            </v-card>   
+            <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+            <!-- * * *  - - - - - -- "test select" -->
+          </v-sheet>
       
-      <!-- end reviews card -->
+          <!-- end revs card -->
+          </v-col>
+        </v-card>
       </v-col>
-        <v-col>
+    </v-row>
+
+    <v-row>
+      <v-col
+        cols=12
+        md=6
+      >
+        <v-card
+          id="writecard"
+          v-bind="cardyprops"
+          color="teal lighten-1"
+          mainappcard
+          min-height="70px"
+          min-width="550px"
+          class="d-flex flex-column justify-center align-center"
+          :class="cardclss"
+          dark
+        >
+          <v-card-title>
+            Write Review
+          </v-card-title>
+
           <v-card
-            v-bind="cardyprops"
-            color="teal lighten-2"
-            mainappcard
-            min-height="70px"
-            :class="cardclss"
-          />
-        </v-col>
-      </v-card>
-    </v-col>
-  </v-row>
+            id="write2"
+            writecard
+            color="deep-orange lighten-4"
+            width="500px"
+            class="my-3 mx-2 pa-3"
+            light
+          >
+            <v-form 
+              ref="wform" 
+              @submit.prevent="submit"
+            >
+              <v-text-field
+                v-model="vmcat"
+                height="20px"
+                color="purple darken-2"
+                label="Product Category"
+                class="mx-4 pa-3"
+                required
+              >
+              </v-text-field>
+              <v-text-field
+                v-model="vmrev"
+                color="blue darken-2"
+                label="Your Review"
+                required
+                class="mx-4 pa-3"
+                height="70px"
+              >
+              </v-text-field>
+              <v-btn
+                color="success"
+                class="ma-2"
+                @click="wreview"
+              >
+                Submit Review
+              </v-btn>
+            </v-form>
+          </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-sheet>
 </template>
 
 <script>
+import Vue from 'vue'
 import axios from "axios";
-import ccodes from '@/constants/constantsnew.js'
+import { Hcont, ccodes} from '@/constants/constantsnew.js'
 import cobj from '@/constants/constants.js';
-import colors from '../../node_modules/vuetify/lib/util/colors'
-  // primary: colors.deepPurple.lighten1, // purple was tw 805ad5
-  // secondary: colors.deepPurple.accent1,  //was tw light purple b794f4
-  // tertiary: colors.teal.base,  //md teal  009688
-  // success: colors.teal.accent4,  // md teal accent-4 00BFA5
-  // accent: colors.orange.lighten2,  //md orange lighten-2  FFB74D
-  // info: colors.grey.lighten2,  // md deep-purple accent-3  651fff
-  // error: colors.red.base,   //md deep-purple darken-2 455A64
-  // warning: colors.orange.lighten2,  //md blue-grey darken-2  455A64
-  // darkgrey: colors.grey.darken4, // 212121
-  // orangetext: colors.deepOrange.lighten5, // for text
+require('./queries.js')
+import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './queries.js'
+const dJSON = require('dirty-json');
+// const r = dJSON.parse("{ test: 'this is a test'}")
+// console.log(JSON.stringify(r));
+ 
+var prodchoice
+
+// const writeReview = MyQueries.axiosGetRevs
+function jsonToMap(jsonStr) {
+  return new Map(JSON.parse(jsonStr));
+}
+
+function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    // We don’t escape the key '__proto__'
+    // which can cause problems on older engines
+    obj[k] = v;
+  }
+  return obj;
+}
+
+function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    console.log("converting...: " + k)
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+
+function strMapToJson(strMap) {
+  return JSON.stringify(strMapToObj(strMap));
+}
+
+function jsonToStrMap(jsonStr) {
+  return objToStrMap(JSON.parse(JSON.stringify(jsonStr)));
+}
+
+function ditchit(jstr) {
+  let nstr = jstr.replace("\"" , "")
+  console.log(nstr)
+  return nstr
+}
+
+async function axiosGetRevs () {
+  var contaddy = 'SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC'
+  const cid = 4810
+  const u3 = 'http://westteam.nulstar.com:8003'
+  console.log("line225 ")
+  let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
+
+  const myresult =  axr.data.result.result // step 1 stringify
+  const stepone = dJSON.parse(myresult)
+  this.reviewlist = stepone
+
+  const steptwo = JSON.stringify(stepone)
+  this.cardkey += 1; 
+
+}  
+
+
+async function axiosGetProds () {
+  const cid = cobj.data.cobj.chainid
+  const ctaddy = cobj.data.cobj.contaddy
+  const u3 = cobj.data.cobj.Url3
+  console.log("thedata: " +  cid + " " + ctaddy + " " + u3)
+  let axr = await this.axiosGetProducts( cid, ctaddy, u3)
+  this.products = axr
+  console.log("this.products: " + axr)
+  // this.cardkey += 1; 
+  this.showProds = true
+}
+var review =''
+
+async function wreview () {
+  const wcat = this.vmcat
+  const wrev = this.vmrev
+  console.log("wcat: " + wcat)
+  console.log("wrev: " + wrev)
+  let axr = await this.writeReview( wcat, wrev)
+
+  // this.cardkey += 1; 
+  // this.showProds = true
+}
 export default {
   name: "AllReviews",
   data: () => ({
-    vmm: '',
-    prodchoice: '',
-    btnclss: "mb-2 mt-2 ml-7 pa-3",
-    btnfontclss: "font-bold text-l white--text",
+    prodchoice,
+    review,
+    vmcat: '',
+    vmrev: '',
     cardyprops: { elevation: 24, raised: true, width: "450px", 
       height: "400px", "d-flex": true, outlined: true },
-    btnprops: { elevation: 24, raised: true, shaped: true, large: true, height: "42px",
-      width: "242px", rounded: true },
-    cardclss: "d-flex justify-left ma-2 pa-2",
-    CHAINID: cobj.data.cobj.CHAINID,
-    PW: cobj.data.cobj.PW,
-    CONT_ADDY: cobj.data.cobj.CONT_ADDY,
+    cardclss: "d-flex justify-left ma-2 pa-1",
+    chainid: cobj.data.cobj.chainid,
     SENDER: cobj.data.cobj.SENDER,
     OWNER: cobj.data.cobj.OWNER,
     BUYER: cobj.data.cobj.BUYER,
     VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
     GAS_PRICE: cobj.data.cobj.GAS_PRICE,
     GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
-    POSTURL_w3: cobj.data.cobj.POSTURL_w3,
-    POSTURL_w4: cobj.data.cobj.POSTURL_w4,
-    products: null,
-    cardkey: 0,
-    reviews: [],
-    bgipur1: `background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)`,
-    bgig1: `background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))`,
-
-    review: null,
-    selectedProductId: null,
-    visible: false,
+    products: [],
+    reviewlist: '',
+    contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
+    showProds: false,
+    MyQueries,
     }),
-  created () {
-    this.axiosPost()  // get the prod list
-    console.log()
+  mounted () {
+    this.axiosGetProds()  // get the prod list
   },
   methods: {
-    makeaxiosi () {
-      var [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, ddunused, 
-        ccunused, aaunused, bbunused] = Object.values(ccodes.data.ccodes)
-      var axio = axios.create({
-        defaults: {
-          headers: {
-            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            },
-          },
-        });
-      return axio
-    },
-
-    async axiosPost() {
-      const [accStr, restTypes, acctlMeths, acctlOrig, appJson, ctType, jsonV, 
-        invMethod, REQtype, RETtype] = Object.values(ccodes.data.ccodes)
-      const LASTLIST =[]
-      console.log("inside axiosPost accStr: ", accStr)
-      var vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST]
-      
-      const axiosi = axios.create({
-        defaults: {
-          headers: {
-            post: { Accept: accStr, acctlMeths: restTypes, ctType: appJson },
-            },
-          },
-        });
-      try { 
-        var axresult
-        console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.POSTURL_w3, {
-          jsonrpc: jsonV,
-          method:  invMethod,
-          id: 900099,
-          params:  vPARAMS
-        });
-      } catch (e) {
-        console.log(e);
-        }
-        this.products = JSON.parse(axresult.data.result.result)
-        console.log("this.products: " + this.products)
-        this.cardkey += 1;
-     },
-    async axiosGetReviews() {
-      var productId = this.prodchoice
-      const invMethod = 'invokeView'
-      const RETtype = "(String productId) return Ljava/util/List;";
-      const LASTLIST = [productId];
-      const jsonV = '2.0'
-
-      const REQtype = "getReviews";
-      const vPARAMS = [this.CHAINID, this.CONT_ADDY, REQtype, RETtype, LASTLIST];
-      const axiosi = this.makeaxiosi()
-      try { 
-        var axresult
-        console.log("inside axiosPost vPARAMS: " + vPARAMS);
-        axresult = await axiosi.post(this.POSTURL_w3, {
-          jsonrpc: jsonV,
-          method:  invMethod,
-          id: 900092,
-          params:  vPARAMS
-        });
-      } catch (e) {
-        console.log(e);
-        }
-        this.reviews = JSON.parse(axresult.data.result.result)
-        console.log("this.reviews: " + this.reviews)
-        this.cardkey += 1;
-     },
+    axiosGetRevs,
+    axiosGetProducts,
+    axiosGetProds,
+    writeReview,
+    wreview
+    // writeReview,
   },
 }
+// from original vikingchain code:
+//  const vtext3 = result.data.result.result.replace(/\r\n/g, "")
+//               const vtext4 = vtext3.replace(/\n/g, "")
+
+//               const reviews = JSON.parse(vtext4.replace(/\\/g, ""))
+//               console.log(reviews)
+//               this.reviews.push(...reviews)
+
 </script>
 
-<style scoped>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 
-.btnfnt {
-  font-size: 16px;
-  font-weight: 700
-}
-.gradpink1 {
-  background-image: linear-gradient(to right, #c19dc7, #884997)
-}
-
-.gradientpur1 {
-  background-image: linear-gradient(306deg, #beaae2 0%, #9873d6 100%)
-}
-.gradientpur2 {
-  background-image: linear-gradient(306deg, #83578b 0%, #896bbb 100%)
+.v-label  {
+  font-size: 12px!important;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  color: black;
 }
 
-.gradientg1 {
-  background-image: linear-gradient(to right, rgba(33, 138, 184, 1),rgba(0, 241, 181, 1))
-}
-.gradientg2 {
-  background-image: linear-gradient(306deg, #2f996d 0%, #198ca8 100%)
-}
-.gradientg3 {
-  background-image: linear-gradient(306deg, #47886d 0%, #116479 100%)
-}
-.gradientprime {
-  background-image: linear-gradient(306deg,  #7e57c2 0%, #9871DC 100%)
-}
-.gradientprime2 {
-  background-image: linear-gradient(306deg,  #7e57c2, #9871DC)
-}
 </style>
 
         

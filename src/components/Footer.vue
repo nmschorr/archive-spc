@@ -1,37 +1,38 @@
 <template>
   <v-footer
     id="dashboard-core-footer"
+    height="65px"
+    :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
+    app
   >
     <v-container>
       <v-row
         align="center"
-        no-gutters
       >
         <v-col
           v-for="(link, i) in links"
           :key="i"
-          class="text-center mb-sm-0 mb-5"
+          class="text-center heading"
           cols="auto"
         >
           <a
             :href="link.href"
-            class="mr-0 grey--text text--darken-3"
             rel="noopener"
             target="_blank"
             v-text="link.text"
           />
         </v-col>
 
-        <v-spacer class="hidden-sm-and-down" />
+        <v-spacer />
 
         <v-col
           cols="12"
           md="auto"
         >
-          <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">
+          <div class="body-1 font-weight-600 pt-2 pt-md-0 text-center">
             &copy; 2020, made with
             <v-icon
-              size="18"
+              size="14"
               color="red"
             >
               mdi-heart
@@ -46,7 +47,7 @@
 
 <script>
   export default {
-    name: 'DashboardCoreFooter',
+    name: 'CoreFooter',
 
     data: () => ({
       links: [
@@ -74,8 +75,40 @@
 <style lang="sass">
   #dashboard-core-footer
     a
-      font-size: .825rem
-      font-weight: 500
+      font-size: 14px
       text-decoration: none
       text-transform: uppercase
+
+.v-footer
+  padding: 2px 0 2px 4px
+  border-top: 0px solid #e7e7e7
+  position: relative
+  a
+    padding: 5px 6px 5px 6px
+    font-size: 14px !important
+
+  .body-1
+    font-size: 14px !important
+    padding-right: 18px
+    letter-spacing: 0px !important
+    a
+      color: #9c27b0 !important
+      padding: 0
+      text-transform: inherit !important
+      font-size: 14px !important
+
+  .v-icon
+    margin-top: -3px
+
+  &.v-footer--absolute
+    position: absolute !important
+
+.theme--light.v-footer
+  background-color: transparent
+  .body-1
+    color: #3c4858
+  .v-icon
+    color: #3c4858
 </style>
+
+
