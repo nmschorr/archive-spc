@@ -61,7 +61,7 @@
                 raised
                 firstcard
               >      
-                <span showprodscard style="font-family:'PT Sans Narrow',sans-serif;font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">{{ contract }}</span>
+                <span showprodscard style="font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">{{ contract }}</span>
               </v-card>
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -396,7 +396,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap'); */
 
 .v-label  {
   font-size: 12px!important;
