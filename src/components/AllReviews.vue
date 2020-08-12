@@ -27,31 +27,33 @@
               class="ml-5"
               color="transparent"
             > 
-              <v-btn
+              <v-card
                 id="getprodsbtn"
-                color="grey"
+                color="teal lighten-3"
                 width="250px"
                 shaped
                 filled
                 dark
                 elevation-24
                 firstcard
-                height="45px"               
-                class="py-2 pl-7 ml-n3 mt-3 mb-6 white--text"
+                height="35px"               
+                class="py-2 pl-7 ml-n3 mt-6 white--text"
+                :style="`position:relative;z-index:999;`"
               >
                 <span 
-                  style="font-family:'Montserrat', sans-serif; font-size:20px;text-transform:lowercase;font-weight:400;"
+                  style="font-family:'Montserrat',sans-serif;font-size:15px;text-transform:lowercase;font-weight:400;"
                 >
                   contract
                 </span>
-              </v-btn>
+              </v-card>
               <!-- orange small tab card with contract # - - - -   -->
               <v-card
                 v-for="contract in contracts"
                 id="showprodscard"
                 :key="contract"      
-                width="400px"
-                class="d-flex justify-left ma-2 pl-3 pr-4 py-3"
+                width="420px"
+                min-width="400"
+                class="d-flex justify-left flex-grow-1 flex mx-2 mt-n2 pl-3 pr-4 py-3"
                 color="deep-orange lighten-4"
                 shaped
                 filled
@@ -59,7 +61,7 @@
                 raised
                 firstcard
               >      
-                <span style="font-size:16px;margin-left:7px;">  {{ contract }} </span>
+                <span showprodscard style="font-family:'PT Sans Narrow',sans-serif;font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">{{ contract }}</span>
               </v-card>
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -154,7 +156,7 @@
               height="700px"
               width="675px"
               color="grey lighten-3"
-              class="mt-n4 pa-2 d-flex flex-column"
+              class="mt-n4 px-2 pt-5 d-flex flex-column"
               :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
             >
 
@@ -261,9 +263,10 @@ async function axiosGetRevs () {
   let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
 
   const myresult =  axr.data.result.result // step 1 stringify
-  const myar2 = dJSON.parse(myresult)
-  console.log(myar2)
-  console.log(JSON.stringify(myar2));
+  const stepone = dJSON.parse(myresult)
+  this.reviewlist = stepone
+
+  const steptwo = JSON.stringify(stepone)
   this.cardkey += 1; 
 
 }  
@@ -327,6 +330,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 
 .v-label  {
   font-size: 12px!important;
