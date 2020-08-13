@@ -1,22 +1,22 @@
+const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 module.exports = {
-  publicPath: '',
+  publicPath: '/spc',
+  outputDir: '/spc/dist',
 
   transpileDependencies: [
     'vuetify'
   ],
 
-  runtimeCompiler: true
-}
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
-
- module.exports = {
-    chainWebpack: config => {
-        plugins: [
-            new GoogleFontsPlugin({
-                fonts: [
-                    { family: "Rubik" }
-                ]
-            })
-        ]
-     }
+  runtimeCompiler: true,
+  chainWebpack: config => {
+  plugins: [
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: "Rubik" },
+        { family: "Montserrat" },
+        { family: "Raleway" },
+      ]
+    })
+  ]
+    }
  }
