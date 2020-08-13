@@ -1,85 +1,148 @@
 <template>
-  <v-sheet>
+  <v-container
+    fluid
+  >
     <v-row>
       <!-- top level col -->
       <v-col
         cols="12"
+        md="12"
+        sm="6"
       >  
         <v-card
           id="mainappcard"
-          class="d-inline-flex"
+          class="d-flex flex-column"
+          color="purple"
           :style="`background-image: linear-gradient(306deg, teal 70%, black 30% )`"
         > 
           <!-- second level col -->
-          <v-col
-            cols="4"
-          >     
-            <!-- * * * * * * *  main peachy card on left -->
-            <v-card
-              id="firstcard"
-              mainappcard
-              height="150px"
-              width="500px"
-              elevation="24"
-              filled
-              shaped
-              class="ml-5"
-              color="transparent"
-            > 
+          <v-row>
+            <v-col
+              cols="6"
+              align-left
+            >     
+              <!-- * * * * * * *  main peachy card on left -->
               <v-card
-                id="getprodsbtn"
-                color="teal lighten-3"
-                width="250px"
-                shaped
+                id="firstcard"
+                color="red"
+                mainappcard
+                height="150px"
+                width="500px"
+                elevation="24"
                 filled
-                dark
-                elevation-24
-                firstcard
-                height="35px"               
-                class="py-2 pl-7 ml-n3 mt-6 white--text"
-                :style="`position:relative;z-index:999;`"
-              >
-                <span 
-                  style="font-family:'Montserrat',sans-serif;font-size:15px;text-transform:lowercase;font-weight:400;"
+                shaped
+                class="d-flex flex-column ml-5"
+              > 
+                <v-card
+                  id="getprodsbtn"
+                  color="teal lighten-3"
+                  width="250px"
+                  shaped
+                  filled
+                  dark
+                  elevation-24
+                  firstcard
+                  height="35px"               
+                  class="d-flex flex-column py-2 pl-7 mr-15 ml-n3 mt-6 white--text"
+                  :style="`position:relative;z-index:999;`"
                 >
-                  contract
-                </span>
-              </v-card>
-              <!-- orange small tab card with contract # - - - -   -->
-              <v-card
-                v-for="contract in contracts"
-                id="showprodscard"
-                :key="contract"      
-                width="420px"
-                min-width="400"
-                class="d-flex justify-left flex-grow-1 flex mx-2 mt-n2 pl-3 pr-4 py-3"
-                color="deep-orange lighten-4"
-                shaped
-                filled
-                elevation-24
-                raised
-                firstcard
-              >      
-                <span 
-                  showprodscard 
-                  style="font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">
+                  <span 
+                    style="font-family:'Montserrat',sans-serif;font-size:15px;text-transform:lowercase;font-weight:400;"
+                  >
+                    contract
+                  </span>
+                </v-card>
+                <!-- orange small tab card with contract # - - - -   -->
+                <v-card
+                  v-for="contract in contracts"
+                  id="showprodscard"
+                  :key="contract"      
+                  width="100%"
+                  min-width="400"
+                  class="d-flex justify-left flex-grow-1 flex mx-2 mt-n2 mb-22 pl-3 pr-4 py-3"
+                  color="deep-orange lighten-4"
+                  shaped
+                  filled
+                  elevation-24
+                  raised
+                  firstcard
+                >      
+                  <span 
+                    showprodscard 
+                    style="font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;"
+                  >
                     {{ contract }}
-                </span>
+                  </span>
+                </v-card>
               </v-card>
-            </v-card>>
-            <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
-            <!--revs card -->
+
+              <v-card
+                id="writecard"
+                v-bind="cardyprops"
+                color="teal lighten-1"
+                width="100%"
+                mainappcard
+                height="50px"
+                min-height="40px"
+                min-width="350px"
+                class="d-flex flex-column mt-34 pa-1"    
+                dark
+              >
+                <v-card-title>
+                  Write Review
+                </v-card-title>
+                <v-card
+                  id="write2"
+                  writecard
+                  color="deep-orange lighten-4"
+                  width="500px"
+                  class="d-flex my-3 mx-2 pa-3"
+                  light
+                >
+                  <v-form 
+                    ref="wform" 
+                    @submit.prevent="submit"
+                  >
+                    <v-text-field
+                      v-model="vmcat"
+                      height="20px"
+                      color="purple darken-2"
+                      label="Product Category"
+                      class="mx-4 pa-3"
+                      required
+                    >
+                    </v-text-field>
+                    <v-text-field
+                      v-model="vmrev"
+                      color="blue darken-2"
+                      label="Your Review"
+                      required
+                      class="mx-4 pa-3"
+                      height="70px"
+                    >
+                    </v-text-field>
+                    <v-btn
+                      color="success"
+                      class="ma-2"
+                      @click="wreview"
+                    >
+                      Submit Review
+                    </v-btn>
+                  </v-form>
+                </v-card>
+              </v-card>
+            </v-card>
           </v-col>
+          <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!--revs card -->
           <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-          <v-col
-            cols="1"
-          >
-          </v-col>
+
+
           <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <v-col
-            cols="7"
-          > <!-- ****** column 2 -->
-            <!-- ****** vselcard greencard GREENCARD  -->
+            cols="6"
+          >       <!-- ****** column 2 -->
+                  <!-- ****** vselcard greencard GREENCARD  -->
             <v-card
               id="greencard"
               width="100%"
@@ -116,23 +179,21 @@
                   class="mt-9"
                 />
               </v-card>  
-                <v-btn
-                  id="getrevssbtn"
-                  color="red lighten-1"
-                  fab
-                  left
-                  vselbackgroundcard
-                  class="ml-n15 mt-2"
-                  @click=axiosGetRevs()
-                >    
-                  <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
-              
-                </v-btn>   
-                <!-- end select a product -->
+              <v-btn
+                id="getrevssbtn"
+                color="red lighten-1"
+                fab
+                left
+                vselbackgroundcard
+                class="ml-n15 mt-2"
+                @click=axiosGetRevs()
+              >    
+                <v-icon :style="`padding-right:3px;`">mdi-feature-search-outline </v-icon>
+              </v-btn>   
+              <!-- end select a product -->
             </v-card>    
             <!-- ******end green card -->
             <!-- ****** column 2 -->
-
             <!-- ****** data results - revs listed here -->
             <v-card
               id="reviewsfoundback"
@@ -146,8 +207,11 @@
               class="py-2 pl-7 ml-n3 mt-9  white--text"
               secondcard
             >
-              <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
-                reviews</span> 
+              <span 
+                style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  
+              >
+                reviews
+              </span> 
             </v-card>   
             <v-sheet
               id="rightbtmsheet"
@@ -178,77 +242,15 @@
                 > 
                   {{ review.comments }} 
                 </v-card-text>
-              </v-card>   
-            <!-- end getrevssbtn btn   | | | |* * * * | | | | | | | |* * * * | | | | -->
-            <!-- * * *  - | | | |- -- test select -->
-          </v-sheet>
-          <!-- end revs card -->
-          </v-col>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols=12
-        md=6
-      >
-        <v-card
-          id="writecard"
-          v-bind="cardyprops"
-          color="teal lighten-1"
-          mainappcard
-          min-height="70px"
-          min-width="550px"
-          class="d-flex flex-column justify-center align-center"
-          :class="cardclss"
-          dark
-        >
-          <v-card-title>
-            Write Review
-          </v-card-title>
-          <v-card
-            id="write2"
-            writecard
-            color="deep-orange lighten-4"
-            width="500px"
-            class="my-3 mx-2 pa-3"
-            light
-          >
-            <v-form 
-              ref="wform" 
-              @submit.prevent="submit"
-            >
-              <v-text-field
-                v-model="vmcat"
-                height="20px"
-                color="purple darken-2"
-                label="Product Category"
-                class="mx-4 pa-3"
-                required
-              >
-              </v-text-field>
-              <v-text-field
-                v-model="vmrev"
-                color="blue darken-2"
-                label="Your Review"
-                required
-                class="mx-4 pa-3"
-                height="70px"
-              >
-              </v-text-field>
-              <v-btn
-                color="success"
-                class="ma-2"
-                @click="wreview"
-              >
-                Submit Review
-              </v-btn>
-            </v-form>
-          </v-card>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-sheet>
+              </v-card> 
+              <!-- end getrevssbtn btn   | | | |* * * * | | | | | | | |* * * * | | | | -->
+              <!-- * * *  - | | | |- -- test select -->
+            </v-sheet>
+            <!-- end revs card -->
+          </v-col> 
+        </v-row>
+    
+
 </template>
 
 <script>
