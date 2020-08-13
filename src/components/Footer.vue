@@ -92,7 +92,7 @@
     padding-right: 18px
     letter-spacing: 0px !important
     a
-      color: #9c27b0 !important
+      color: teal !important
       padding: 0
       text-transform: inherit !important
       font-size: 14px !important
@@ -106,7 +106,7 @@
 .theme--light.v-footer
   background-color: transparent
   .body-1
-    color: #3c4858
+    color: teal
   .v-icon
     color: #3c4858
 </style>

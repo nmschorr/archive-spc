@@ -9,14 +9,14 @@ module.exports = {
 
   runtimeCompiler: true,
   chainWebpack: config => {
-  plugins: [
-    new GoogleFontsPlugin({
-      fonts: [
-        { family: "Rubik" },
-        { family: "Montserrat" },
-        { family: "Raleway" },
-      ]
-    })
-  ]
-    }
+    plugins: [
+      new GoogleFontsPlugin({
+        fonts: [
+          { family: "Rubik" },
+          { family: "Montserrat" },
+          { family: "Raleway" },
+        ]
+      })
+    ]
+  }
  }

@@ -10,7 +10,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
-	'camelcase': 'off',
+	  'camelcase': 'off',
     '@typescript-eslint/camelcase': ['off']
 	//'camelcase': [
     //  2, {

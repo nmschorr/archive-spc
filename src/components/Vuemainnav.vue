@@ -5,9 +5,10 @@
     <v-app-bar
       app
       elevation="24"
-      :height="appbarheight"
       :key="appbarheight"
+      :height="appbarheight"
       raised
+      shrinkOnScroll
       min-height="100px"
       rounded
       prominent
@@ -169,5 +170,8 @@
     font-size: 18px;
     color: white;
     text-transform: capitalize;
+  }
+  .v-toolbar__title {
+    white-space: pre-wrap;
   }
 </style>

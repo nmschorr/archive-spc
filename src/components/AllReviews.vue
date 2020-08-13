@@ -9,9 +9,8 @@
           id="mainappcard"
           class="d-inline-flex"
           :style="`background-image: linear-gradient(306deg, teal 70%, black 30% )`"
-          
         > 
-            <!-- second level col -->
+          <!-- second level col -->
           <v-col
             cols="4"
           >     
@@ -61,22 +60,26 @@
                 raised
                 firstcard
               >      
-                <span showprodscard style="font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">{{ contract }}</span>
+                <span 
+                  showprodscard 
+                  style="font-size:16px;font-weight:700;margin-left:4px;margin-right:5px;">
+                    {{ contract }}
+                </span>
               </v-card>
             </v-card>>
             <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
             <!--revs card -->
           </v-col>
-              <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!-- empty column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <v-col
             cols="1"
           >
           </v-col>
-              <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+          <!-- wide column  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
           <v-col
             cols="7"
-          >        <!-- ****** column 2 -->
-                                <!-- ****** vselcard greencard GREENCARD  -->
+          > <!-- ****** column 2 -->
+            <!-- ****** vselcard greencard GREENCARD  -->
             <v-card
               id="greencard"
               width="100%"
@@ -112,9 +115,7 @@
                   vselcard
                   class="mt-9"
                 />
-
               </v-card>  
-                
                 <v-btn
                   id="getrevssbtn"
                   color="red lighten-1"
@@ -148,7 +149,6 @@
               <span style="font-family:'Montserrat', sans-serif; font-size:20px;letter-spacing:1.25px;"  >
                 reviews</span> 
             </v-card>   
-
             <v-sheet
               id="rightbtmsheet"
               mainappcard
@@ -159,37 +159,34 @@
               class="mt-n4 px-2 pt-5 d-flex flex-column"
               :style="`box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.34)`"
             >
-
-            <v-card
-              v-for="review in reviewlist"
-              :key="review.id"      
-              id="rightbtmsheet"
-              width="630px"
-              height="auto"
-              shaped
-              filled          
-              elevation-24
-              raised
-              class="d-flex flex-column align-left ml-3 mt-2"
-              color="teal lighten-5"
-              secondcard
-            >      
-              <v-card-text 
-                :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
-              > 
-                {{ review.comments }} 
-              </v-card-text>
-            </v-card>   
-            <!-- end getrevssbtn btn  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-            <!-- * * *  - - - - - -- "test select" -->
+              <v-card
+                v-for="review in reviewlist"
+                id="rightbtmsheet"
+                :key="review.id"      
+                width="630px"
+                height="auto"
+                shaped
+                filled          
+                elevation-24
+                raised
+                class="d-flex flex-column align-left ml-3 mt-2"
+                color="teal lighten-5"
+                secondcard
+              >      
+                <v-card-text 
+                  :style="`font-size:16px;font-family:'Rubik',sans-serif;font-weight:light;`"
+                > 
+                  {{ review.comments }} 
+                </v-card-text>
+              </v-card>   
+            <!-- end getrevssbtn btn   | | | |* * * * | | | | | | | |* * * * | | | | -->
+            <!-- * * *  - | | | |- -- test select -->
           </v-sheet>
-      
           <!-- end revs card -->
           </v-col>
         </v-card>
       </v-col>
     </v-row>
-
     <v-row>
       <v-col
         cols=12
@@ -209,7 +206,6 @@
           <v-card-title>
             Write Review
           </v-card-title>
-
           <v-card
             id="write2"
             writecard
