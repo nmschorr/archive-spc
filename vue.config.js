@@ -15,6 +15,8 @@ module.exports = {
           { family: "Rubik" },
           { family: "Montserrat" },
           { family: "Raleway" },
+          { family: "PT Sans Narrow" },
+
         ]
       })
     ]

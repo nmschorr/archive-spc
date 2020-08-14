@@ -1,7 +1,7 @@
 <template>
   <v-footer
     id="core-footer"
-    height="65px"
+    height="45px"
     :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
     app
   >
