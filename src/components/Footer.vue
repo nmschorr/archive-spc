@@ -1,7 +1,7 @@
 <template>
   <v-footer
     id="core-footer"
-    height="45px"
+    height="65px"
     :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
     app
   >
@@ -52,19 +52,19 @@
     data: () => ({
       links: [
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'NULS',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'About Us',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'Blog',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'Licenses',
         },
       ],

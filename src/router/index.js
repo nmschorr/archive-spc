@@ -9,6 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
       component: () => import('../components/Vuemain'),
       children: [
         {

@@ -31,7 +31,7 @@
         raised
         dark
         medium
-        class="mt-9"
+        class="mt-9 montyfontb"
         min-width="40px"
         min-height="20px"
         @click="prodclick"
@@ -46,7 +46,7 @@
         dark
         raised
         medium
-        class="mt-9"
+        class="mt-9 montyfontb"
         min-width="40px"
         min-height="20px"
         @click="prodclick"
@@ -55,34 +55,34 @@
       </v-btn>
       <v-spacer />
 
-      <v-btn
+      <!-- <v-btn
         color="blue-grey"
         dark
         medium
         elevation="24"
         raised
-        class="mt-9"
+        class="mt-9 montyfontb"
         min-width="40px"
         min-height="20px"
         @click="revclick"
       >
         {{ allrevs.pname }}
-      </v-btn>
+      </v-btn> -->
       <v-spacer />
 
-      <v-btn
+      <!-- <v-btn
         color="blue-grey"
         medium
         dark
         elevation="24"
         raised
-        class="mt-9"
+        class="mt-9 montyfontb"
         min-width="40px"
         min-height="20px"
         @click="revclick"
       >
         {{ writerevs.pname }}
-      </v-btn>
+      </v-btn> -->
       <v-spacer />
 
       <v-btn icon>
@@ -135,7 +135,6 @@
       allrevs,
       listcontracts,
       writerevs,
-
     }),
     computed: {
 
@@ -166,10 +165,19 @@
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+  .montyfontb {
+    font-size: 18px;
+    color: white;
+    font-family: 'Montserrat',sans-serif;
+    letter-spacing: 1.25px;
+    text-transform: lowercase;
+  }
   .v-btn.v-size--large {
     font-size: 18px;
     color: white;
-    text-transform: capitalize;
+    font-family: 'Montserrat',sans-serif;
+    letter-spacing: 1.25px;
+    text-transform: lowercase;
   }
   .v-toolbar__title {
     white-space: pre-wrap;
