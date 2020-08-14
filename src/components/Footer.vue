@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    id="dashboard-core-footer"
+    id="core-footer"
     height="65px"
     :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
     app
