@@ -41,7 +41,7 @@ export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   } catch (e) {
     console.log(e);
     }
-  console.log("line46 returning: " + axresult)
+  console.log("axresult returning: " + axresult)
   return axresult
 }
 

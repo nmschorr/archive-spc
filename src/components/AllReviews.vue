@@ -280,7 +280,7 @@
             :key="review.id"      
             width="590px"
             min-width="120px"
-            height="40px"
+            height="50px"
             min-height="20px"
             max-height="220px"
             class="d-flex pa-2 ml-1 mt-1 mr-4 mb-2"
@@ -312,7 +312,6 @@
   
   var prodchoice
 
-  // const writeReview = MyQueries.axiosGetRevs
   function jsonToMap(jsonStr) {
     return new Map(JSON.parse(jsonStr));
   }
@@ -356,16 +355,12 @@
     const u3 = 'http://westteam.nulstar.com:8003'
     console.log("line225 ")
     let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
-
     const myresult =  axr.data.result.result // step 1 stringify
     const stepone = dJSON.parse(myresult)
     this.reviewlist = stepone
-
     const steptwo = JSON.stringify(stepone)
     this.cardkey += 1; 
-
   }  
-
 
   async function axiosGetProds () {
     const cid = cobj.data.cobj.chainid
@@ -383,12 +378,12 @@
   async function wreview () {
     const wcat = this.vmcat
     const wrev = this.vmrev
-    console.log("wcat: " + wcat)
-    console.log("wrev: " + wrev)
+    console.log("wcat category being written to: " + wcat)
+    console.log("wrev review being written: " + wrev)
     let axr = await this.writeReview( wcat, wrev)
+    console.log("wreview received response: " + axr)
+
     this.reset
-    // this.cardkey += 1; 
-    // this.showProds = true
   }
   export default {
     name: "AllReviews",
@@ -428,17 +423,8 @@
         alert("success!")
         console.log("form resest")
     },
-      // writeReview,
     },
   }
-  // from original vikingchain code:
-  //  const vtext3 = result.data.result.result.replace(/\r\n/g, "")
-  //               const vtext4 = vtext3.replace(/\n/g, "")
-
-  //               const reviews = JSON.parse(vtext4.replace(/\\/g, ""))
-  //               console.log(reviews)
-  //               this.reviews.push(...reviews)
-
 </script>
 
 <style>
