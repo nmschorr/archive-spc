@@ -41,7 +41,7 @@ export async function axiosGetReviewsMain(chainid, contaddy, productId, Url3) {
   } catch (e) {
     console.log(e);
     }
-  console.log("line46 returning: " + axresult)
+  console.log("axresult returning: " + axresult)
   return axresult
 }
 
@@ -138,9 +138,7 @@ export async function writeReview(wprod, wreview) {
       params:  vPARAMS
     });
   } catch (e) {  console.log(e);  }
-    var response = JSON.parse(axresult.data)
-  console.log("the response: " + response)
-  return response
+  return axresult
 } 
 
 export const MyQueries = {

@@ -3,7 +3,6 @@
     id="app"
   >   
     <Vuemain />
-
   </v-app>
 </template>
 
@@ -17,5 +16,3 @@
     }
   }
 </script>
-
-

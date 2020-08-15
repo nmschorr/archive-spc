@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    id="dashboard-core-footer"
+    id="core-footer"
     height="65px"
     :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
     app
@@ -52,19 +52,19 @@
     data: () => ({
       links: [
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'NULS',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'About Us',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'Blog',
         },
         {
-          href: '#',
+          href: 'http://nuls.io',
           text: 'Licenses',
         },
       ],
@@ -92,7 +92,7 @@
     padding-right: 18px
     letter-spacing: 0px !important
     a
-      color: #9c27b0 !important
+      color: teal !important
       padding: 0
       text-transform: inherit !important
       font-size: 14px !important
@@ -106,7 +106,7 @@
 .theme--light.v-footer
   background-color: transparent
   .body-1
-    color: #3c4858
+    color: teal
   .v-icon
     color: #3c4858
 </style>
