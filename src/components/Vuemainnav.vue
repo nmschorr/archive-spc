@@ -6,10 +6,10 @@
       :key="appbarheight"
       app
       elevation="24"
-      :height="appbarheight"
+      height="265px"
+      min-height="100px"
       raised
       shrinkOnScroll
-      min-height="100px"
       rounded
       prominent
       class="mx-4 align-bottom"
@@ -87,20 +87,20 @@
        },
       appbarheight () {
         if (window.outerWidth >= 960)
-          return '300px';
-        else return '100px';
+          return "300px";
+        else return "100px";
        },
     },
     methods: {
       homeclick () {
         this.$store.dispatch('gshowtrueAct', true)
         this.$store.dispatch('showprod_a', false)
-        this.appbarheight = "300px"
+        // this.appbarheight = "300px"
       },  
       prodclick () {
         this.$store.dispatch('showprod_a', true)
         this.$store.dispatch('gshowtrueAct', false)
-        this.appbarheight = "150px"
+        // this.appbarheight = "150px"
       },    
     }
   }

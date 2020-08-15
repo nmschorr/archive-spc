@@ -138,9 +138,7 @@ export async function writeReview(wprod, wreview) {
       params:  vPARAMS
     });
   } catch (e) {  console.log(e);  }
-    var response = JSON.parse(axresult.data)
-  console.log("the response: " + response)
-  return response
+  return axresult
 } 
 
 export const MyQueries = {

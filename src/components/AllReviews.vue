@@ -156,7 +156,21 @@
             </v-card>
           </v-form>
         </v-card>  <!-- end formcard -->
-      </v-card>  <!-- end formcard -->
+        <v-card
+          id="resultscard"
+          :key="respkey"
+          color="blue-grey lighten-5"
+          width="92%"
+          height="110px"
+          min-height="100px"
+          max-height="200px"
+          shaped
+          class="d-flex flex-column align-center align-content-center mt-7 mb-20 ml-4 mr-4 pt-0 pl-4 pr-4"
+          light
+        >    
+          {{ this.formaxrjson }}
+        </v-card>  <!-- end formcard -->
+      </v-card>  <!-- end formcardtwo -->
     </v-col>
     <!-- </v-col> -->
     <!-- end product card  * * * * * * * END LEFT COLUMN * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -378,18 +392,24 @@
   async function wreview () {
     const wcat = this.vmcat
     const wrev = this.vmrev
+    this.reset()
+    console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
     let axr = await this.writeReview( wcat, wrev)
-    console.log("wreview received response: " + axr)
-
-    this.reset
+     console.log("wreview received response: " + myaxr)
+    let myaxr = dJSON.parse(axr)
+    console.log("wreview received response: " + myaxr)
+    this.formaxrjson = myaxr
+    this.respkey += 1;
   }
+
   export default {
     name: "AllReviews",
     data: () => ({
       prodchoice,
       review,
+      formaxrjson: '',
       shapfill: { elevation: 24, shaped: true, filled: true, raised: true },
       vmcat: '',
       vmrev: '',
@@ -420,7 +440,6 @@
       wreview,
       reset () {
         this.$refs.wform.reset()
-        alert("success!")
         console.log("form resest")
     },
     },
