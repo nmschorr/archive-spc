@@ -10,10 +10,14 @@
     >  
       <v-card
         id="botdivgraphicgraphic"
+        color="blue-grey lighten-4"
         height="650px"
-        class="d-flex flex-column align-center align-self-center pb-24"
-        style="padding-left:32px;padding-top:24px;border-bottom-right-radius:12px;border-bottom-left-radius:12px;\
-          border-top-right-radius:12px;border-top-left-radius:12px;"
+        min-height="250px"
+        max-height="650px"
+        elevation-10
+        shaped
+        filled
+        class="d-flex flex-column align-center"
       > 
         <!-- * * * * * * *  main peachy card on left -->
         <v-card
@@ -23,10 +27,10 @@
           botdivgraphic
           height="70px"
           width="100%"
-          class="d-flex flex-column ml-5 mt-4 mb-4 pa-2"
+          class="d-flex flex-column mx-5 mt-9 mb-12 pa-2"
         > 
           <v-card
-            id="getprodschip"
+            id="getprodschiplabel"
             color="blue-grey darken-2"
             dark
             shaped
@@ -36,13 +40,13 @@
             max-width="190px"  
             min-width="23px"    
             topleftcard
-            class="d-flex align-center justify-center white--text montyfont pl-3 py-3"
+            class="d-flex align-center justify-center white--text montyfont mx-7 px-3 py-3"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:4;`"
           >
             contract
           </v-card>
-          <!-- orange small tab card with contract # - - - -   -->
+          <!--  card with contract # - - - -   -->
           <v-card
             v-for="contract in contracts"
             id="contractchip"
@@ -51,7 +55,7 @@
             width="410px"
             height="54px"
             min-width="200px"
-            class="d-flex flex-column  mx-2 mt-n2 mb-22 pl-3 pr-4 pt-3 pb-3 ptsans"
+            class="d-flex flex-column  mx-7 mt-n2 mb-22 pl-3 pr-3 pt-3 pb-3 ptsans"
             style="font-size:14px;font-weight:400;"
             elevation-10
           >      
@@ -61,7 +65,7 @@
         <v-card
           id="formcard"
           color="blue-grey lighten-5"
-          width="96%"
+          width="92%"
           height="310px"
           min-height="300px"
           max-height="900px"
@@ -70,7 +74,7 @@
           light
         >          
           <v-card
-            id="getprodschip"
+            id="writerevchiplabel"
             color="blue-grey darken-2"
             dark
             width="190px"
@@ -97,13 +101,17 @@
           >
             <v-text-field
               v-model="vmcat"
+              width="400px"
+              min-width="100px"
+              max-width="600px"
               height="20px"
-              width="auto"
+              min-height="20px"
+              max-height="100px"             
               wform
               outlined
               color="purple darken-2"
               label="Product Category"
-              class="mx-4 px-3 ml-3 mb-0"
+              class="mx-3 pa-2 mb-0"
               required
               clearable
               success
@@ -112,13 +120,18 @@
               v-model="vmrev"
               color="blue darken-2"
               label="Your Review"
+              width="400px"
+              min-width="100px"
+              max-width="600px"
+              height="100px"
+              min-height="50px"
+              max-height="300px"
               wform
               wrap
               required
               outlined
               clearable
-              class="mx-4 pa-2 ml-3 mt-n2"
-              height="100px"
+              class="mx-3 pa-2 mt-n2"
             />
             <v-card
               id="tocenterbutton"
@@ -154,12 +167,15 @@
       class="d-flex flex-column"
     >  
       <v-card
-        id="botdivgraphicrt"
+        id="botdivgraphicgraphicrt"
+        color="teal lighten-4"
         height="650px"
-        class="d-flex flex-column align-center align-self-center pb-24"
-        style="padding-left:32px;padding-top:24px;border-bottom-right-radius:12px;border-bottom-left-radius:12px;\
-          border-top-right-radius:12px;border-top-left-radius:12px;"
-        :style="`background-image: linear-gradient(306deg, teal 70%, black 30% )`"
+        min-height="250px"
+        max-height="650px"
+        elevation-10
+        shaped
+        filled
+        class="d-flex flex-column align-center"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vselcard greencard GREENCARD  -->
