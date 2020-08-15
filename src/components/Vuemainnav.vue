@@ -3,9 +3,9 @@
     id="appbar"
   >
     <v-app-bar
+      :key="appbarheight"
       app
       elevation="24"
-      :key="appbarheight"
       :height="appbarheight"
       raised
       shrinkOnScroll
@@ -13,10 +13,8 @@
       rounded
       prominent
       class="mx-4 align-bottom"
-      :style="`background-image: linear-gradient(60deg, #008080, black)`"
-    >  
-      <v-app-bar-nav-icon />
-        
+      :style="tstyle"
+    >      
       <v-toolbar-title
         class="white--text"
         :style="`font-size:32px!important;text-shadow: 1px 1px 4px grey;font-family:Montserrat,sans-serif;`"
@@ -24,75 +22,43 @@
         Welcome to Space Exploration
       </v-toolbar-title>
       <v-spacer />
-
+      <v-spacer />
+      <v-spacer />
       <v-btn
-        color="blue-grey"
+        color="blue-grey darken-1"
         elevation="24"
+        shaped
         raised
         dark
         medium
         class="mt-9 montyfontb"
         min-width="40px"
         min-height="20px"
-        @click="prodclick"
+        to="/"
+        @click="homeclick"
       >
-        {{ indi.pname }}
+        Home
       </v-btn>
-      <v-spacer />
-
       <v-btn
         color="blue-grey"
         elevation="24"
         dark
         raised
         medium
-        class="mt-9 montyfontb"
+        class="mt-9 ml-5 montyfontb"
         min-width="40px"
         min-height="20px"
         @click="prodclick"
       >
         {{ revs.pname }}
       </v-btn>
-      <v-spacer />
-
-      <!-- <v-btn
-        color="blue-grey"
-        dark
-        medium
-        elevation="24"
-        raised
-        class="mt-9 montyfontb"
-        min-width="40px"
-        min-height="20px"
-        @click="revclick"
-      >
-        {{ allrevs.pname }}
-      </v-btn> -->
-      <v-spacer />
-
-      <!-- <v-btn
-        color="blue-grey"
-        medium
-        dark
-        elevation="24"
-        raised
-        class="mt-9 montyfontb"
-        min-width="40px"
-        min-height="20px"
-        @click="revclick"
-      >
-        {{ writerevs.pname }}
-      </v-btn> -->
-      <v-spacer />
 
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
@@ -103,76 +69,45 @@
 <script>
   import { mapState, mapMutations, mapActions, mapGetter } from "vuex";
   import store from  '../store'
-
-  const indi = {
-    plink: "index.html",
-    pname: "Home" 
-    }
   const revs = {
     plink: "reviews.html?products=1",
     pname: "Show Reviews"
-    }
-  const allrevs = {
-    plink: "showreviews",
-    pname: "Show All Reviews" 
-    }
-  const listcontracts = {
-    plink: "reviews.html",
-    pname: "List Contracts" 
-    }
-
-  const writerevs = {
-    plink: "reviews.html",
-    pname: "Write Review" 
     }
 
   export default {
     name: 'Vuemainnav',
     data: () => ({
-      appbarheight: "300px",
-      indi,
       revs,
-      allrevs,
-      listcontracts,
-      writerevs,
     }),
     computed: {
-
+      tstyle () {
+        if (window.outerWidth >= 960)
+          return "background-image: linear-gradient(60deg, #008080, black)";
+        else return ''
+       },
+      appbarheight () {
+        if (window.outerWidth >= 960)
+          return '300px';
+        else return '100px';
+       },
     },
-
     methods: {
-      revclick () {
-        this.$store.dispatch('showrev_a', true)
-        this.$store.dispatch('gshowtrueAct', false)
-
-      },
+      homeclick () {
+        this.$store.dispatch('gshowtrueAct', true)
+        this.$store.dispatch('showprod_a', false)
+        this.appbarheight = "300px"
+      },  
       prodclick () {
         this.$store.dispatch('showprod_a', true)
         this.$store.dispatch('gshowtrueAct', false)
-        this.appbarheight = "150px",
-        this.spacetrue = false;
+        this.appbarheight = "150px"
       },    
-      newclick () {
-        this.$store.dispatch('showprod_a', true)
-      },
-            //    this.$store.dispatch('showprod_a', true)
-            //    this.$store.dispatch('showprev_a', true)
-
     }
   }
-
 </script>
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
   .montyfontb {
-    font-size: 18px;
-    color: white;
-    font-family: 'Montserrat',sans-serif;
-    letter-spacing: 1.25px;
-    text-transform: lowercase;
-  }
-  .v-btn.v-size--large {
     font-size: 18px;
     color: white;
     font-family: 'Montserrat',sans-serif;
