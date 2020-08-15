@@ -1,7 +1,7 @@
 const GoogleFontsPlugin = require("google-fonts-webpack-plugin");
 module.exports = {
-  publicPath: '/usr/share/nginx/html/spc',
-  outputDir: '/usr/share/nginx/html/spc/dist',
+  publicPath: './spc',
+  outputDir: './spc/dist',
 
   transpileDependencies: [
     'vuetify'
