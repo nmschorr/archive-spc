@@ -79,11 +79,11 @@
           id="formcard"
           color="blue-grey lighten-5"
           width="92%"
-          height="310px"
-          min-height="300px"
+          height="400px"
           min-width="250px"
-          max-height="900px"
           max-width="700px"
+          min-height="300px"
+          max-height="900px"
           shaped
           class="d-flex flex-column align-center mt-7 mb-20 ml-1 mr-1 pt-0 pl-0 pr-0"
         >          
@@ -106,11 +106,11 @@
             id="formintegrity"
             formcard
             width="100%"
-            height="auto"
+            height="500px"
+            min-width="200px"
+            max-width="900px"            
             min-height="200px"
             max-height="700px"
-            min-width="200px"
-            max-width="900px"
             flat
             color="transparent"
             class="d-flex flex-column align-center justify-center pa-0 ma-0"
@@ -143,25 +143,22 @@
                 label="Product Category"
                 class="pa-2 mb-0 mx-0"
               />
-              <v-text-field
+              <v-textarea
                 id="textfieldform1b"
                 v-model="vmrev"
+                auto-grow
                 wform
-                wrap
                 label="Your Review"
                 color="blue darken-2"
-                width="auto"
+                width="700px"
                 height="150px"
                 min-width="220px"
-                max-width="500px"
+                max-width="700px"
                 min-height="100px"
-                max-height="300px"
-                rows="3"
-                required
+                max-height="500px"
                 outlined
                 clearable
-                :style="`rows:3;`"
-                class="pa-2 mt-n2 mx-0 rows=3"
+                class="pa-2 ma-0"
               />
               <v-card
                 id="tocenterbutton"
@@ -245,8 +242,12 @@
             id="vselbackgroundcard2"
             greencard2
             v-bind="shapfill"
-            width="420px"
+            width="500px"
             height="90px"
+            min-width="400px"
+            max-width="500px"
+            min-height="20px"
+            max-height="160px"
             color="blue-grey lighten-5"
             class="d-inline-flex px-2 pt-3 mt-2 ml-5 mb-9"
           >        
@@ -255,9 +256,12 @@
             <v-select
               id="vselone"
               v-model="prodchoice"
-              width="420px"
+              width="350px"
               height="30px"
-              min-width="330px"
+              min-width="200px"
+              max-width="400px"
+              min-height="20px"
+              max-height="60px"
               label-width="220px"
               type="string"
               label="Select a Product then press Go"
@@ -428,10 +432,11 @@
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
     let axr = await this.writeReview( wcat, wrev)
-     console.log("wreview received response: " + myaxr)
-    let myaxr = dJSON.parse(axr)
-    console.log("wreview received response: " + myaxr)
-    this.formaxrjson = myaxr
+    console.log("wreview received response axr: " + axr)
+
+    let axrstring = JSON.stringify(axr)
+    console.log("wreview received response myaxr: " + axrstring)
+    this.formaxrjson = axrstring
     this.respkey += 1;
   }
 
@@ -440,6 +445,7 @@
     data: () => ({
       prodchoice,
       review,
+      respkey: 0,
       formaxrjson: '',
       shapfill: { elevation: 24, shaped: true, filled: true, raised: true },
       vmcat: '',
