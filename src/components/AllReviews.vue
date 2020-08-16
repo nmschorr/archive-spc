@@ -9,37 +9,46 @@
       class="d-flex flex-column"
     >  
       <v-card
-        id="botdivgraphicgraphic"
+        id="bottomcardleft"
         color="blue-grey lighten-4"
+        width="100%"
         height="650px"
+        max-width="700px"            
+        min-width="200px"           
         min-height="250px"
-        max-height="650px"
+        max-height="950px"
         elevation-10
         shaped
         filled
-        class="d-flex flex-column align-center"
+        class="d-flex flex-column align-center pb-3"
       > 
         <!-- * * * * * * *  main peachy card on left -->
         <v-card
           id="topleftcard"
           color="transparent"
           flat
-          botdivgraphic
-          height="70px"
+          bottomcardleft
           width="100%"
-          class="d-flex flex-column mx-5 mt-9 mb-12 pa-2"
+          height="70px"
+          min-width="23px"            
+          max-width="900px"  
+          min-height="90px"
+          max-height="907px"             
+          class="d-flex flex-column mx-3 mt-9 mb-12 pa-2"
         > 
           <v-card
             id="getprodschiplabel"
             color="blue-grey darken-2"
-            dark
-            shaped
-            filled
+            topleftcard
             width="150px"
             height="34px"
-            max-width="190px"  
+            min-height="10px"
+            max-height="37px"            
             min-width="23px"    
-            topleftcard
+            max-width="190px"  
+            dark
+            shaped
+            filled            
             class="d-flex align-center justify-center white--text montyfont mx-7 px-3 py-3"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:4;`"
@@ -49,29 +58,34 @@
           <!--  card with contract # - - - -   -->
           <v-card
             v-for="contract in contracts"
-            id="contractchip"
+            id="showscontractcard"
             :key="contract"      
             color="blue-grey lighten-5"
-            width="410px"
-            height="54px"
+            width="70%"
+            height="42px"
+            min-height="32px"
+            max-height="90px"
+            max-width="700px"            
             min-width="200px"
-            class="d-flex flex-column  mx-7 mt-n2 mb-22 pl-3 pr-3 pt-3 pb-3 ptsans"
+            shaped
+            elevation-12
+            class="d-flex flex-column  mx-3 mt-n2 mb-22 pl-2 pr-1 pt-3 pb-3 ptsans"
             style="font-size:14px;font-weight:400;"
-            elevation-10
           >      
             {{ contract }}
           </v-card> <!-- end contractchip -->
-        </v-card>  <!-- end topleftcard -->
+        </v-card>  <!-- form card start -->
         <v-card
           id="formcard"
           color="blue-grey lighten-5"
           width="92%"
           height="310px"
           min-height="300px"
+          min-width="250px"
           max-height="900px"
+          max-width="700px"
           shaped
-          class="d-flex flex-column align-center align-content-center mt-7 mb-20 ml-4 mr-4 pt-0 pl-4 pr-4"
-          light
+          class="d-flex flex-column align-center mt-7 mb-20 ml-1 mr-1 pt-0 pl-0 pr-0"
         >          
           <v-card
             id="writerevchiplabel"
@@ -80,81 +94,99 @@
             width="190px"
             height="34px"
             max-width="190px"  
-            min-width="120px"    
+            min-width="50px"    
             formcard
-            class="d-flex flex-column align-center align-content-center white--text montyfont pl-3 pr-3 ml-3 mr-3 py-1 mt-n4 "
+            class="d-flex flex-column align-center justify-center white--text montyfont pl-3 pr-3 ml-3 mr-3 py-1 mt-n4 "
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:999;`"
           >
             write review
           </v-card>
-
-          <v-form 
-            id="wform"
-            ref="wform" 
+          <v-card
+            id="formintegrity"
             formcard
-            width="600px"
-            min-width="300px"
-            style="width:620px;padding-left:24px;margin-right:72px;margin-top:32px;margin-left:32px;/
-                align-content:center"
-            @submit.prevent="submit"
+            width="100%"
+            height="auto"
+            min-height="200px"
+            max-height="700px"
+            min-width="200px"
+            max-width="900px"
+            flat
+            color="transparent"
+            class="d-flex flex-column align-center justify-center pa-0 ma-0"
           >
-            <v-text-field
-              v-model="vmcat"
+            <v-form 
+              id="wform"
+              ref="wform" 
               width="400px"
-              min-width="100px"
-              max-width="600px"
-              height="20px"
-              min-height="20px"
-              max-height="100px"             
-              wform
-              outlined
-              color="purple darken-2"
-              label="Product Category"
-              class="mx-3 pa-2 mb-0"
-              required
-              clearable
-              success
-            />
-            <v-text-field
-              v-model="vmrev"
-              color="blue darken-2"
-              label="Your Review"
-              width="400px"
-              min-width="100px"
-              max-width="600px"
-              height="100px"
-              min-height="50px"
-              max-height="300px"
-              wform
-              wrap
-              required
-              outlined
-              clearable
-              class="mx-3 pa-2 mt-n2"
-            />
-            <v-card
-              id="tocenterbutton"
-              flat
-              color="transparent"
-              wform
-              width="100%"
-              class="d-flex flex-column align-center justify-center"
+              min-width="200px"
+              max-width="700px"
+              min-height="300px"              
+              max-height="900px"
+              style="width=300px!important;"
+              class="formintegrity=true d-flex flex-column flex-wrap justify-center align-center mt-12 pa-0"
+              @submit.prevent="submit"
             >
-              <v-btn
-                id="wrevbtn"
-                dark
-                tocenterbutton
-                elevation-12
-                color="blue-grey darken-2"
-                class="mt-n6 montyfont"
-                style="text-transform:lowercase;"
-                @click="wreview"
+              <v-text-field
+                id="textfieldform1a"
+                v-model="vmcat"
+                wform
+                width="auto"
+                height="auto"
+                min-width="220px"
+                max-width="600px"
+                min-height="50px"
+                max-height="200px"             
+                required
+                clearable
+                color="purple darken-2"
+                label="Product Category"
+                class="pa-2 mb-0 mx-0"
+              />
+              <v-text-field
+                id="textfieldform1b"
+                v-model="vmrev"
+                wform
+                wrap
+                label="Your Review"
+                color="blue darken-2"
+                width="auto"
+                height="150px"
+                min-width="220px"
+                max-width="500px"
+                min-height="100px"
+                max-height="300px"
+                rows="3"
+                required
+                outlined
+                clearable
+                :style="`rows:3;`"
+                class="pa-2 mt-n2 mx-0 rows=3"
+              />
+              <v-card
+                id="tocenterbutton"
+                flat
+                color="transparent"
+                wform
+                width="100%"
+                class="d-flex flex-column align-center justify-center"
               >
-                submit review
-              </v-btn>
-            </v-card>
-          </v-form>
+                <v-btn
+                  id="wrevbtn"
+                  dark
+                  formintegrity
+                  tocenterbutton
+                  elevation-12
+                  color="blue-grey darken-2"
+                  class="mt-n3 mb-3 montyfont"
+                  style="text-transform:lowercase;"
+                  @click="wreview"
+                >
+                  submit review
+                </v-btn>
+              </v-card>
+            </v-form>
+          </v-card>  
         </v-card>  <!-- end formcard -->
         <v-card
           id="resultscard"
@@ -168,7 +200,7 @@
           class="d-flex flex-column align-center align-content-center mt-7 mb-20 ml-4 mr-4 pt-0 pl-4 pr-4"
           light
         >    
-          {{ this.formaxrjson }}
+          {{ formaxrjson }}
         </v-card>  <!-- end formcard -->
       </v-card>  <!-- end formcardtwo -->
     </v-col>
@@ -181,11 +213,11 @@
       class="d-flex flex-column"
     >  
       <v-card
-        id="botdivgraphicgraphicrt"
+        id="bottomcardleftrt"
         color="teal lighten-4"
-        height="650px"
+        height="auto"
         min-height="250px"
-        max-height="650px"
+        max-height="2000px"
         elevation-10
         shaped
         filled
@@ -199,7 +231,8 @@
           flat
           color="transparent"
           class="d-flex flex-column justify-center mb-24"
-        >                                <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
+        >                                
+        <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
           <v-card
             id="spacercard2"
             height="30px"
@@ -212,8 +245,8 @@
             id="vselbackgroundcard2"
             greencard2
             v-bind="shapfill"
-            height="90px"
             width="420px"
+            height="90px"
             color="blue-grey lighten-5"
             class="d-inline-flex px-2 pt-3 mt-2 ml-5 mb-9"
           >        
@@ -222,10 +255,10 @@
             <v-select
               id="vselone"
               v-model="prodchoice"
-              width="460px"
-              min-width="330px"
+              width="420px"
               height="30px"
-              labelWidth="220px"
+              min-width="330px"
+              label-width="220px"
               type="string"
               label="Select a Product then press Go"
               color="deep-purple accent-3"
@@ -264,20 +297,24 @@
         <v-card
           id="reviewssheet"
           shaped
-          height="400px"
-          width="644px"
+          height="auto"
+          width="auto"
+          min-width="220px"    
+          min-height="50px"            
+          max-width="644px"
           color="grey lighten-3"
-          class="mt-24 px-2 pt-0 mx-4 mb-10 d-flex flex-column"
+          class="mt-24 px-2 pt-0 mx-4 mb-10 d-flex flex-column v-grow-1"
           style="position:relative;z-index:1;"
         >           
           <v-card
-            id="rightbtmsheet"
+            id="reviews-title-card"
             color="blue-grey darken-2"
             dark
             width="190px"
             height="34px"
             max-width="190px"  
             min-width="120px"    
+            min-height="20px"    
             reviewssheet
             class="d-flex flex-column align-center align-content-center white--text montyfont pl-3 pr-3 ml-3 mr-3 py-1 mt-n4 "
             style="font-size:15px;font-weight:500;"
@@ -286,27 +323,21 @@
             reviews
           </v-card>
           <!-- end reviewsfoundback -->
-
-          <v-card
+          <v-simple-table
             v-for="review in reviewlist"
-            id="reviewlistcard"
-            flat
-            :key="review.id"      
+            id="reviewstable"
+            :key="review.id"    
+            reviewssheet  
             width="590px"
+            max-width="620px"
             min-width="120px"
-            height="50px"
-            min-height="20px"
-            max-height="220px"
-            class="d-flex pa-2 ml-1 mt-1 mr-4 mb-2"
-            color="transparent"
-            rightbtmsheet
-          >      
-            <v-card-text 
-              :style="`font-size:15px;font-family:'Rubik',sans-serif;font-weight:light;`"
-            > 
-              - {{ review.comments }} 
-            </v-card-text>
-          </v-card>   <!-- end reviewlistcard -->
+            height="auto"
+            min-height="40px"
+            max-height="550px"
+            class="d-flex pa-3 ml-1 mt-1 mr-4 mb-2 d-flex v-grow-1"
+          >
+             {{ review.comments }} 
+          </v-simple-table>
         </v-card>   <!-- end rightbtmsheet -->
       </v-card>  <!-- end   botdivgraphic -->
     </v-col> 
@@ -318,8 +349,8 @@
   import axios from "axios";
   import { Hcont, ccodes} from '@/constants/constantsnew.js'
   import cobj from '@/constants/constants.js';
-  require('./queries.js')
-  import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './queries.js'
+  require('./Queries.js')
+  import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './Queries.js'
   const dJSON = require('dirty-json');
   // const r = dJSON.parse("{ test: 'this is a test'}")
   // console.log(JSON.stringify(r));
@@ -453,6 +484,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap'); 
 
+  .v-text-field input {
+    width: 350px!important;
+  }
   .ptsans {
     font-family:'PT Sans Narrow, sans-serif';
   }

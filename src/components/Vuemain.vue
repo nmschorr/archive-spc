@@ -1,11 +1,9 @@
 /* eslint-disable vue/max-attributes-per-line */
 <template>
   <div
-    id="vuemaintop"
+    id="vuemain"
     app 
   >
-    <Vuemainnav />
-    <!-- Provides the application the proper gutter -->
     <v-main>
       <v-container
         id="maincontainer"
@@ -15,33 +13,19 @@
           v-if="$store.state.gshowtrue"
           :key="$store.state.gshowtrue"
         />
-
-        <v-container
-          id="maincontainer2"
-          fluid
-        >
-          <!-- <Reviews 
-            v-if="$store.state.showrev"
-          />         -->
-          
           <AllReviews 
             v-if="$store.state.showprod"
           />
         </v-container>  
-      </v-container>  
     </v-main>
-    <CoreFooter />
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import cobj from '../constants/constants.js'
-  import Spcgraphic from './spcgraphic'
+  import Spcgraphic from './Spcgraphic'
   import AllReviews from './AllReviews'
-  import Reviews from './Reviews'
-  import Vuemainnav from './Vuemainnav'
-  import CoreFooter from './Footer'
 
   const chainid = cobj.data.cobj.chainid
   const contaddy = cobj.data.cobj.contaddy
@@ -51,11 +35,7 @@
     name: 'Vuemain',
     components: {
       Spcgraphic,
-      Vuemainnav,
       AllReviews,
-      CoreFooter,
-
-      // Reviews
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop
@@ -69,9 +49,5 @@
       contaddy,
       Url3,
     }),
-    mounted () {
-    },
-    methods: {
-    }
   }
 </script>

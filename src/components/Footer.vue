@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    id="core-footer"
+    id="footer"
     height="65px"
     :style="`background-image: linear-gradient(306deg, #BDBDBD, #D7D7D7 )`"
     app
@@ -47,7 +47,7 @@
 
 <script>
   export default {
-    name: 'CoreFooter',
+    name: 'Footer',
 
     data: () => ({
       links: [

@@ -2,17 +2,45 @@
   <div
     id="appbar"
   >
+    <v-btn
+      color="blue-grey"
+      elevation="24"
+      dark
+      raised
+      medium
+      class="mt-9 ml-5 montyfontb d-xs-flex d-md-none"
+      min-width="40px"
+      min-height="20px"
+      to="/"
+      @click="homeclick"   
+    >
+      Home
+    </v-btn>  
+  
+    <v-btn
+      color="blue-grey"
+      elevation="24"
+      dark
+      raised
+      medium
+      class="mt-9 ml-5 montyfontb d-xs-flex d-md-none"
+      min-width="40px"
+      min-height="20px"
+      @click="prodclick"
+    >
+      {{ revs.pname }}
+    </v-btn>
     <v-app-bar
       :key="appbarheight"
       app
       elevation="24"
-      height="265px"
+      height="225px"
       min-height="100px"
       raised
-      shrinkOnScroll
+      shrink-on-scroll
       rounded
       prominent
-      class="mx-4 align-bottom"
+      class="mx-4 align-bottom d-none d-md-flex"
       :style="tstyle"
     >      
       <v-toolbar-title
@@ -70,7 +98,6 @@
   import { mapState, mapMutations, mapActions, mapGetter } from "vuex";
   import store from  '../store'
   const revs = {
-    plink: "reviews.html?products=1",
     pname: "Show Reviews"
     }
 
@@ -81,9 +108,8 @@
     }),
     computed: {
       tstyle () {
-        if (window.outerWidth >= 960)
-          return "background-image: linear-gradient(60deg, #008080, black)";
-        else return ''
+        // if (window.outerWidth >= 960)
+        return "background-image: linear-gradient(60deg, #008080, black)";
        },
       appbarheight () {
         if (window.outerWidth >= 960)
