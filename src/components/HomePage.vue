@@ -12,8 +12,9 @@
           class="d-flex flex-column justify-center align-center"
         > 
           <div 
-            id="gethider"
-            v-if="hideshow">
+            id="gethiderdiv"
+            v-if="gethider"
+            :key="$store.state.gHomeKeyCount"
           >
             <v-card
               id="mainfcard"
@@ -91,7 +92,7 @@
               class="d-flex flex-column align-center justify-center px-12 mt-10 mb-9"
               flat
               color="transparent"
-              width="70%"
+              width="100%"
             >
               <span 
                 class="grey--text darken-5 text-h4 align-center justify-center"
@@ -110,7 +111,7 @@
               mainfcard
               height="50px"
               min-height="25px"
-              width="90%"
+              width="100%"
               flat
               class="d-flex flex-row justify-center align-center"
             >

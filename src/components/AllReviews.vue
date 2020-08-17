@@ -11,7 +11,7 @@
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="left-COLUMN-card"
-        color="purple"
+        color="blue-grey darken-1"
         width="100%"
         height="950px"
         min-width="200px"           
@@ -26,7 +26,7 @@
         <!-- * * * * * * *  card on left -->
         <v-card
           id="topAREA"
-          color="green"
+          color="blue-grey darken-1"
           flat
           left-COLUMN-card
           width="100%"
@@ -40,7 +40,7 @@
           <!-- JUST THE LABEL TITLE WORD CONTRACT: -->
           <v-card
             id="getprodsCHIP-LABEL"
-            color="pink darken-2"
+            color="blue-grey darken-2"
             topAREA
             width="150px"
             height="34px"
@@ -63,15 +63,15 @@
             id="contractCHIP"
             :key="contract"      
             color="blue-grey lighten-5"
-            width="xs|sm ? 100% | 70%"
-            height="42px"
-            min-height="32px"
+            width="yesbig ? 100% | 70%"
+            height="52px"
+            min-height="42px"
             max-height="90px"
             max-width="700px"            
             min-width="200px"
             shaped
             elevation-12
-            class="d-flex flex-column flex-grow-1 pl-2 pr-1 py-3 mx-3 mt-n2 mb-12 ptsans"
+            class="d-flex flex-column flex-grow-1 pl-4 pr-1 py-3 mx-3 mt-n2 mb-12 ptsans"
             style="font-size:14px;font-weight:400;"
           >      
             {{ contract }}
@@ -120,13 +120,13 @@
             <v-form 
               id="wform"
               ref="wform" 
-              width="400px"
+              width="500px"
               min-width="200px"
               max-width="700px"
               min-height="300px"              
               max-height="900px"
-              style="width=300px!important;"
-              class="d-flex flex-column flex-wrap justify-center align-center flex-grow-1 form-WRAP=true mt-12 pa-0"
+              style="width=400px!important;"
+              class="mt-12 pa-0"
               @submit.prevent="submit"
             >
               <v-text-field
@@ -141,27 +141,26 @@
                 max-height="200px"             
                 required
                 clearable
-                color="purple darken-2"
+                color="blue-grey darken-1"
                 label="Product Category"
                 class="pa-2 mb-0 mx-0"
-              />
-              <v-textarea
-                id="textfieldform1b"
-                v-model="vmrev"
-                auto-grow
-                wform
-                label="Your Review"
-                color="blue darken-2"
-                width="700px"
-                height="150px"
-                min-width="220px"
-                max-width="700px"
-                min-height="100px"
-                max-height="500px"
-                outlined
-                clearable
-                class="pa-2 ma-0"
-              />
+              />                        
+                <v-textarea
+                  id="textfieldform1b"
+                  v-model="vmrev"
+                  tohelpbelow
+                  label="Your Review"
+                  color="blue-grey darken-1"
+                  width="350px"
+                  height="170px"
+                  min-width="220px"
+                  max-width="700px"
+                  min-height="100px"
+                  max-height="500px"
+                  outlined
+                  clearable
+                  class="pa-2 ma-0"
+                />
               <v-card
                 id="tocenterbutton"
                 flat
@@ -192,7 +191,7 @@
         <v-card
           id="feedbackcard"
           :key="respkey"
-          color="red"
+          color="blue-grey darken-1"
           width="92%"
           height="410px"
           min-height="400px"
@@ -203,14 +202,15 @@
         >    
           <v-simple-table
             id="feedbacktable"
-            feedbackcard  
+            feedbackcard
             width="100%"
             height="auto"
             min-width="120px"
             max-width="620px"
             min-height="40px"
             max-height="550px"
-            class="d-flex v-grow-1"
+            class="d-flex v-grow-1 px-4 py-5"
+            :style="`font-size:9px;`"
           >
             {{ formaxrjson }} 
           </v-simple-table>
@@ -252,7 +252,7 @@
             width="100%"
             min-width="100%"
             flat
-            color="rgba(0,0,0,.7)"
+            color="rgba(0,0,0,.1)"
           />
           <v-card        
             id="vselbackgroundcard2"
@@ -312,7 +312,7 @@
           width="100%"
           min-width="100%"
           flat
-          color="rgba(0,0,0,.3)"
+          color="rgba(0,0,0,.1)"
         />
         <v-card
           id="reviewssheet"
@@ -350,9 +350,9 @@
             reviewssheet  
             dense
             width="590px"
+            height="auto"
             max-width="620px"
             min-width="120px"
-            height="auto"
             min-height="40px"
             max-height="550px"
             class="d-flex v-grow-1 pa-3 ml-1 mt-1 mr-4 mb-2"
@@ -486,6 +486,15 @@
     mounted () {
       this.axiosGetProds()  // get the prod list
     },
+    computed: {
+      yesbig () {
+        var big = false;
+        if (md | lg | xl) {
+          big = true;
+        }
+        return big;
+      }
+    },
     methods: {
       axiosGetRevs,
       axiosGetProducts,
@@ -495,7 +504,7 @@
       reset () {
         this.$refs.wform.reset()
         console.log("form resest")
-    },
+      },
     },
   }
 </script>

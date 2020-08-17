@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     gHomeKeyCount: 0,
-    gShowHomeBool: false,
+    gShowHomeBool: true,
     gShowAllrevs: false,
   },
   mutations: {

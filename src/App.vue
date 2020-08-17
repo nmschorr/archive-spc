@@ -3,15 +3,11 @@
     <AppBar app />
     <v-main>
       <v-container fluid>
-        <HomePage 
-          v-if="!$store.state.gShowAllrevs"
-          :key="$store.state.gHomeKeyCount"
-        />
+        <router-view />
         <AllReviews 
           v-if="$store.state.gShowAllrevs"
           :key="$store.state.gHomeKeyCount"
         />    
-        <router-view />
       </v-container>
     </v-main>
     <Footer app />
@@ -29,7 +25,6 @@
     name: 'App',
     components: {
       AppBar,
-      HomePage,
       AllReviews,
       Footer,
     },
