@@ -6,7 +6,6 @@ var [accStr, restTyps, acctlMeths, acctlOrig, aJson] = Object.values(Hcont)
 import cobj from '@/constants/constants.js';
     // contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
      
-
 function makeaxio() {
   const axio = axios.create({
   defaults: {
@@ -111,7 +110,6 @@ async function axiosGetContracts() {
     this.cardkey += 1;
 }
 
-  
 export async function writeReview(wprod, wreview) {
   const contract = cobj.data.cobj.contaddy
   const sender = cobj.data.cobj.SENDER

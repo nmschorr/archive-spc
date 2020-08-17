@@ -10,19 +10,13 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: () => import('../components/Vuemain'),
+      component: () => import('../components/Spcgraphic'),
       children: [
         {
           name: 'AllReviews',
           path: 'allreviews',
           component: () => import('../components/AllReviews')
         },
-        {
-          name: 'Reviews',
-          path: 'reviews',
-          component: () => import('../components/Reviews')
-        }
-
       ]
     }
   ]
