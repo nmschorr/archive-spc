@@ -63,7 +63,7 @@
             id="contractCHIP"
             :key="contract"      
             color="blue-grey lighten-5"
-            width="window.outerWidth > 959 ? 60% : 100%"
+            width="(window.outerWidth > 959) ? '60%' : '100%'"
             height="52px"
             min-height="42px"
             max-height="90px"
@@ -371,7 +371,7 @@
   import axios from "axios";
   import { Hcont, ccodes} from '@/constants/constantsnew.js'
   import cobj from '@/constants/constants.js';
-  require('./Queries.js')
+  // require('./Queries.js')
   import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './Queries.js'
   const dJSON = require('dirty-json');
   // const r = dJSON.parse("{ test: 'this is a test'}")
