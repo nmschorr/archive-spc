@@ -10,11 +10,11 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: () => import('../components/Spcgraphic'),
+      component: () => import('../components/HomePage'),
       children: [
         {
           name: 'AllReviews',
-          path: 'allreviews',
+          path: '/allreviews',
           component: () => import('../components/AllReviews')
         },
       ]

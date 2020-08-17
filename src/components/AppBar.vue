@@ -2,17 +2,8 @@
   <v-app-bar
     id="appbar"
     app
-    width="100%"
-    height="200"
-    min-width="140px"
-    max-width="2000px"      
-    min-height="150px"
-    max-height="250px"
+    v-bind="abprops"
     shrink-on-scroll
-    elevation-12
-    prominent
-    dark
-    class=""
     :style="`background-image: linear-gradient(60deg, #008080, black);margin-bottom:250px;`"
   >      
     <v-toolbar-title
@@ -22,22 +13,12 @@
     >
       Welcome to Space Exploration
     </v-toolbar-title>
-    <v-spacer/>
+    <v-spacer />
     <v-btn
       id="navbtn1"
       color="blue-grey darken-1"
-      height="50px"
-      width="240px"
-      min-width="40px"
-      min-height="20px"        
-      max-width="240px"
-      max-height="320px"       
-      elevation="24"
-      shaped
-      raised
-      dark
-      medium
-      class="mt-9 montyfontb align-self-end"
+      v-bind="btnprops"        
+      class="montyfontb align-self-end mt-9"
       to="/"
       @click="homeclick"
     >
@@ -45,20 +26,10 @@
     </v-btn>
     <v-btn
       id="navbtn2"
-      color="blue-grey"
-      height="50px"
-      width="240px"
-      min-width="40px"
-      min-height="20px"        
-      max-width="240px"
-      max-height="320px"          
-      elevation="24"
-      dark
-      raised
-      medium
-      class="montyfontb mt-9 ml-5 align-self-end"
-
-      @click="prodclick"
+      v-bind="btnprops"        
+      class="montyfontb align-self-end mt-9 ml-5" 
+      to="/allreviews"
+      @click="allrevsclick"
     >
       Reviews
     </v-btn>
@@ -101,20 +72,54 @@
   export default {
     name: 'AppBar',
     data: () => ({
-      x: 0,
+      homekey: 0,
+      btnprops: {
+        height: "50px",
+        width: "240px",
+        "min-width": "40px",
+        "min-height": "20px",        
+        "max-width": "240px",
+        "max-height": "320px", 
+        dark: true,
+        medium: true,
+        color: "blue-grey",        
+      },
+      abprops: {
+        width: "100%",
+        height: "200",
+        "min-width": "140px",
+        "max-width": "2000px",      
+        "min-height": "150px",
+        "max-height": "250px",
+        elevation: 12,
+        prominent: true,
+        dark: true,
+      }
     }),
+    computed: {
+      newHomeKeyCt () {
+        return this.$store.state.gHomeKeyCount
+      },
+    },
     methods: {
       homeclick () {
-        this.$store.dispatch('gshowtrueAct', true)
-        this.$store.dispatch('showprod_a', false)
+        let newcount = this.newHomeKeyCt 
+        newcount += 1;
+        this.$store.dispatch('gShowHomeBool', true)   // show home page
+        this.$store.dispatch('gShowAllrevs', false)  // hide reviews
+        this.$store.dispatch('gHomeKeyCountAct', newcount)  // up the number
       },  
-      prodclick () {
-        this.$store.dispatch('showprod_a', true)
-        this.$store.dispatch('gshowtrueAct', false)
-      },    
-    }
+      allrevsclick () {
+        let newcount = this.newHomeKeyCt 
+        newcount += 1;        
+        this.$store.dispatch('gShowHomeBool', false)
+        this.$store.dispatch('gShowAllrevs', true)
+        this.$store.dispatch('gHomeKeyCountAct', newcount)
+      }, 
+    },    
   }
 </script>
+
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .montyfontb {

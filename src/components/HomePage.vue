@@ -12,6 +12,8 @@
         class="d-flex flex-column justify-center align-center"
       > 
         <v-card
+          v-if="$store.state.gshowtrue"
+          :key="$store.state.gshowtrue"
           id="mainfcard"
           flat
           class="d-flex flex-column justify-center align-center"
@@ -127,7 +129,7 @@
 
 <script>
   export default {
-    name: "Spcgraphic",
+    name: "HomePage",
   }
 </script>
 

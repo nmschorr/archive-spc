@@ -1,17 +1,17 @@
 <template>
-  <v-app id="app" >
+  <v-app id="app">
     <AppBar app />
     <v-main>
       <v-container fluid>
-        <Spcgraphic 
-          v-if="$store.state.gshowtrue"
-          :key="$store.state.gshowtrue"
+        <HomePage 
+          v-if="$store.state.gShowHomeBool"
+          :key="$store.state.gHomeKeyCount"
         />
         <AllReviews 
-          v-if="$store.state.showprod"
-          :key="$store.state.showprod"
+          v-if="$store.state.gShowAllrevs"
+          :key="$store.state.gHomeKeyCount"
         />    
-        <router-view></router-view>
+        <router-view />
       </v-container>
     </v-main>
     <Footer app />
@@ -20,7 +20,7 @@
 
 <script>
   // see https://vuetifyjs.com/en/components/application/ for detailed instructions for this component
-  import Spcgraphic from './components/Spcgraphic'
+  import HomePage from './components/HomePage'
   import AllReviews from './components/AllReviews'
   import AppBar from './components/AppBar'
   import Footer from './components/Footer'
@@ -29,9 +29,9 @@
     name: 'App',
     components: {
       AppBar,
-      Spcgraphic,
+      HomePage,
       AllReviews,
       Footer,
-    }
+    },
   }
 </script>

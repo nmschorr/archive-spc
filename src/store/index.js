@@ -6,34 +6,33 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    showrev: false,
-    showprod: false,
-    gshowtrue: true  // main page graphic
+    gHomeKeyCount: 0,
+    gShowHomeBool: false,
+    gShowAllrevs: false,
   },
   mutations: {
-    showrev_m(state, theval) {
-      state.showrev = theval
+    gHomeKeyCountMut(state, theval) {
+      state.gHomeKeyCount = theval
     },
-    showprod_m(state, theval) {
-      state.showprod = theval
+    gShowHomeBoolMut(state, theval) {
+      state.gShowHomeBool = theval
     },
-    gshowtrueMut(state, theval) {
-      state.gshowtrue = theval
-    },
+    gShowAllrevsMut(state, theval) {
+      state.gShowAllrevs = theval
+    },  
   },
   getters: {
-    getShowProd: state => state.showprod,
-    getShowRev: state => state.showrev,
+    getgShowAllrevs: state => state.gShowAllrevs,
   },
   actions: {
-    showrev_a(context, theval) {
-      context.commit('showrev_m', theval)
+    gHomeKeyCountAct(context, theval) {
+      context.commit('gHomeKeyCountMut', theval)
+    },    
+    gShowHomeBoolAct(context, theval) {
+      context.commit('gShowHomeBoolMut', theval)
     },
-    showprod_a(context, theval) {
-      context.commit('showprod_m', theval)
-    },
-    gshowtrueAct(context, theval) {
-      context.commit('gshowtrueMut', theval)
+    gShowAllrevsAct(context, theval) {
+      context.commit('gShowAllrevsMut', theval)
     },
   },
   modules: {
