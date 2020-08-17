@@ -28,7 +28,7 @@
       id="navbtn2"
       v-bind="btnprops"        
       class="montyfontb align-self-end mt-9 ml-5" 
-      to="/allreviews"
+      to="AllReviews"
       @click="allrevsclick"
     >
       Reviews
@@ -105,15 +105,15 @@
       homeclick () {
         let newcount = this.newHomeKeyCt 
         newcount += 1;
-        this.$store.dispatch('gShowHomeBool', true)   // show home page
-        this.$store.dispatch('gShowAllrevs', false)  // hide reviews
+        this.$store.dispatch('gShowHomeBoolAct', true)   // show home page
+        this.$store.dispatch('gShowAllrevsAct', false)  // hide reviews
         this.$store.dispatch('gHomeKeyCountAct', newcount)  // up the number
       },  
       allrevsclick () {
         let newcount = this.newHomeKeyCt 
         newcount += 1;        
-        this.$store.dispatch('gShowHomeBool', false)
-        this.$store.dispatch('gShowAllrevs', true)
+        this.$store.dispatch('gShowHomeBoolAct', false)
+        this.$store.dispatch('gShowAllrevsAct', true)
         this.$store.dispatch('gHomeKeyCountAct', newcount)
       }, 
     },    

@@ -4,7 +4,7 @@
     <v-main>
       <v-container fluid>
         <HomePage 
-          v-if="$store.state.gShowHomeBool"
+          v-if="!$store.state.gShowAllrevs"
           :key="$store.state.gHomeKeyCount"
         />
         <AllReviews 
