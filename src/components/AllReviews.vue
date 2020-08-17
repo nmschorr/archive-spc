@@ -11,7 +11,7 @@
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="left-COLUMN-card"
-        color="blue-grey darken-1"
+        color="blue-grey lighten-4"
         width="100%"
         height="950px"
         min-width="200px"           
@@ -25,8 +25,8 @@
       > 
         <!-- * * * * * * *  card on left -->
         <v-card
-          id="topAREA"
-          color="blue-grey darken-1"
+          id="top-backcard"
+          color="transparent"
           flat
           left-COLUMN-card
           width="100%"
@@ -41,7 +41,7 @@
           <v-card
             id="getprodsCHIP-LABEL"
             color="blue-grey darken-2"
-            topAREA
+            top-backcard
             width="150px"
             height="34px"
             min-height="10px"
@@ -63,7 +63,7 @@
             id="contractCHIP"
             :key="contract"      
             color="blue-grey lighten-5"
-            width="yesbig ? 100% | 70%"
+            width="window.outerWidth > 959 ? 60% : 100%"
             height="52px"
             min-height="42px"
             max-height="90px"
@@ -190,26 +190,27 @@
         </v-card>  <!-- end formAREA --><!-- begin feedback -->
         <v-card
           id="feedbackcard"
-          :key="respkey"
-          color="blue-grey darken-1"
+          color="blue-grey lighten-5"
           width="92%"
-          height="410px"
-          min-height="400px"
-          max-height="1600px"
+          height="220px"
+          min-width="120px"
+          max-width="620px"
+          min-height="120px"
+          max-height="600px"
           shaped
-          class="d-flex flex-column align-center align-content-center px-4 pt-0 mx-4 mt-7 mb-20"
-          light
+          class="d-flex flex-column align-center px-4 pt-0 mx-4 mt-7 mb-10"
         >    
           <v-simple-table
             id="feedbacktable"
+            color="transparent"
             feedbackcard
-            width="100%"
-            height="auto"
-            min-width="120px"
+            width="337px"
+            height="170px"
+            min-width="320px"
             max-width="620px"
-            min-height="40px"
+            min-height="140px"
             max-height="550px"
-            class="d-flex v-grow-1 px-4 py-5"
+            class="px-4 py-5"
             :style="`font-size:9px;`"
           >
             {{ formaxrjson }} 
@@ -252,7 +253,7 @@
             width="100%"
             min-width="100%"
             flat
-            color="rgba(0,0,0,.1)"
+            color="rgba(0,0,0,0)"
           />
           <v-card        
             id="vselbackgroundcard2"
@@ -312,7 +313,7 @@
           width="100%"
           min-width="100%"
           flat
-          color="rgba(0,0,0,.1)"
+          color="rgba(0,0,0,0)"
         />
         <v-card
           id="reviewssheet"
@@ -489,7 +490,7 @@
     computed: {
       yesbig () {
         var big = false;
-        if (md | lg | xl) {
+        if (window.outerWidth > 959) {
           big = true;
         }
         return big;

@@ -16,7 +16,6 @@
 
 <script>
   // see https://vuetifyjs.com/en/components/application/ for detailed instructions for this component
-  import HomePage from './components/HomePage'
   import AllReviews from './components/AllReviews'
   import AppBar from './components/AppBar'
   import Footer from './components/Footer'
