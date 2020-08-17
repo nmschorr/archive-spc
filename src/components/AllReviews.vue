@@ -371,8 +371,8 @@
   import axios from "axios";
   import { Hcont, ccodes} from '@/constants/constantsnew.js'
   import cobj from '@/constants/constants.js';
-  // require('./Queries.js')
-  import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './Queries.js'
+  require('./queries.js')
+  import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './queries.js'
   const dJSON = require('dirty-json');
   // const r = dJSON.parse("{ test: 'this is a test'}")
   // console.log(JSON.stringify(r));
