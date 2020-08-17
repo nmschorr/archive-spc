@@ -9,14 +9,16 @@
         id="maincontainer"
         fluid
       >
+        <Mainnav />
         <Spcgraphic 
           v-if="$store.state.gshowtrue"
           :key="$store.state.gshowtrue"
         />
-          <AllReviews 
-            v-if="$store.state.showprod"
-          />
-        </v-container>  
+        <AllReviews 
+          v-if="$store.state.showprod"
+        />
+        <Footer />
+      </v-container>  
     </v-main>
   </div>
 </template>
@@ -26,6 +28,8 @@
   import cobj from '../constants/constants.js'
   import Spcgraphic from './Spcgraphic'
   import AllReviews from './AllReviews'
+  import Mainnav from './Mainnav'
+  import Footer from './Footer'
 
   const chainid = cobj.data.cobj.chainid
   const contaddy = cobj.data.cobj.contaddy
@@ -36,6 +40,8 @@
     components: {
       Spcgraphic,
       AllReviews,
+      Footer,
+      Mainnav,
     },
     data: () => ({
       // eslint-disable-next-line vue/require-default-prop

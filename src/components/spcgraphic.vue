@@ -68,58 +68,57 @@
             >
               the 
             </span>
-              <v-card 
-                id="tinycard"
-                color="black"
-                height="100px"
-                width="350px"
-                elevation-22
-                class="d-flex flex-row align-center justify-center white--text pa-2 font-weight-black"
-                style="border-radius:0.25rem;font-size:4rem;"
-              >
-                blockchain
-              </v-card>
+            <v-card 
+              id="tinycard"
+              color="black"
+              height="100px"
+              width="350px"
+              elevation-22
+              class="d-flex flex-row align-center justify-center white--text pa-2 font-weight-black"
+              style="border-radius:0.25rem;font-size:4rem;"
+            >
+              blockchain
             </v-card>
           </v-card>
-          <v-card
-            id="groupcard3"
-            mainfcard
-            class="d-flex flex-column align-center justify-center px-12 mt-10 mb-9"
-            flat
-            color="transparent"
-            width="70%"
+        </v-card>
+        <v-card
+          id="groupcard3"
+          mainfcard
+          class="d-flex flex-column align-center justify-center px-12 mt-10 mb-9"
+          flat
+          color="transparent"
+          width="70%"
+        >
+          <span 
+            class="grey--text darken-5 text-h4 align-center justify-center"
+            style="line-height:1.25;font-align:center;text-align:center; font-justify:center;"        
           >
-            <span 
-              class="grey--text darken-5 text-h4 align-center justify-center"
-              style="line-height:1.25;font-align:center;text-align:center; font-justify:center;"        
-            >
-              Space Exploration provides users with genuine reviews validated by the blockchain
-            </span>
-            <span 
-              style="text-align:center;font-weight:800;font-size:3rem;margin-bottom:22px;"
-            >
-              Try Space Exploration
-            </span> 
-          </v-card>
-          <v-card
-            id="spacercard"
-            mainfcard
-            height="50px"
-            min-height="25px"
-            width="90%"
-            flat
-            class="d-flex flex-row justify-center align-center"
+            Space Exploration provides users with genuine reviews validated by the blockchain
+          </span>
+          <span 
+            style="text-align:center;font-weight:800;font-size:3rem;margin-bottom:22px;"
           >
-            <v-card
-              id="colorcard"
-              spacercard
-              flat
-              height="59px"
-              width="100%"
-              class="d-flex justify-center align-center"
-              :style="`background-image: linear-gradient(60deg, #009688, #00BFA5)`"
-            >
-          </v-card>
+            Try Space Exploration
+          </span> 
+        </v-card>
+        <v-card
+          id="spacercard"
+          mainfcard
+          height="50px"
+          min-height="25px"
+          width="90%"
+          flat
+          class="d-flex flex-row justify-center align-center"
+        >
+          <v-card
+            id="colorcard"
+            spacercard
+            flat
+            height="59px"
+            width="100%"
+            class="d-flex justify-center align-center"
+            :style="`background-image: linear-gradient(60deg, #009688, #00BFA5)`"
+          />
         </v-card>
       </v-col>
     </v-row>
