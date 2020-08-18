@@ -61,7 +61,7 @@
             v-for="contract in contracts"
             id="contractCHIP"
             :key="contract"      
-            color="blue-grey lighten-5"
+            color="white"
             width="breakpoint.smAndDown ? 179px : 420px"
             height="90px"
             min-height="72px"
@@ -81,13 +81,13 @@
         </v-card>  <!-- form card start -->
         <v-card
           id="form-area"
-          color="blue-grey lighten-5"
+          color="white"
           width="92%"
-          height="450px"
+          height="520px"
           min-width="250px"
           max-width="700px"
           min-height="300px"
-          max-height="500px"
+          max-height="600px"
           shaped
           class="d-flex flex-column align-center flex-grow-1 px-0 pt-0 mx-1 mt-7 mb-20"
         >          
@@ -109,57 +109,59 @@
           <v-card
             id="form-wrap"
             form-area
-            width="100%"
-            height="390px"
-            min-width="200px"
-            max-width="900px"            
+            width="475px"
+            height="430px"
+            min-width="420px"
+            max-width="600px"            
             min-height="200px"
             max-height="400px"
             flat
             color="transparent"
-            class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1  pa-2 ma-2"
+            class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1 pa-1 ma-1"
           >
             <v-form 
               id="wform"
               ref="wform" 
               form-wrap
-              width="270px"
-              min-width="170px"
-              max-width="450px"
+              width="470px"
+              min-width="270px"
+              max-width="650px"
               min-height="300px"              
               max-height="900px"
-              class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-center align-center mt-12 mx-2 pa-2"
+              class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-center align-center mt-5 mx-1 pa-2"
               @submit.prevent="submit"
             >
               <v-text-field
                 id="textfieldform1a"
                 v-model="vmcat"
                 height="auto"
-                width="200px"
-                min-width="150px"
+                width="250px"
+                min-width="200px"
                 max-width="220px"
                 min-height="50px"
                 max-height="200px"             
                 required
                 clearable
-                color="white"
+                color="deep-purple"
                 label="Product Category"
-                class="pa-2 mb-0 mx-2 width=50%"
+                class="pa-2 mb-0 mx-2"
+                :style="styleObject2"
+
               />                        
               <v-textarea
                 id="textfieldform1b"
                 v-model="vmrev"
                 label="Your Review"
-                color="white"
-                width="90%"
+                color="deep-purple"
                 height="110px"
-                min-width="150px"
+                min-width="270px"
                 max-width="700px"
                 min-height="100px"
                 max-height="300px"
                 outlined
                 clearable
-                class="pa-2 ma-2 width=`82%`"
+                class="pa-2 ma-2"
+                :style="styleObject2"
               />
               <v-card
                 id="tocenterbutton"
@@ -191,20 +193,20 @@
           id="feedbackcard"
           color="white"
           width="92%"
-          height="220px"
+          height="300px"
           min-width="120px"
           max-width="620px"
           min-height="120px"
           max-height="600px"
           shaped
-          class="d-flex flex-column align-center px-4 pt-0 mx-4 mt-7 mb-10"
+          class="d-flex flex-column flex-wrap align-center px-4 pt-0 mx-4 mt-7 mb-10"
         >    
           <v-simple-table
             id="feedbacktable"
             color="white"
             feedbackcard
             width="337px"
-            height="100px"
+            height="120px"
             min-width="320px"
             max-width="620px"
             min-height="140px"
@@ -328,7 +330,7 @@
           min-width="170px"    
           min-height="150px"            
           max-width="644px"
-          max-height="1244px"
+          max-height="1744px"
           color="grey lighten-3"
           class="d-flex flex-column flex-grow-1 flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10 "
           style="position:relative;z-index:1;"
@@ -362,10 +364,10 @@
             max-width="620px"
             min-width="120px"
             min-height="37px"
-            max-height="1150px"
-            class="d-flex v-grow-1 pa-3 ml-1 mr-4 mt-1 mb-1 font-size=small"
+            max-height="1550px"
+            class="d-flex flex-grow-1 pa-3 ml-1 mr-4 mt-1 mb-1 font-size=small"
           >
-            <span style="font-size:14px;"> {{ review.comments }} </span>
+            <span style="font-size:14px;"> <pre>{{ review.comments }}</pre> </span>
           </v-simple-table>
         </v-card>   <!-- end rightbtmsheet -->
       </v-card>  <!-- end   botdivgraphic -->
@@ -464,7 +466,7 @@
     let partresult = JSON.stringify(axr.data.result)
     let partb =  JSON.stringify(axr.status)
     let partc =  JSON.stringify(axr.statusText)
-    let answerstr = partresult + "<br>Status code returned (200 is Success): " + partb + "  statusText: " + partc
+    let answerstr = partresult + "\n\nStatus code returned: " + partb + "\n\nstatusText: " + partc
     this.formaxrjson = answerstr
     this.respkey += 1;
   }
@@ -511,6 +513,9 @@
       },
       styleObject () {
         return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
+      },
+      styleObject2 () {
+        return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
       },
       yesbig () {
         var big = false;
