@@ -114,57 +114,57 @@
             max-height="1700px"
             flat
             color="transparent"
-            class="d-flex flex-column align-center justify-center flex-grow-1 pa-0 ma-0"
+            class="d-flex flex-column align-center justify-center flex-grow-1 pa-2 ma-2"
           >
             <v-form 
               id="wform"
+              form-WRAP
               ref="wform" 
-              width="500px"
-              min-width="200px"
-              max-width="700px"
+              width="95%"
+              min-width="170px"
+              max-width="450px"
               min-height="300px"              
               max-height="900px"
-              style="width=400px!important;"
-              class="mt-12 pa-0"
+              class="mt-12 mx-2 pa-2"
               @submit.prevent="submit"
             >
               <v-text-field
                 id="textfieldform1a"
                 v-model="vmcat"
-                wform
-                width="auto"
+                form-WRAP
+                width="90%"
                 height="auto"
-                min-width="220px"
-                max-width="600px"
+                min-width="120px"
+                max-width="500px"
                 min-height="50px"
                 max-height="200px"             
                 required
                 clearable
                 color="blue-grey darken-1"
                 label="Product Category"
-                class="pa-2 mb-0 mx-0"
+                class="pa-2 mb-0 mx-2"
               />                        
               <v-textarea
                 id="textfieldform1b"
                 v-model="vmrev"
-                tohelpbelow
+                form-WRAP
                 label="Your Review"
                 color="blue-grey darken-1"
-                width="350px"
+                width="82%"
                 height="170px"
-                min-width="220px"
+                min-width="150px"
                 max-width="700px"
                 min-height="100px"
                 max-height="500px"
                 outlined
                 clearable
-                class="pa-2 ma-0"
+                class="pa-2 ma-2 width=`82%`"
               />
               <v-card
                 id="tocenterbutton"
+                form-WRAP
                 flat
                 color="transparent"
-                wform
                 width="100%"
                 class="d-flex flex-column align-center justify-center"
               >
@@ -201,7 +201,7 @@
         >    
           <v-simple-table
             id="feedbacktable"
-            color="transparent"
+            color="white"
             feedbackcard
             width="337px"
             height="170px"
@@ -210,9 +210,8 @@
             min-height="140px"
             max-height="550px"
             class="px-4 py-5"
-            :style="`font-size:9px;`"
           >
-            {{ formaxrjson }} 
+           <span style="font-size:12px;"> {{ formaxrjson }} </span>
           </v-simple-table>
         </v-card>  <!-- end formAREA -->
       </v-card>  <!-- end formcardtwo -->
@@ -449,7 +448,12 @@
 
     let axrstring = JSON.stringify(axr)
     console.log("wreview received response myaxr: " + axrstring)
-    this.formaxrjson = axrstring
+    let partresult = JSON.stringify(axr.data.result)
+    let partb =  JSON.stringify(axr.status)
+    let partc =  JSON.stringify(axr.statusText)
+    let spc = "  "
+    let answerstr = partresult + "\n\nStatus code returned (200 is Success): " + partb + "  statusText: " + partc
+    this.formaxrjson = answerstr
     this.respkey += 1;
   }
   var redsize = null
@@ -482,6 +486,13 @@
       }),
 
     computed: {
+      formwid () {
+        var fwsize = "350";
+        if (window.outerWidth < 960) {
+          tsize = "250"
+        }
+        return fwsize;
+      },
       yesbig () {
         var big = false;
         if (window.outerWidth > 959) {
@@ -489,23 +500,14 @@
         }
         return big;
       },
-      // redsize () {
-      //   if ($breakpoint.smAndDown) {
-      //     return "yes small"
-      //   }
-      //   else {
-      //     return "yes big";
-      //   }
-      // }
     },
     mounted () {
       this.axiosGetProds()  // get the prod list
-      console.log(this.redsize)
-      if ($vuetify.breakpoint.smAndDown)
-        console.log("no")
-      if ( $md )
-        console.log("yes big")
+      if (window.outerWidth < 960) {
+        this.$store.dispatch('gMobileAct', true)    
+      }
     },
+
     methods: {
       axiosGetRevs,
       axiosGetProducts,

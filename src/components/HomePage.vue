@@ -19,7 +19,7 @@
           <v-card
             id="mainfcard"
             flat
-            class="d-flex flex-column justify-center align-center"
+            class="d-none d-md-flex flex-column justify-center align-center"
             width="95%"
           >            
             <v-card

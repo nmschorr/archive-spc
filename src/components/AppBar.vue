@@ -8,7 +8,7 @@
       app
       v-bind="abprops"
       shrink-on-scroll
-      class="d-none d-md-flex mb-6 justify-between"
+      class="d-none d-md-inline-flex mb-6 justify-between align-bottom"
       :style="`background-image: linear-gradient(60deg, #008080, black);`"
     >      
       <v-toolbar-title
@@ -18,12 +18,18 @@
       >
         Welcome to Space Exploration
       </v-toolbar-title>
-      <v-spacer />
+      <v-card
+        id="myspacer"
+        width="300px"
+        height="20px"
+        color="transparent"
+        class="align-self-end"
+      />
       <v-btn
         id="navbtn1"
         color="blue-grey darken-1"
         v-bind="btnprops"        
-        class="d-flex montyfontb align-self-end mt-9"
+        class="d-flex montyfontb align-self-end justify-self-end mt-9 ml-10"
         to="/"
         @click="homeclick"
       >
@@ -32,7 +38,7 @@
       <v-btn
         id="navbtn2"
         v-bind="btnprops"        
-        class="d-flex montyfontb align-self-end mt-9 ml-5" 
+        class="d-flex montyfontb align-self-end justify-self-end mt-9 ml-10" 
         to="AllReviews"
         @click="allrevsclick"
       >

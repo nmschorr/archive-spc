@@ -5,7 +5,7 @@
       <v-container fluid>
           <v-card
             id="appbarspacer"
-            color="red-lighten-1"
+            color="transparent"
             flat
             width="100%"
             height="90px"

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     gHomeKeyCount: 0,
     gShowHomeBool: true,
     gShowAllrevs: false,
+    gMobile: false,
   },
   mutations: {
     gHomeKeyCountMut(state, theval) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     gShowAllrevsMut(state, theval) {
       state.gShowAllrevs = theval
     },  
+    gMobileMut(state, theval) {
+      state.gMobile = theval
+    },     
   },
   getters: {
     getShowAllrevs: state => state.gShowAllrevs,
@@ -35,6 +39,9 @@ export default new Vuex.Store({
     gShowAllrevsAct(context, theval) {
       context.commit('gShowAllrevsMut', theval)
     },
+    gMobileAct(context, theval) {
+      context.commit('gMobileMut', theval)
+    },    
   },
   modules: {
   }
