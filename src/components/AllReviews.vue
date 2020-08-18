@@ -276,9 +276,9 @@
               min-height="20px"
               max-height="160px"
               :items="products"
-              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-1 text-body2"
+              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-1 pr-2"
             />
-            <span text-body2>Select a Product then press Go</span>
+            <span style="font-size:14px">Select a Product then press Go</span>
             <v-card-actions>
               <v-btn
                 id="getrevssbtn"
@@ -286,7 +286,7 @@
                 dark
                 vselbackgroundcard2
                 vselone
-                class="mt-4"
+                class="mt-4 text-body2"
                 @click="axiosGetRevs"
               >    
                 Go
@@ -328,7 +328,7 @@
             min-width="120px"    
             min-height="20px"    
             reviewssheet
-            class="d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n4 "
+            class="d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n2 "
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:4;`"
           >   
@@ -340,16 +340,16 @@
             id="reviewstable"
             :key="review.id"    
             reviewssheet  
-            dense
+            dense           
             width="590px"
             height="auto"
             max-width="620px"
             min-width="120px"
             min-height="40px"
             max-height="550px"
-            class="d-flex v-grow-1 pa-3 ml-1 mt-1 mr-4 mb-2"
+            class="d-flex v-grow-1 pa-3 ml-1 mt-1 mr-4 mb-2 font-size=small"
           >
-            {{ review.comments }} 
+           <span style="font-size:14px;"> {{ review.comments }} </span>
           </v-simple-table>
         </v-card>   <!-- end rightbtmsheet -->
       </v-card>  <!-- end   botdivgraphic -->
@@ -512,6 +512,9 @@
   .v-text-field input {
     width: 350px!important;
   }
+  .v-data-table__wrapper {
+    font-size: small;
+  }
   .ptsans {
     font-family:'PT Sans Narrow, sans-serif';
   }
@@ -530,5 +533,3 @@
     text-transform: lowercase;
   }
 </style>
-
-        
