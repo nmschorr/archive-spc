@@ -63,14 +63,14 @@
             :key="contract"      
             color="blue-grey lighten-5"
             width="breakpoint.smAndDown ? 179px : 420px"
-            height="100px"
+            height="90px"
             min-height="72px"
             max-height="290px"
             max-width="523px"            
             min-width="100px"
             shaped
             elevation-12
-            class="d-flex flex-column flex-grow-1 flex-wrap pl-4 pr-1 py-3 mx-3 mt-n2 mb-12 ptsans"
+            class="d-flex flex-column flex-grow-1 flex-wrap justify-center pl-4 pr-1 py-3 mx-3 mt-n2 mb-6 ptsans"
             style="font-size:14px;font-weight:400;"
           >      
             {{ contract }}
@@ -97,7 +97,7 @@
             max-width="190px"  
             min-width="50px"    
             form-AREA
-            class="d-flex flex-column align-center justify-center white--text montyfont px-3 py-1 mx-3"
+            class="d-flex flex-column align-center justify-center white--text montyfont px-3 py-1 mx-3 mt-n3"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:3;`"
           >
@@ -224,7 +224,7 @@
       md="6"
       sm="6"
       class="d-flex flex-column"
-    >  
+    >                           <!-- ****** column card  -->
       <v-card
         id="bottomcard-right"
         color="teal darken-1"
@@ -234,40 +234,44 @@
         elevation-10
         shaped
         filled
-        class="d-flex flex-column flex-grow-1 align-center"
+        class="d-flex flex-column flex-grow-1 justify-around align-center"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-        <!-- ****** vselcard greencard GREENCARD  -->
+        <!-- ****** vsel RED groupcard  -->
         <v-card
           id="groupcard"
           width="100%"
-          height="345"
-          min-height="25px"
+          height="yesbig ? '150px' : '260px'"
+          min-height="75px"
           max-height="200px"
           flat
           color="red"
-          class="d-flex flex-column flex-grow-1 justify-center"
+          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center"
         >                                
           <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
 
           <v-card        
             id="vselbackgroundcard2"
             groupcard
-            width="92%px"
-            height="90px"
+            width="97%"
+            height="100%"
             min-width="150px"
-            max-width="500px"
-            min-height="70px"
-            max-height="160px"
+            max-width="600px"
+            min-height="120px"
+            max-height="330px"
             color="blue-grey lighten-5"
-            class="d-flex flex-row flex-wrap flex-grow-1 flex-shrink-1 pa-2 ma-2"
+            class="d-flex flex-row flex-wrap flex-grow-1 flex-shrink-1 pa-1 ma-1"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
+            <v-card-subtitle my-n1>
+              Show Reviews
+            </v-card-subtitle>
             <v-select
               id="vselone"
               v-model="prodchoice"
               vselbackgroundcard2
+              label="Select a Product then press Go"
               color="deep-purple accent-3"
               width="82%"
               height="30px"
@@ -276,9 +280,9 @@
               min-height="20px"
               max-height="160px"
               :items="products"
-              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-1 pr-2"
+              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-10 pr-2"
             />
-            <span style="font-size:14px">Select a Product then press Go</span>
+            <!-- <span style="font-size:14px">Select a Product then press Go</span> -->
             <v-card-actions>
               <v-btn
                 id="getrevssbtn"
@@ -286,7 +290,7 @@
                 dark
                 vselbackgroundcard2
                 vselone
-                class="mt-4 text-body2"
+                class="mt-2 text-body2"
                 @click="axiosGetRevs"
               >    
                 Go
@@ -448,6 +452,7 @@
     this.formaxrjson = axrstring
     this.respkey += 1;
   }
+  var redsize = null
 
   export default {
     name: "AllReviews",
@@ -483,10 +488,23 @@
           big = true;
         }
         return big;
-      }
+      },
+      // redsize () {
+      //   if ($breakpoint.smAndDown) {
+      //     return "yes small"
+      //   }
+      //   else {
+      //     return "yes big";
+      //   }
+      // }
     },
     mounted () {
       this.axiosGetProds()  // get the prod list
+      console.log(this.redsize)
+      if ($vuetify.breakpoint.smAndDown)
+        console.log("no")
+      if ( $md )
+        console.log("yes big")
     },
     methods: {
       axiosGetRevs,
