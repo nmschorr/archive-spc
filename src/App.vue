@@ -19,7 +19,7 @@
 <script>
   // see https://vuetifyjs.com/en/components/application/ for detailed instructions for this component
   import AllReviews from './components/AllReviews'
-  import AppyBar from './components/AppBar'
+  import AppyBar from './components/AppyBar'
   import Footer from './components/Footer'
 
   export default {

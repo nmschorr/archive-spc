@@ -1,15 +1,15 @@
 <template>
   <v-container
-    id="appbarcontainer"
+    id="appybar"
     fluid
   >
     <v-app-bar
-      id="appbar"
+      id="app-bar-comp"
       app
       :height="vheight"
       v-bind="abprops"
       shrink-on-scroll
-      class="d-none d-md-inline-flex mb-4 justify-between align-bottom pb-3"
+      class="d-none d-md-inline-flex mb-2 justify-between align-bottom pb-3"
       :style="`background-image: linear-gradient(60deg, #008080, black);`"
     >      
       <v-toolbar-title
@@ -46,26 +46,30 @@
         Reviews
       </v-btn>
     </v-app-bar>
-    <v-btn
-      id="navbtn3"
-      color="blue-grey darken-1"
-      v-bind="btnprops"        
-      class="d-xs-flex d-md-none montyfontb align-self-end mt-2"
-      to="/"
-      @click="homeclick"
-    >
-      Home
-    </v-btn>
-    <v-btn
-      id="navbtn4"
-      color="teal darken-1"
-      v-bind="btnprops"        
-      class="d-xs-flex d-md-none montyfontb align-self-end mt-2"
-      to="AllReviews"
-      @click="allrevsclick"
-    >
-      Reviews
-    </v-btn>
+    <!-- following is for mobile only -->
+    <div d-xs-flex d-md-none flex-inline-row>
+      <v-btn
+        id="navbtn3"
+        :width="btnwidth"
+        color="blue-grey darken-1"
+        v-bind="btnprops"        
+        class="d-xs-flex d-md-none montyfontb mt-2"
+        to="/"
+        @click="homeclick"
+      >
+        Home
+      </v-btn>
+      <v-btn
+        id="navbtn4"
+        color="teal darken-1"
+        v-bind="btnprops"        
+        class="d-xs-flex d-md-none montyfontb mt-2 ml-3"
+        to="AllReviews"
+        @click="allrevsclick"
+      >
+        Reviews
+      </v-btn>
+    </div>
   </v-container>
 </template>
 
@@ -74,12 +78,11 @@
   import store from  '../store'
 
   export default {
-    name: 'AppBar',
+    name: 'AppyBar',
     data: () => ({
       homekey: 0,
       btnprops: {
         height: "45px",
-        width: "220px",
         "min-width": "40px",
         "min-height": "20px",        
         "max-width": "220px",
@@ -104,8 +107,11 @@
         return this.$store.state.gHomeKeyCount
       },
       vheight () {
-        return window.outerWidth > 959 ? '120px' : '30px';
-        }
+        return window.outerWidth > 959 ? '120px' : '2px';
+        },
+      btnwidth () {
+        return window.outerWidth > 959 ? '220px' : '100px';
+        },
     },
     methods: {
       homeclick () {

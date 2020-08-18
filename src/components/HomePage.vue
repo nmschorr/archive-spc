@@ -94,8 +94,9 @@
             width="100%"
           >
             <span 
-              class="grey--text darken-5 text-h4 align-center justify-center"
-              style="line-height:1.25;font-align:center;text-align:center; font-justify:center;"        
+              class="grey--text darken-5 text-md-h4 align-center justify-center"
+              style="line-height:1.25;font-align:center;text-align:center; font-justify:center;"  
+              :style="`styleObject5`"      
             >
               Space Exploration provides users with genuine reviews validated by the blockchain
             </span>
@@ -136,17 +137,26 @@
     data: () => ({
       // hideshow: this.getgShowHomeBool(),
     }),
-    // computed: {
-    //   getgShowHomeBool () {
-    //     return this.$store.state.gShowHomeBool;
-    //   },
-    // },
-    // methods: {
-    //   showhomebool () {
-    //     return this.getgShowHomeBool;
-    //   },
-    // }
-  };
+    computed: {
+      styleObject5 () {
+        return  (window.outerWidth < 960) ? { fontSize: '16px' } :  { fontSize: '34px' };
+      },
+      // styleObject6 () {
+      //   return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
+      // },
+      // styleObject7 () {
+      //   return  (window.outerWidth < 960) ? { width: '290px' } : { width: '424px' };
+      // },
+      // styleObject8 () {
+      //   return  (window.outerWidth < 960) ? '290px' : '424px';
+      // },
+      methods: {
+        showhomebool () {
+          return this.getgShowHomeBool;
+        },
+      }
+    }
+  }
   
 </script>
 

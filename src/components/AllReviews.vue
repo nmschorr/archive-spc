@@ -9,7 +9,7 @@
     >  
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
-        id="left-column-card"
+        id="columncard-left"
         color="blue-grey lighten-4"
         width="100%"
         height="790px"
@@ -27,7 +27,7 @@
           id="top-backcard"
           color="transparent"
           flat
-          left-column-card
+          columncard-left
           width="100%"
           height="70px"
           min-width="23px"            
@@ -82,6 +82,7 @@
         <v-card
           id="form-area"
           color="white"
+          columncard-left
           width="92%"
           height="520px"
           min-width="250px"
@@ -146,7 +147,6 @@
                 label="Product Category"
                 class="pa-2 mb-0 mx-2"
                 :style="styleObject2"
-
               />                        
               <v-textarea
                 id="textfieldform1b"
@@ -191,8 +191,9 @@
         </v-card>  <!-- end formAREA --><!-- begin feedback -->
         <v-card
           id="feedbackcard"
+          columncard-left
           color="white"
-          width="92%"
+          width="auto"
           height="300px"
           min-width="120px"
           max-width="620px"
@@ -203,17 +204,17 @@
         >    
           <v-simple-table
             id="feedbacktable"
-            color="white"
             feedbackcard
-            width="337px"
+            color="white"
+            width="auto"
             height="120px"
-            min-width="320px"
+            min-width="220px"
             max-width="620px"
             min-height="140px"
             max-height="250px"
             class="px-4 py-5"
           >
-            <span style="font-size:14px;"> {{ formaxrjson }} </span>
+            <span style="font-size:14px;"> <pre>{{ formaxrjson }} </pre></span>
           </v-simple-table>
         </v-card>  <!-- end formAREA -->
       </v-card>  <!-- end formcardtwo -->
@@ -228,7 +229,7 @@
     >                           
       <!-- ****** column card  -->
       <v-card
-        id="bottomcard-right"
+        id="columncard-right"
         color="teal lighten-4"
         height="auto"
         min-height="250px"
@@ -242,13 +243,14 @@
         <!-- ****** vsel RED groupcard  -->
         <v-card
           id="groupcard"
+          columncard-right
           width="100%"
           height="yesbig ? '150px' : '260px'"
           min-height="75px"
           max-height="290px"
           flat
           color="transparent"
-          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4"
+          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4 px-3"
         >                                
           <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
 
@@ -264,7 +266,6 @@
             color="blue-grey lighten-5"
             class="d-flex flex-column flex-grow-1 justify-center align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
             :style="`position:relative;z-index:1;`"
-
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
@@ -293,7 +294,7 @@
               :items="products"
               class="d-flex align-center justify-center mt-15 mb-2 ml-2 mr-10 pr-2"
             />
-            <!-- <span style="font-size:14px">Select a Product then press Go</span> -->
+            <!-- <span style="font-size:14px">Select a Product then press go</span> -->
             <v-card-actions>
               <v-btn
                 id="getrevssbtn"
@@ -324,15 +325,16 @@
         />
         <v-card
           id="reviewssheet"
-          shaped
+          columncard-right
+          color="grey lighten-3"
           height="auto"
-          width="auto"
+          width="92%"
           min-width="170px"    
           min-height="150px"            
-          max-width="644px"
+          :max-width="`styleobject4`"
           max-height="1744px"
-          color="grey lighten-3"
-          class="d-flex flex-column flex-grow-1 flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10 "
+          shaped
+          class="d-flex flex-column flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10 "
           style="position:relative;z-index:1;"
         >           
           <v-card
@@ -358,16 +360,16 @@
             id="reviewstable"
             :key="review.id"    
             reviewssheet  
-            dense           
-            width="590px"
+            dense
             height="auto"
-            max-width="620px"
+            width="auto"
+            :max-width="`styleObject4`"
             min-width="120px"
             min-height="37px"
             max-height="1550px"
-            class="d-flex flex-grow-1 pa-3 ml-1 mr-4 mt-1 mb-1 font-size=small"
+            class="d-flex flex-column flex-grow-1 flex-shrink-1 pa-3 ml-1 mr-4 mt-1 mb-1"
           >
-            <span style="font-size:14px;"> <pre>{{ review.comments }}</pre> </span>
+            <span :style="`font-size:14px;overflow-x:scroll;`"> {{ review.comments }} </span>
           </v-simple-table>
         </v-card>   <!-- end rightbtmsheet -->
       </v-card>  <!-- end   botdivgraphic -->
@@ -466,7 +468,7 @@
     let partresult = JSON.stringify(axr.data.result)
     let partb =  JSON.stringify(axr.status)
     let partc =  JSON.stringify(axr.statusText)
-    let answerstr = partresult + "\n\nStatus code returned: " + partb + "\n\nstatusText: " + partc
+    let answerstr = partresult + "\n\nStatus code: " + partb + "\n\nstatusText: " + partc
     this.formaxrjson = answerstr
     this.respkey += 1;
   }
@@ -516,6 +518,12 @@
       },
       styleObject2 () {
         return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
+      },
+      styleObject3 () {
+        return  (window.outerWidth < 960) ? { width: '290px' } : { width: '424px' };
+      },
+      styleObject4 () {
+        return  (window.outerWidth < 960) ? '290px' : '424px';
       },
       yesbig () {
         var big = false;
