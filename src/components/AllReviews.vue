@@ -189,7 +189,7 @@
         </v-card>  <!-- end formAREA --><!-- begin feedback -->
         <v-card
           id="feedbackcard"
-          color="blue-grey lighten-5"
+          color="white"
           width="92%"
           height="220px"
           min-width="120px"
@@ -211,7 +211,7 @@
             max-height="550px"
             class="px-4 py-5"
           >
-           <span style="font-size:12px;"> {{ formaxrjson }} </span>
+           <span style="font-size:14px;"> {{ formaxrjson }} </span>
           </v-simple-table>
         </v-card>  <!-- end formAREA -->
       </v-card>  <!-- end formcardtwo -->
@@ -226,7 +226,7 @@
     >                           <!-- ****** column card  -->
       <v-card
         id="bottomcard-right"
-        color="teal darken-1"
+        color="teal lighten-4"
         height="auto"
         min-height="250px"
         max-height="2000px"
@@ -244,8 +244,8 @@
           min-height="75px"
           max-height="200px"
           flat
-          color="red"
-          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center"
+          color="teal lighten-4"
+          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4"
         >                                
           <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
 
