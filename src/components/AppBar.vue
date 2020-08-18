@@ -1,68 +1,65 @@
 <template>
-  <v-app-bar
-    id="appbar"
-    app
-    v-bind="abprops"
-    shrink-on-scroll
-    :style="`background-image: linear-gradient(60deg, #008080, black);margin-bottom:250px;`"
-  >      
-    <v-toolbar-title
-      id="appbartitle"
-      class="white--text"
-      :style="`font-family:Montserrat,sans-serif;font-size:27px;`"
-    >
-      Welcome to Space Exploration
-    </v-toolbar-title>
-    <v-spacer />
+  <v-container
+    id="appbarcontainer"
+    fluid
+  >
+    <v-app-bar
+      id="appbar"
+      app
+      v-bind="abprops"
+      shrink-on-scroll
+      class="d-none d-md-flex mb-6 justify-between"
+      :style="`background-image: linear-gradient(60deg, #008080, black);`"
+    >      
+      <v-toolbar-title
+        id="appbartitle"
+        class="white--text"
+        :style="`font-family:Montserrat,sans-serif;font-size:27px;`"
+      >
+        Welcome to Space Exploration
+      </v-toolbar-title>
+      <v-spacer />
+      <v-btn
+        id="navbtn1"
+        color="blue-grey darken-1"
+        v-bind="btnprops"        
+        class="d-flex montyfontb align-self-end mt-9"
+        to="/"
+        @click="homeclick"
+      >
+        Home
+      </v-btn>
+      <v-btn
+        id="navbtn2"
+        v-bind="btnprops"        
+        class="d-flex montyfontb align-self-end mt-9 ml-5" 
+        to="AllReviews"
+        @click="allrevsclick"
+      >
+        Reviews
+      </v-btn>
+    </v-app-bar>
     <v-btn
-      id="navbtn1"
+      id="navbtn3"
       color="blue-grey darken-1"
       v-bind="btnprops"        
-      class="montyfontb align-self-end mt-9"
+      class="d-xs-flex d-md-none montyfontb align-self-end mt-2"
       to="/"
       @click="homeclick"
     >
       Home
     </v-btn>
     <v-btn
-      id="navbtn2"
+      id="navbtn4"
+      color="blue-grey darken-1"
       v-bind="btnprops"        
-      class="montyfontb align-self-end mt-9 ml-5" 
-      to="AllReviews"
+      class="d-xs-flex d-md-none montyfontb align-self-end mt-2"
+      to="/"
       @click="allrevsclick"
     >
       Reviews
     </v-btn>
-  </v-app-bar>
-  <!-- <v-btn
-    id="navbtn3"
-    color="blue-grey"
-    elevation="24"
-    min-width="40px"
-    min-height="20px"      
-    dark
-    raised
-    medium
-    class="d-xs-flex d-md-none mt-9 ml-5 mb-12 montyfontb "
-    to="/"
-    @click="homeclick"   
-  >
-    Home
-  </v-btn>  
-  <v-btn
-    id="navbtn4"
-    color="blue-grey"
-    elevation="24"
-    min-width="40px"
-    min-height="20px"      
-    dark
-    raised
-    medium
-    class="d-xs-flex d-md-none mt-9 ml-5 mb-12 montyfontb "
-    @click="prodclick"
-  >
-    Show Reviews
-  </v-btn> -->
+  </v-container>
 </template>
 
 <script>
@@ -74,12 +71,12 @@
     data: () => ({
       homekey: 0,
       btnprops: {
-        height: "50px",
-        width: "240px",
+        height: "45px",
+        width: "220px",
         "min-width": "40px",
         "min-height": "20px",        
-        "max-width": "240px",
-        "max-height": "320px", 
+        "max-width": "220px",
+        "max-height": "120px", 
         dark: true,
         medium: true,
         color: "blue-grey",        

@@ -3,6 +3,14 @@
     <AppBar app />
     <v-main>
       <v-container fluid>
+          <v-card
+            id="appbarspacer"
+            color="red-lighten-1"
+            flat
+            width="100%"
+            height="90px"
+            class="d-none d-md-flex"
+          />
         <router-view />
         <AllReviews 
           v-if="$store.state.gShowAllrevs"

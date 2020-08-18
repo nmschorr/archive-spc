@@ -22,9 +22,8 @@ export default new Vuex.Store({
     },  
   },
   getters: {
-    getgShowAllrevs: state => state.gShowAllrevs,
-    getgShowHomeBool: state => state.gShowHomeBool,
-
+    getShowAllrevs: state => state.gShowAllrevs,
+    getShowHomeBool: state => state.gShowHomeBool,
   },
   actions: {
     gHomeKeyCountAct(context, theval) {

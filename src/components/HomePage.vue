@@ -12,8 +12,8 @@
         class="d-flex flex-column justify-center align-center"
       > 
         <div 
-          id="gethiderdiv"
           v-if="$store.state.gShowHomeBool"
+          id="gethiderdiv"
           :key="$store.state.gHomeKeyCount"
         >
           <v-card
@@ -135,18 +135,18 @@
   export default {
     name: "HomePage",
     data: () => ({
-      hideshow: this.showhomebool(),
+      // hideshow: this.getgShowHomeBool(),
     }),
-    computed: {
-      getgShowHomeBool () {
-        return this.$store.state.gShowHomeBool;
-      },
-    },
-    methods: {
-      showhomebool () {
-        return this.getgShowHomeBool;
-      },
-    }
+    // computed: {
+    //   getgShowHomeBool () {
+    //     return this.$store.state.gShowHomeBool;
+    //   },
+    // },
+    // methods: {
+    //   showhomebool () {
+    //     return this.getgShowHomeBool;
+    //   },
+    // }
   };
   
 </script>

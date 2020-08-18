@@ -1,6 +1,5 @@
 <template>
-  <v-row
-  >
+  <v-row>
     <!-- top level col -->
     <v-col
       cols="12"
@@ -63,15 +62,15 @@
             id="contractCHIP"
             :key="contract"      
             color="blue-grey lighten-5"
-            width="(window.outerWidth > 959) ? '60%' : '100%'"
-            height="52px"
-            min-height="42px"
-            max-height="90px"
-            max-width="700px"            
-            min-width="200px"
+            width="breakpoint.smAndDown ? 179px : 420px"
+            height="100px"
+            min-height="72px"
+            max-height="290px"
+            max-width="523px"            
+            min-width="100px"
             shaped
             elevation-12
-            class="d-flex flex-column flex-grow-1 pl-4 pr-1 py-3 mx-3 mt-n2 mb-12 ptsans"
+            class="d-flex flex-column flex-grow-1 flex-wrap pl-4 pr-1 py-3 mx-3 mt-n2 mb-12 ptsans"
             style="font-size:14px;font-weight:400;"
           >      
             {{ contract }}
@@ -145,22 +144,22 @@
                 label="Product Category"
                 class="pa-2 mb-0 mx-0"
               />                        
-                <v-textarea
-                  id="textfieldform1b"
-                  v-model="vmrev"
-                  tohelpbelow
-                  label="Your Review"
-                  color="blue-grey darken-1"
-                  width="350px"
-                  height="170px"
-                  min-width="220px"
-                  max-width="700px"
-                  min-height="100px"
-                  max-height="500px"
-                  outlined
-                  clearable
-                  class="pa-2 ma-0"
-                />
+              <v-textarea
+                id="textfieldform1b"
+                v-model="vmrev"
+                tohelpbelow
+                label="Your Review"
+                color="blue-grey darken-1"
+                width="350px"
+                height="170px"
+                min-width="220px"
+                max-width="700px"
+                min-height="100px"
+                max-height="500px"
+                outlined
+                clearable
+                class="pa-2 ma-0"
+              />
               <v-card
                 id="tocenterbutton"
                 flat
@@ -227,80 +226,72 @@
       class="d-flex flex-column"
     >  
       <v-card
-        id="bottomcardleftrt"
-        color="teal lighten-4"
+        id="bottomcard-right"
+        color="teal darken-1"
         height="auto"
         min-height="250px"
         max-height="2000px"
         elevation-10
         shaped
         filled
-        class="d-flex flex-column align-center"
+        class="d-flex flex-column flex-grow-1 align-center"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vselcard greencard GREENCARD  -->
         <v-card
-          id="greencard2"
+          id="groupcard"
           width="100%"
+          height="345"
+          min-height="25px"
+          max-height="200px"
           flat
-          color="transparent"
-          class="d-flex flex-column justify-center mb-24"
+          color="red"
+          class="d-flex flex-column flex-grow-1 justify-center"
         >                                
-        <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
-          <v-card
-            id="spacercard2"
-            height="30px"
-            width="100%"
-            min-width="100%"
-            flat
-            color="rgba(0,0,0,0)"
-          />
+          <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
+
           <v-card        
             id="vselbackgroundcard2"
-            greencard2
-            v-bind="shapfill"
-            width="500px"
+            groupcard
+            width="92%px"
             height="90px"
-            min-width="400px"
+            min-width="150px"
             max-width="500px"
-            min-height="20px"
+            min-height="70px"
             max-height="160px"
             color="blue-grey lighten-5"
-            class="d-inline-flex px-2 pt-3 mt-2 ml-5 mb-9"
+            class="d-flex flex-row flex-wrap flex-grow-1 flex-shrink-1 pa-2 ma-2"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
             <v-select
               id="vselone"
               v-model="prodchoice"
-              width="350px"
-              height="30px"
-              min-width="200px"
-              max-width="400px"
-              min-height="20px"
-              max-height="60px"
-              label-width="220px"
-              type="string"
-              label="Select a Product then press Go"
-              color="deep-purple accent-3"
-              shaped
-              outlined
-              :style="`max-width:530px;font-weight:700;font-size:15px;`"        
-              :items="products"
               vselbackgroundcard2
-              class="d-flex align-center justify-center mt-2 ml-4"
+              color="deep-purple accent-3"
+              width="82%"
+              height="30px"
+              min-width="100px"
+              max-width="450px"
+              min-height="20px"
+              max-height="160px"
+              :items="products"
+              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-1 text-body2"
             />
-            <v-btn
-              id="getrevssbtn"
-              color="blue-grey darken-2"
-              dark
-              fab
-              vselone
-              class="mt-n20 ml-1"
-              @click=axiosGetRevs()
-            >    
-              Go
-            </v-btn>   
+            <span text-body2>Select a Product then press Go</span>
+            <v-card-actions>
+              <v-btn
+                id="getrevssbtn"
+                color="blue-grey darken-2"
+                dark
+                vselbackgroundcard2
+                vselone
+                class="mt-4"
+                @click="axiosGetRevs"
+              >    
+                Go
+              </v-btn>   
+            </v-card-actions>
           </v-card>  <!-- end vselbackgroundcard -->
           <!-- end select a product -->
         </v-card>      <!-- end greencard -->
@@ -484,9 +475,7 @@
       showProds: false,
       MyQueries,
       }),
-    mounted () {
-      this.axiosGetProds()  // get the prod list
-    },
+
     computed: {
       yesbig () {
         var big = false;
@@ -495,6 +484,9 @@
         }
         return big;
       }
+    },
+    mounted () {
+      this.axiosGetProds()  // get the prod list
     },
     methods: {
       axiosGetRevs,
