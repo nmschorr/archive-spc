@@ -8,12 +8,12 @@
       app
       v-bind="abprops"
       shrink-on-scroll
-      class="d-none d-md-inline-flex mb-6 justify-between align-bottom"
+      class="d-none d-md-inline-flex mb-4 justify-between align-bottom pb-3"
       :style="`background-image: linear-gradient(60deg, #008080, black);`"
     >      
       <v-toolbar-title
         id="appbartitle"
-        class="white--text"
+        class="white--text mb-2"
         :style="`font-family:Montserrat,sans-serif;font-size:27px;`"
       >
         Welcome to Space Exploration
@@ -29,7 +29,7 @@
         id="navbtn1"
         color="blue-grey darken-1"
         v-bind="btnprops"        
-        class="d-flex montyfontb align-self-end justify-self-end mt-9 ml-10"
+        class="d-flex montyfontb align-self-end justify-self-end my-4 ml-10"
         to="/"
         @click="homeclick"
       >
@@ -38,7 +38,7 @@
       <v-btn
         id="navbtn2"
         v-bind="btnprops"        
-        class="d-flex montyfontb align-self-end justify-self-end mt-9 ml-10" 
+        class="d-flex montyfontb align-self-end justify-self-end my-4 ml-10" 
         to="AllReviews"
         @click="allrevsclick"
       >
@@ -92,7 +92,7 @@
         height: "200",
         "min-width": "140px",
         "max-width": "2000px",      
-        "min-height": "150px",
+        "min-height": "0px",
         "max-height": "250px",
         elevation: 12,
         prominent: true,

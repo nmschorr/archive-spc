@@ -4,12 +4,12 @@
     <v-col
       cols="12"
       md="6"
-      xm="12"
+      xs="12"
       class="d-flex flex-column"
     >  
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
-        id="left-COLUMN-card"
+        id="left-column-card"
         color="blue-grey lighten-4"
         width="100%"
         height="950px"
@@ -20,14 +20,14 @@
         elevation-10
         shaped
         filled
-        class="d-flex flex-column align-center justify-center flex-grow-1 pt-19 pb-3 mt-19"
+        class="d-flex flex-column align-center justify-center flex-grow-1 pt-12 pb-3 mt-0"
       > 
         <!-- * * * * * * *  card on left -->
         <v-card
           id="top-backcard"
           color="transparent"
           flat
-          left-COLUMN-card
+          left-column-card
           width="100%"
           height="70px"
           min-width="23px"            
@@ -77,7 +77,7 @@
           </v-card> <!-- end contractchip -->
         </v-card>  <!-- form card start -->
         <v-card
-          id="form-AREA"
+          id="form-area"
           color="blue-grey lighten-5"
           width="92%"
           height="400px"
@@ -96,16 +96,16 @@
             height="34px"
             max-width="190px"  
             min-width="50px"    
-            form-AREA
-            class="d-flex flex-column align-center justify-center white--text montyfont px-3 py-1 mx-3 mt-n3"
+            form-area
+            class="d-flex flex-column align-center justify-center white--text montyfont px-3 py-1 mx-3 mt-n4"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:3;`"
           >
             write review
           </v-card>
           <v-card
-            id="form-WRAP"
-            form-AREA
+            id="form-wrap"
+            form-area
             width="100%"
             height="500px"
             min-width="200px"
@@ -114,43 +114,41 @@
             max-height="1700px"
             flat
             color="transparent"
-            class="d-flex flex-column align-center justify-center flex-grow-1 pa-2 ma-2"
+            class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1  pa-2 ma-2"
           >
             <v-form 
               id="wform"
-              form-WRAP
               ref="wform" 
-              width="95%"
+              form-wrap
+              width="220px"
               min-width="170px"
               max-width="450px"
               min-height="300px"              
               max-height="900px"
-              class="mt-12 mx-2 pa-2"
+              class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-center align-center mt-12 mx-2 pa-2"
               @submit.prevent="submit"
             >
               <v-text-field
                 id="textfieldform1a"
                 v-model="vmcat"
-                form-WRAP
-                width="90%"
                 height="auto"
-                min-width="120px"
-                max-width="500px"
+                width="200px"
+                min-width="150px"
+                max-width="220px"
                 min-height="50px"
                 max-height="200px"             
                 required
                 clearable
                 color="blue-grey darken-1"
                 label="Product Category"
-                class="pa-2 mb-0 mx-2"
+                class="pa-2 mb-0 mx-2 width=50%"
               />                        
               <v-textarea
                 id="textfieldform1b"
                 v-model="vmrev"
-                form-WRAP
                 label="Your Review"
                 color="blue-grey darken-1"
-                width="82%"
+                width="90%"
                 height="170px"
                 min-width="150px"
                 max-width="700px"
@@ -162,7 +160,7 @@
               />
               <v-card
                 id="tocenterbutton"
-                form-WRAP
+                form-wrap
                 flat
                 color="transparent"
                 width="100%"
@@ -172,11 +170,10 @@
                   <v-btn
                     id="wrevbtn"
                     dark
-                    form-WRAP
                     tocenterbutton
                     elevation-12
-                    color="blue-grey darken-2"
-                    class="mt-n3 mb-3 montyfont"
+                    color="deep-orange darken-2"
+                    class="mt-n4 mb-3 montyfont"
                     style="text-transform:lowercase;"
                     @click="wreview"
                   >
@@ -211,7 +208,7 @@
             max-height="550px"
             class="px-4 py-5"
           >
-           <span style="font-size:14px;"> {{ formaxrjson }} </span>
+            <span style="font-size:14px;"> {{ formaxrjson }} </span>
           </v-simple-table>
         </v-card>  <!-- end formAREA -->
       </v-card>  <!-- end formcardtwo -->
@@ -221,9 +218,10 @@
     <v-col
       cols="12"
       md="6"
-      sm="6"
+      xs="12"
       class="d-flex flex-column"
-    >                           <!-- ****** column card  -->
+    >                           
+      <!-- ****** column card  -->
       <v-card
         id="bottomcard-right"
         color="teal lighten-4"
@@ -233,7 +231,7 @@
         elevation-10
         shaped
         filled
-        class="d-flex flex-column flex-grow-1 justify-around align-center"
+        class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-around align-center pt-12"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vsel RED groupcard  -->
@@ -242,7 +240,7 @@
           width="100%"
           height="yesbig ? '150px' : '260px'"
           min-height="75px"
-          max-height="200px"
+          max-height="290px"
           flat
           color="teal lighten-4"
           class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4"
@@ -256,16 +254,25 @@
             height="100%"
             min-width="150px"
             max-width="600px"
-            min-height="120px"
+            min-height="170px"
             max-height="330px"
             color="blue-grey lighten-5"
-            class="d-flex flex-row flex-wrap flex-grow-1 flex-shrink-1 pa-1 ma-1"
+            class="d-flex flex-column flex-grow-1 justify-center align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
+            :style="`position:relative;z-index:1;`"
+
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
-            <v-card-subtitle my-n1>
+            <v-card
+              id="newchip"
+              groupcard
+              v-bind="cardyprops2"
+              class="d-flex align-center justify-center white--text montyfont pa-3 mx-3 mb-n6"
+              :style="`position:relative;z-index:4;font-size:15px;font-weight:500;`"
+            >   
               Show Reviews
-            </v-card-subtitle>
+            </v-card>
+            <v-spacer />
             <v-select
               id="vselone"
               v-model="prodchoice"
@@ -279,20 +286,21 @@
               min-height="20px"
               max-height="160px"
               :items="products"
-              class="d-flex align-center justify-center mt-2 mb-2 ml-2 mr-10 pr-2"
+              class="d-flex align-center justify-center mt-15 mb-2 ml-2 mr-10 pr-2"
             />
             <!-- <span style="font-size:14px">Select a Product then press Go</span> -->
             <v-card-actions>
               <v-btn
                 id="getrevssbtn"
-                color="blue-grey darken-2"
+                color="deep-orange darken-2"
                 dark
                 vselbackgroundcard2
-                vselone
-                class="mt-2 text-body2"
+                elevation-12
+                class="mb-3 montyfont"
+                style="text-transform:lowercase;"
                 @click="axiosGetRevs"
               >    
-                Go
+                go
               </v-btn>   
             </v-card-actions>
           </v-card>  <!-- end vselbackgroundcard -->
@@ -303,7 +311,7 @@
         <!-- ****** data results - revs listed here -->
         <v-card
           id="spacercard3"
-          height="30px"
+          height="70px"
           width="100%"
           min-width="100%"
           flat
@@ -314,24 +322,26 @@
           shaped
           height="auto"
           width="auto"
-          min-width="220px"    
-          min-height="50px"            
+          min-width="170px"    
+          min-height="150px"            
           max-width="644px"
+          max-height="1244px"
           color="grey lighten-3"
-          class="d-flex flex-column v-grow-1 px-2 pt-0 mx-4 mt-24 mb-10 "
+          class="d-flex flex-column flex-grow-1 flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10 "
           style="position:relative;z-index:1;"
         >           
           <v-card
             id="reviews-title-card"
             color="blue-grey darken-2"
+            reviewssheet
             dark
             width="190px"
             height="34px"
             max-width="190px"  
             min-width="120px"    
             min-height="20px"    
-            reviewssheet
-            class="d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n2 "
+            max-height="50px"
+            class="d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:4;`"
           >   
@@ -349,10 +359,10 @@
             max-width="620px"
             min-width="120px"
             min-height="40px"
-            max-height="550px"
-            class="d-flex v-grow-1 pa-3 ml-1 mt-1 mr-4 mb-2 font-size=small"
+            max-height="1150px"
+            class="d-flex v-grow-1 pa-3 ml-1 mt-12 mr-4 mb-2 font-size=small"
           >
-           <span style="font-size:14px;"> {{ review.comments }} </span>
+            <span style="font-size:14px;"> {{ review.comments }} </span>
           </v-simple-table>
         </v-card>   <!-- end rightbtmsheet -->
       </v-card>  <!-- end   botdivgraphic -->
@@ -370,7 +380,7 @@
   const dJSON = require('dirty-json');
   // const r = dJSON.parse("{ test: 'this is a test'}")
   // console.log(JSON.stringify(r));
-  
+  import ChipGray from './chipgray'
   var prodchoice
 
   function jsonToMap(jsonStr) {
@@ -451,8 +461,7 @@
     let partresult = JSON.stringify(axr.data.result)
     let partb =  JSON.stringify(axr.status)
     let partc =  JSON.stringify(axr.statusText)
-    let spc = "  "
-    let answerstr = partresult + "\n\nStatus code returned (200 is Success): " + partb + "  statusText: " + partc
+    let answerstr = partresult + "<br>Status code returned (200 is Success): " + partb + "  statusText: " + partc
     this.formaxrjson = answerstr
     this.respkey += 1;
   }
@@ -468,6 +477,8 @@
       shapfill: { elevation: 24, shaped: true, filled: true, raised: true },
       vmcat: '',
       vmrev: '',
+      cardyprops2: { width: "190px", height: "34px", "max-width": "190px", "min-width": "120px", 
+        "min-height": "34px", "max-height":"50px", color: "blue-grey darken-2", dark: true },
       cardyprops: { elevation: 24, raised: true, width: "450px", 
         height: "400px", "d-flex": true, outlined: true },
       cardclss: "d-flex justify-left ma-2 pa-1",
@@ -529,9 +540,9 @@
   @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap'); 
 
-  .v-text-field input {
+  /* .v-text-field input {
     width: 350px!important;
-  }
+  } */
   .v-data-table__wrapper {
     font-size: small;
   }
@@ -551,5 +562,12 @@
     font-family: 'Montserrat',sans-serif;
     letter-spacing: 1.25px;
     text-transform: lowercase;
+  }
+  .montyfonttwo {
+    font-family: 'Montserrat',sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.25px;
+    text-transform: lowercase;
+    font-weight: 600;
   }
 </style>

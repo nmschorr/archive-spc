@@ -1,16 +1,8 @@
 <template>
   <v-app id="app">
     <AppBar app />
-    <v-main>
+    <v-main pt-0 pt-md-30>
       <v-container fluid>
-          <v-card
-            id="appbarspacer"
-            color="transparent"
-            flat
-            width="100%"
-            height="90px"
-            class="d-none d-md-flex"
-          />
         <router-view />
         <AllReviews 
           v-if="$store.state.gShowAllrevs"
