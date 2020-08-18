@@ -135,29 +135,19 @@
   export default {
     name: "HomePage",
     data: () => ({
-      // hideshow: this.getgShowHomeBool(),
+      x: 0,
     }),
     computed: {
       styleObject5 () {
         return  (window.outerWidth < 960) ? { fontSize: '16px' } :  { fontSize: '34px' };
       },
-      // styleObject6 () {
-      //   return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
-      // },
-      // styleObject7 () {
-      //   return  (window.outerWidth < 960) ? { width: '290px' } : { width: '424px' };
-      // },
-      // styleObject8 () {
-      //   return  (window.outerWidth < 960) ? '290px' : '424px';
-      // },
-      methods: {
-        showhomebool () {
-          return this.getgShowHomeBool;
-        },
-      }
-    }
+    },
+    methods: {
+      showhomebool () {
+        return this.getgShowHomeBool;
+      },
+    },
   }
-  
 </script>
 
 <style>
