@@ -6,6 +6,7 @@
     <v-app-bar
       id="appbar"
       app
+      :height="vheight"
       v-bind="abprops"
       shrink-on-scroll
       class="d-none d-md-inline-flex mb-4 justify-between align-bottom pb-3"
@@ -57,10 +58,10 @@
     </v-btn>
     <v-btn
       id="navbtn4"
-      color="blue-grey darken-1"
+      color="teal darken-1"
       v-bind="btnprops"        
       class="d-xs-flex d-md-none montyfontb align-self-end mt-2"
-      to="/"
+      to="AllReviews"
       @click="allrevsclick"
     >
       Reviews
@@ -89,13 +90,12 @@
       },
       abprops: {
         width: "100%",
-        height: "200",
         "min-width": "140px",
         "max-width": "2000px",      
         "min-height": "0px",
         "max-height": "250px",
         elevation: 12,
-        prominent: true,
+        prominent: false,
         dark: true,
       }
     }),
@@ -103,6 +103,9 @@
       newHomeKeyCt () {
         return this.$store.state.gHomeKeyCount
       },
+      vheight () {
+        return window.outerWidth > 959 ? '120px' : '30px';
+        }
     },
     methods: {
       homeclick () {

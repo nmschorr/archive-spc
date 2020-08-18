@@ -12,15 +12,15 @@
         id="left-column-card"
         color="blue-grey lighten-4"
         width="100%"
-        height="950px"
+        height="790px"
         min-width="200px"           
         max-width="700px"            
-        min-height="750px"
-        max-height="2250px"
-        elevation-10
+        min-height="550px"
+        max-height="1000px"
+        elevation-15
         shaped
         filled
-        class="d-flex flex-column align-center justify-center flex-grow-1 pt-12 pb-3 mt-0"
+        class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1 pt-12 pb-3 mt-0"
       > 
         <!-- * * * * * * *  card on left -->
         <v-card
@@ -70,21 +70,24 @@
             min-width="100px"
             shaped
             elevation-12
-            class="d-flex flex-column flex-grow-1 flex-wrap justify-center pl-4 pr-1 py-3 mx-3 mt-n2 mb-6 ptsans"
-            style="font-size:14px;font-weight:400;"
+            class="d-flex flex-column flex-grow-1 flex-wrap justify-center pl-4 pr-0 py-3 mx-3 mt-n2 mb-6 ptsans"
           >      
-            {{ contract }}
+            <span 
+              :style="styleObject"
+            >
+              {{ contract }}
+            </span>
           </v-card> <!-- end contractchip -->
         </v-card>  <!-- form card start -->
         <v-card
           id="form-area"
           color="blue-grey lighten-5"
           width="92%"
-          height="400px"
+          height="450px"
           min-width="250px"
           max-width="700px"
           min-height="300px"
-          max-height="900px"
+          max-height="500px"
           shaped
           class="d-flex flex-column align-center flex-grow-1 px-0 pt-0 mx-1 mt-7 mb-20"
         >          
@@ -107,11 +110,11 @@
             id="form-wrap"
             form-area
             width="100%"
-            height="500px"
+            height="390px"
             min-width="200px"
             max-width="900px"            
             min-height="200px"
-            max-height="1700px"
+            max-height="400px"
             flat
             color="transparent"
             class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1  pa-2 ma-2"
@@ -120,7 +123,7 @@
               id="wform"
               ref="wform" 
               form-wrap
-              width="220px"
+              width="270px"
               min-width="170px"
               max-width="450px"
               min-height="300px"              
@@ -139,7 +142,7 @@
                 max-height="200px"             
                 required
                 clearable
-                color="blue-grey darken-1"
+                color="white"
                 label="Product Category"
                 class="pa-2 mb-0 mx-2 width=50%"
               />                        
@@ -147,13 +150,13 @@
                 id="textfieldform1b"
                 v-model="vmrev"
                 label="Your Review"
-                color="blue-grey darken-1"
+                color="white"
                 width="90%"
-                height="170px"
+                height="110px"
                 min-width="150px"
                 max-width="700px"
                 min-height="100px"
-                max-height="500px"
+                max-height="300px"
                 outlined
                 clearable
                 class="pa-2 ma-2 width=`82%`"
@@ -201,11 +204,11 @@
             color="white"
             feedbackcard
             width="337px"
-            height="170px"
+            height="100px"
             min-width="320px"
             max-width="620px"
             min-height="140px"
-            max-height="550px"
+            max-height="250px"
             class="px-4 py-5"
           >
             <span style="font-size:14px;"> {{ formaxrjson }} </span>
@@ -228,7 +231,7 @@
         height="auto"
         min-height="250px"
         max-height="2000px"
-        elevation-10
+        elevation-15
         shaped
         filled
         class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-around align-center pt-12"
@@ -242,7 +245,7 @@
           min-height="75px"
           max-height="290px"
           flat
-          color="teal lighten-4"
+          color="transparent"
           class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4"
         >                                
           <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
@@ -358,9 +361,9 @@
             height="auto"
             max-width="620px"
             min-width="120px"
-            min-height="40px"
+            min-height="37px"
             max-height="1150px"
-            class="d-flex v-grow-1 pa-3 ml-1 mt-12 mr-4 mb-2 font-size=small"
+            class="d-flex v-grow-1 pa-3 ml-1 mr-4 mt-1 mb-1 font-size=small"
           >
             <span style="font-size:14px;"> {{ review.comments }} </span>
           </v-simple-table>
@@ -466,11 +469,13 @@
     this.respkey += 1;
   }
   var redsize = null
+  var styleObject = {}
 
   export default {
     name: "AllReviews",
     data: () => ({
       prodchoice,
+      specfont: { "font-size": "12px!important;"},
       review,
       respkey: 0,
       formaxrjson: '',
@@ -504,6 +509,9 @@
         }
         return fwsize;
       },
+      styleObject () {
+        return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
+      },
       yesbig () {
         var big = false;
         if (window.outerWidth > 959) {
@@ -512,13 +520,15 @@
         return big;
       },
     },
+
     mounted () {
       this.axiosGetProds()  // get the prod list
       if (window.outerWidth < 960) {
-        this.$store.dispatch('gMobileAct', true)    
+        this.$store.dispatch('gMobileAct', true)   
+        console.log("yes mobile") 
+        console.log(this.$vuetify.application.top) 
       }
     },
-
     methods: {
       axiosGetRevs,
       axiosGetProducts,

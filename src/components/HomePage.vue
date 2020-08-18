@@ -1,8 +1,7 @@
 /* eslint-disable vue/name-property-casing */
 <template>
-  <v-container
+  <div
     id="frontpage"
-    fluid
   >
     <v-row>
       <v-col
@@ -89,7 +88,7 @@
           <v-card
             id="groupcard3"
             mainfcard
-            class="d-flex flex-column align-center justify-center px-12 mt-xs-0 mt-md-10 mb-9"
+            class="d-flex flex-column align-center justify-center px-12 mt-10 mb-9"
             flat
             color="transparent"
             width="100%"
@@ -128,7 +127,7 @@
         </div>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
