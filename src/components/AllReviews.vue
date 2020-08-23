@@ -256,6 +256,7 @@
 
           <v-card        
             id="vselbackgroundcard2"
+            :key="prodkey1"
             groupcard
             width="97%"
             height="100%"
@@ -280,7 +281,9 @@
             </v-card>
             <v-spacer />
             <v-select
+              v-show="showproducts"
               id="vselone"
+              ref="vselone"
               v-model="prodchoice"
               vselbackgroundcard2
               label="Select a Product then press Go"
@@ -354,11 +357,11 @@
           >   
             reviews
           </v-card>
-          <!-- end reviewsfoundback -->
+          <!-- date below is for duplicate keys problem -->
           <v-simple-table
             v-for="review in reviewlist"
             id="reviewstable"
-            :key="review.id"    
+            :key="review.id + tdate"    
             reviewssheet  
             dense
             height="auto"
@@ -448,15 +451,27 @@
     let axr = await this.axiosGetProducts( cid, ctaddy, u3)
     this.products = axr
     console.log("this.products: " + axr)
-    // this.cardkey += 1; 
     this.showProds = true
   }
+
+  async function waitReloadProducts() {
+    setTimeout(function () {
+      alert("Data received by blockchain. Press OK to Continue"); // "done!"
+      this.axiosGetProds()
+      this.prodkey1 += 1;
+    }, 5000);  
+
+  }
+
+
   var review =''
 
   async function wreview () {
+    var answerstr = ''
     const wcat = this.vmcat
     const wrev = this.vmrev
     this.reset()
+    this.showproducts = false;
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
@@ -466,11 +481,17 @@
     let axrstring = JSON.stringify(axr)
     console.log("wreview received response myaxr: " + axrstring)
     let partresult = JSON.stringify(axr.data.result)
-    let partb =  JSON.stringify(axr.status)
-    let partc =  JSON.stringify(axr.statusText)
-    let answerstr = partresult + "\n\nStatus code: " + partb + "\n\nstatusText: " + partc
+    let partb = JSON.stringify(axr.status)
+    let partc = JSON.stringify(axr.statusText)
+    answerstr = partresult + "\n\nStatus code: " + partb + "\n\nstatusText: " + partc
+    if (typeof(axr.data.result) == 'undefined') {
+      alert("undefined")
+      answerstr = "Write Review Failed. Make sure both fields contain alpha-numeric values."
+    }
     this.formaxrjson = answerstr
+    this.waitReloadProducts()
     this.respkey += 1;
+    this.reset2();
   }
   var redsize = null
   var styleObject = {}
@@ -482,6 +503,9 @@
       specfont: { "font-size": "12px!important;"},
       review,
       respkey: 0,
+      showproducts: true,
+      prodkey1: 0,
+      prodkey2: 0,
       formaxrjson: '',
       shapfill: { elevation: 24, shaped: true, filled: true, raised: true },
       vmcat: '',
@@ -512,6 +536,9 @@
           tsize = "250"
         }
         return fwsize;
+      },
+      tdate () {
+        return new Date().getTime();
       },
       styleObject () {
         return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
@@ -548,9 +575,14 @@
       axiosGetProds,
       writeReview,
       wreview,
+      waitReloadProducts,
       reset () {
         this.$refs.wform.reset()
-        console.log("form resest")
+        console.log("form reset")
+      },
+      reset2 () {
+        this.$refs.vselone.reset()
+        console.log("vselone reset")
       },
     },
   }

@@ -47,7 +47,11 @@
       </v-btn>
     </v-app-bar>
     <!-- following is for mobile only -->
-    <div d-xs-flex d-md-none flex-inline-row>
+    <div 
+      d-xs-flex 
+      d-md-none 
+      flex-inline-row
+    >
       <v-btn
         id="navbtn3"
         :width="btnwidth"
