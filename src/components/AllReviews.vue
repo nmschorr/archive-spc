@@ -10,7 +10,7 @@
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="columncard-left"
-        color="blue-grey lighten-4"
+        color="blue-grep darken-3"
         width="100%"
         height="790px"
         min-width="200px"           
@@ -38,7 +38,7 @@
         > 
           <!-- JUST THE LABEL TITLE WORD CONTRACT: -->
           <v-card
-            id="getprodsCHIP-LABEL"
+            id="getprodsChip"
             color="blue-grey darken-2"
             top-backcard
             width="150px"
@@ -48,8 +48,6 @@
             min-width="23px"    
             max-width="190px"  
             dark
-            shaped
-            filled            
             class="d-flex flex-grow-1 align-center justify-center white--text montyfont px-3 py-3 mx-7"
             style="font-size:15px;font-weight:500;"
             :style="`position:relative;z-index:4;`"
@@ -68,7 +66,6 @@
             max-height="290px"
             max-width="523px"            
             min-width="100px"
-            shaped
             elevation-12
             class="d-flex flex-column flex-grow-1 flex-wrap justify-center pl-4 pr-0 py-3 mx-3 mt-n2 mb-6 ptsans"
           >      
@@ -81,7 +78,7 @@
         </v-card>  <!-- form card start -->
         <v-card
           id="form-area"
-          color="white"
+          color="cyan lighten-5"
           columncard-left
           width="92%"
           height="520px"
@@ -92,21 +89,26 @@
           shaped
           class="d-flex flex-column align-center flex-grow-1 px-0 pt-0 mx-1 mt-7 mb-20"
         >          
-          <v-card
-            id="writerev-LABEL"
-            color="blue-grey darken-2"
+          <v-chip
+            id="reviews-titleChipTop33"
+            color="teal accent-4"
+            text-color="white"
+            vselbackgroundcard2
+            label
             dark
-            width="190px"
-            height="34px"
-            max-width="190px"  
-            min-width="50px"    
-            form-area
-            class="d-flex flex-column align-center justify-center white--text montyfont px-3 py-1 mx-3 mt-n4"
-            style="font-size:15px;font-weight:500;"
-            :style="`position:relative;z-index:3;`"
-          >
+            medium
+            class="montyfont px-6 mx-3 pl-4 text-center"
+            style="font-size:16px;font-weight:700;max-width:200px;"
+            :style="`position:relative;z-index:4;`"
+          >   
+            <v-icon 
+              left
+            >
+              mdi-clipboard-flow
+            </v-icon>
             write review
-          </v-card>
+          </v-chip>  
+
           <v-card
             id="form-wrap"
             form-area
@@ -190,7 +192,9 @@
           </v-card>  
         </v-card>  <!-- end formAREA --><!-- begin feedback -->
         <v-card
+          v-if="showfeedback"
           id="feedbackcard"
+          :key="showfeedback"
           columncard-left
           color="white"
           width="auto"
@@ -264,24 +268,33 @@
             max-width="600px"
             min-height="170px"
             max-height="330px"
-            color="blue-grey lighten-5"
+            color="white"
             class="d-flex flex-column flex-grow-1 justify-center align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
             :style="`position:relative;z-index:1;`"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
-            <v-card
-              id="newchip"
-              groupcard
-              v-bind="cardyprops2"
-              class="d-flex align-center justify-center white--text montyfont pa-3 mx-3 mb-n6"
-              :style="`position:relative;z-index:4;font-size:15px;font-weight:500;`"
+            <v-chip
+              id="reviews-titleChipTop"
+              color="cyan darken-1"
+              text-color="white"
+              vselbackgroundcard2
+              label
+              dark
+              medium
+              class="montyfont px-6 mx-3 pl-4 mt-n10 text-center"
+              style="font-size:16px;font-weight:700;max-width:200px;"
+              :style="`position:relative;z-index:4;`"
             >   
+              <v-icon 
+                left
+              >
+                mdi-clipboard-flow
+              </v-icon>
               Show Reviews
-            </v-card>
+            </v-chip>  
             <v-spacer />
             <v-select
-              v-show="showproducts"
               id="vselone"
               ref="vselone"
               v-model="prodchoice"
@@ -294,7 +307,7 @@
               max-width="450px"
               min-height="20px"
               max-height="160px"
-              :items="products"
+              :items="productlist"
               class="d-flex align-center justify-center mt-15 mb-2 ml-2 mr-10 pr-2"
             />
             <!-- <span style="font-size:14px">Select a Product then press go</span> -->
@@ -337,26 +350,46 @@
           :max-width="`styleobject4`"
           max-height="1744px"
           shaped
-          class="d-flex flex-column flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10 "
+          class="d-flex flex-column flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10"
           style="position:relative;z-index:1;"
-        >           
-          <v-card
-            id="reviews-title-card"
-            color="blue-grey darken-2"
+        >    
+          <v-chip
+            id="reviews-titleChip2222"
+            color="cyan darken-1"
+            text-color="white"
+            label
             reviewssheet
             dark
-            width="190px"
-            height="34px"
-            max-width="190px"  
-            min-width="120px"    
-            min-height="20px"    
-            max-height="50px"
-            class="d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
-            style="font-size:15px;font-weight:500;"
+            medium
+            class="montyfont px-6 mx-3 pl-4 mt-n10 text-center"
+            style="font-size:16px;font-weight:700;max-width:200px;"
             :style="`position:relative;z-index:4;`"
           >   
-            reviews
-          </v-card>
+            <v-icon 
+              left
+            >
+              mdi-clipboard-flow
+            </v-icon>
+            Reviews
+          </v-chip>
+          <!-- 
+            <v-card
+              id="reviews-titleChip"
+              color="blue-grey darken-2"
+              reviewssheet
+              dark
+              width="190px"
+              height="34px"
+              max-width="190px"  
+              min-width="120px"    
+              min-height="20px"    
+              max-height="50px"
+              class="shaped=false d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
+              style="font-size:15px;font-weight:500;"
+              :style="`position:relative;z-index:4;`"
+            >   
+              reviews
+            </v-card> -->
           <!-- date below is for duplicate keys problem -->
           <v-simple-table
             v-for="review in reviewlist"
@@ -391,7 +424,7 @@
   // const r = dJSON.parse("{ test: 'this is a test'}")
   // console.log(JSON.stringify(r));
   import ChipGray from './chipgray'
-  var prodchoice
+  var cj = cobj.data.cobj
 
   function jsonToMap(jsonStr) {
     return new Map(JSON.parse(jsonStr));
@@ -449,8 +482,10 @@
     const u3 = cobj.data.cobj.Url3
     console.log("thedata: " +  cid + " " + ctaddy + " " + u3)
     let axr = await this.axiosGetProducts( cid, ctaddy, u3)
-    this.products = axr
-    console.log("this.products: " + axr)
+    let axrsorted = axr.slice().sort()
+    console.log("sorted: -- : " +  axrsorted)
+    this.productlist = Object.assign(axrsorted)
+    console.log("this.productlist: " + axrsorted)
     this.showProds = true
   }
 
@@ -463,58 +498,46 @@
 
   }
 
-
-  var review =''
-
   async function wreview () {
     var answerstr = ''
     const wcat = this.vmcat
     const wrev = this.vmrev
-    this.reset()
+    this.resetform()
+    this.showfeedback = true
     this.showproducts = false;
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
     let axr = await this.writeReview( wcat, wrev)
-    console.log("wreview received response axr: " + axr)
-
-    let axrstring = JSON.stringify(axr)
-    console.log("wreview received response myaxr: " + axrstring)
-    let partresult = JSON.stringify(axr.data.result)
-    let partb = JSON.stringify(axr.status)
-    let partc = JSON.stringify(axr.statusText)
-    answerstr = partresult + "\n\nStatus code: " + partb + "\n\nstatusText: " + partc
     if (typeof(axr.data.result) == 'undefined') {
-      alert("undefined")
-      answerstr = "Write Review Failed. Make sure both fields contain alpha-numeric values."
-    }
-    this.formaxrjson = answerstr
-    this.waitReloadProducts()
-    this.respkey += 1;
-    this.reset2();
+      badanswerstr = "Write Review Failed. Make sure both fields contain alpha-numeric values."
+      alert(badanswerstr)
+      }
+    else {
+      console.log("wreview received response axr: " + axr)
+      let axrstring = JSON.stringify(axr)
+      console.log("wreview received response myaxr: " + axrstring)
+      let partresult = JSON.stringify(axr.data.result)
+      let partb = JSON.stringify(axr.status)
+      let partc = JSON.stringify(axr.statusText)
+      this.formaxrjson = answerstr
+      this.waitReloadProducts().then(console.log("- - - - ! ! ! done waiting"))
+      this.respkey += 1;
+      this.resetvselone();
+      }
   }
-  var redsize = null
-  var styleObject = {}
 
   export default {
     name: "AllReviews",
     data: () => ({
-      prodchoice,
-      specfont: { "font-size": "12px!important;"},
-      review,
+      review: '',
       respkey: 0,
       showproducts: true,
       prodkey1: 0,
       prodkey2: 0,
       formaxrjson: '',
-      shapfill: { elevation: 24, shaped: true, filled: true, raised: true },
       vmcat: '',
       vmrev: '',
-      cardyprops2: { width: "190px", height: "34px", "max-width": "190px", "min-width": "120px", 
-        "min-height": "34px", "max-height":"50px", color: "blue-grey darken-2", dark: true },
-      cardyprops: { elevation: 24, raised: true, width: "450px", 
-        height: "400px", "d-flex": true, outlined: true },
-      cardclss: "d-flex justify-left ma-2 pa-1",
       chainid: cobj.data.cobj.chainid,
       SENDER: cobj.data.cobj.SENDER,
       OWNER: cobj.data.cobj.OWNER,
@@ -522,14 +545,21 @@
       VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
       GAS_PRICE: cobj.data.cobj.GAS_PRICE,
       GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
-      products: [],
+      productlist: [],
       reviewlist: '',
       contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
       showProds: false,
+      prodchoice: '',
+      showfeedback: false,
       MyQueries,
       }),
 
     computed: {
+      cardyprops2 () {
+        var myobj = { width: "190px", height: "34px", "max-width": "190px", "min-width": "120px", 
+        "min-height": "34px", "max-height": "34px" };
+        return myobj
+      },
       formwid () {
         var fwsize = "350";
         if (window.outerWidth < 960) {
@@ -576,11 +606,11 @@
       writeReview,
       wreview,
       waitReloadProducts,
-      reset () {
+      resetform () {
         this.$refs.wform.reset()
         console.log("form reset")
       },
-      reset2 () {
+      resetvselone () {
         this.$refs.vselone.reset()
         console.log("vselone reset")
       },
