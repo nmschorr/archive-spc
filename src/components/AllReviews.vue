@@ -426,7 +426,7 @@
           <v-simple-table
             v-for="review in reviewlist"
             id="reviewstable"
-            :key="review.id + tdate"    
+            :key="review.id + Math.random().toString()"    
             reviewssheet  
             dense
             height="auto"
@@ -454,10 +454,6 @@
   const dJSON = require('dirty-json');
   const cjo = cobj.data.cobj
 
-  // function jsonToMap(jsonStr) {
-  //   return new Map(JSON.parse(jsonStr));
-  // }
-
   function strMapToObj(strMap) {
     let obj = Object.create(null);
     for (let [k,v] of strMap) {
@@ -477,25 +473,15 @@
     return strMap;
   }
 
-  // function strMapToJson(strMap) {
-  //   return JSON.stringify(strMapToObj(strMap));
-  // }
-
   function jsonToStrMap(jsonStr) {
     return objToStrMap(JSON.parse(JSON.stringify(jsonStr)));
   }
-
-  // function ditchit(jstr) {
-  //   let nstr = jstr.replace("\"" , "")
-  //   console.log(nstr)
-  //   return nstr
-  // }
 
   async function axiosGetRevs () {
     var contaddy = 'SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC'
     const cid = 4810
     const u3 = 'http://westteam.nulstar.com:8003'
-    console.log("line225 ")
+    // console.log("line225 ")
     let axr = await axiosGetReviewsMain( cid, contaddy, this.prodchoice, u3)
     const myresult =  axr.data.result.result // step 1 stringify
     const stepone = dJSON.parse(myresult)
@@ -511,29 +497,29 @@
     let axr = await this.axiosGetProducts( c.chainid, c.contaddy, c.Url3)
     let axrsorted = axr.slice().sort()
     console.log("sorted: -- : " +  axrsorted)
+    this.productlist = []
     this.productlist = Object.assign(axrsorted)
-    console.log("this.productlist: " + axrsorted)
+    console.log("new this.productlist: " + axrsorted)
     this.showprodlist = true
   }
 
-  async function reloadProducts() {
-    this.showprodlist = false
-    this.axiosGetProds()
-    this.showprodlist = true
+  async function reloadProducts(wcat) {
+    var i = 0
+    var itsthere = false
+    while (i < 15) {
+      this.axiosGetProds()
+      i += 1;
+      if (this.productlist.indexOf(wcat) > -1)
+        break;
+    }
+    
   }
-  // async function waitReloadProductsOrig() {
-  //   setTimeout(function () {
-  //     alert("Data received by blockchain. Press OK to Continue"); // "done!"
-  //     this.axiosGetProds()
-  //     this.prodkey1 += 1;
-  //   }, 5000);  
-  // }
-
+  
   async function wreview () {
-    this.showprodlist = false;
     var answerstr = ''
     const wcat = this.vmcat
     const wrev = this.vmrev
+    this.netcat = wcat
     this.resetform()
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
@@ -551,9 +537,9 @@
       let partb = JSON.stringify(axr.status)
       let partc = JSON.stringify(axr.statusText)
       this.formaxrjson = answerstr
-      this.reloadProducts();
-      this.resetvselone();
       this.showfeedback = true
+      this.reloadProducts(wcat);
+      this.resetvselone();
       }
   }
 
@@ -561,7 +547,8 @@
     name: "AllReviews",
     data: () => ({
       review: '',
-      showprodlist: false,
+      newcat: '',
+      showprodlist: true,
       prodkey1: 0,
       prodkey2: 0,
       formaxrjson: '',
@@ -577,7 +564,9 @@
 
     computed: {
       tdate () {
-        return new Date().getTime();
+        var n = Math.random()
+        var nn = n.toString()
+        return nn;
       },
       styleObject () {
         return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
