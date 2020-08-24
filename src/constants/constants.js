@@ -22,6 +22,7 @@ const cobj = {
   chainid, PW, contaddy, SENDER, OWNER, BUYER, VALUE_ASSET,
   GAS_PRICE, GAS_LIMIT, Url3, Url4
 }
+
 export default { 
   name: "constants",
   data: {

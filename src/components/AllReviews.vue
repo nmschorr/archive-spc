@@ -7,12 +7,18 @@
       xs="12"
       class="d-flex flex-column"
     >  
+      <!-- <v-img
+        class="align-center"
+        height="890px"
+        src="@/assets/StockSnap_YVTZVJ1BRI.jpg"
+      />       -->
+
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="columncard-left"
-        color="black"
+        color="transparent"
         width="100%"
-        height="890px"
+        height="800px"
         min-width="200px"           
         max-width="700px"            
         min-height="550px"
@@ -21,7 +27,7 @@
         raised
         shaped
         filled
-        class="d-flex flex-column align-center flex-grow-1 flex-shrink-1 pt-1 pb-3 mt-0"
+        class="d-flex flex-column align-center flex-shrink-1 pt-1 pb-3 mt-0"
       > 
         <!-- * * * * * * *  card on left -->
         <v-card
@@ -89,13 +95,12 @@
           color="teal lighten-5"
           columncard-left
           width="92%"
-          height="520px"
           min-width="250px"
           max-width="700px"
           min-height="300px"
-          max-height="600px"
           shaped
-          class="d-flex flex-column align-center flex-grow-1 px-0 pt-2 mx-1 mt-7 mb-20"
+          :style="computedHeight"
+          class="d-flex flex-column align-center px-0 pt-2 pb-2 mx-1 mt-3 mb-7"
         >          
           <v-chip
             id="write-rev-Chip"
@@ -105,7 +110,7 @@
             label
             dark
             medium
-            class="montyfont pl-2 py-6 mx-3 mt-4 mb-1 text-center"
+            class="montyfont pl-2 py-6 mx-3 mt-1 mb-1 text-center"
             style="font-size:36px;font-weight:700;max-width:600px;"
           >   
             <v-icon
@@ -243,15 +248,16 @@
       <!-- ****** column card  -->
       <v-card
         id="columncard-right"
-        color="black"
+        color="white"
         width="100%"
         height="auto"
         min-height="250px"
         max-height="2000px"
         elevation-24
+        raised
         shaped
         filled
-        class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center pt-2"
+        class="d-flex flex-column align-center pt-2"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vsel RED groupcard  -->
@@ -278,7 +284,7 @@
             max-width="600px"
             min-height="170px"
             max-height="330px"
-            color="purple"
+            color="transparent"
             class="d-flex flex-column flex-grow-1 align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
@@ -296,7 +302,7 @@
               <v-icon
                 :style="`margin-right:12px;font-size:36px;`"
               >                
-                mdi-clipboard-flow
+                mdi-layers-search
               </v-icon>
               <span
                 style="margin-right:24px;"
@@ -304,9 +310,10 @@
                 read reviews <br>
               </span> 
             </v-chip>
-            <v-spacer />
             <v-select
+              v-show="showprodlist"
               id="vselone"
+              :key="showprodlist"
               ref="vselone"
               v-model="prodchoice"
               vselbackgroundcard2
@@ -324,9 +331,10 @@
             <!-- <span style="font-size:14px">Select a Product then press go</span> -->
             <v-card
               id="btnspacer"
-              color="red"
+              color="transparent"
               width="100%"
               height="150px"
+              flat
               class="d-flex flex-column justify-center align-center"
             >
               <v-card-actions>
@@ -353,7 +361,7 @@
                   elevation-12
                   class="mb-3 montyfont"
                   style="text-transform:lowercase;"
-                  @click="axiosGetList"
+                  @click="reloadProducts"
                 >    
                   reload products
                 </v-btn> 
@@ -371,7 +379,7 @@
           width="100%"
           min-width="100%"
           flat
-          color="rgba(0,0,0,0)"
+          color="transparent"
         />
         <v-card
           id="reviewssheet"
@@ -384,41 +392,35 @@
           :max-width="`styleobject4`"
           max-height="1744px"
           shaped
-          class="d-flex flex-column flex-shrink-1 px-6 py-6 mx-6 mt-24 mb-10"
+          class="d-flex flex-column align-left flex-shrink-1 px-6 pt-3 pb-6 mx-6 mt-4 mb-10"
         >    
-          <v-chip
-            id="reviews-titleChip2222"
-            color="transparent"
-            text-color="black"
-            label
-            reviewssheet
-            dark
-            medium
-            class="montyfont px-6 mx-3 pl-4 mt-3 text-center"
-            style="font-size:16px;font-weight:700;max-width:200px;"
-          >   
-            <v-icon 
-              left
-            >
-              mdi-clipboard-flow
-            </v-icon>
-            Reviews
-          </v-chip>
           <v-card
-            id="reviews-titleChip"
-            color="blue-grey darken-2"
-            reviewssheet
-            dark
-            width="190px"
-            height="34px"
-            max-width="190px"  
-            min-width="120px"    
-            min-height="20px"    
-            max-height="50px"
-            class="shaped=false d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
-            style="font-size:15px;font-weight:500;"
-          >   
-            reviews
+            id="chipdivcenter"
+            color="transparent"
+            width="100%"
+            height="70px"
+            min-height="70px"
+            class="d-flex flex-column align-center pa-0 ma-0"
+            flat
+          >
+            <v-chip
+              id="reviewsChip"
+              chipdivcenter
+              color="transparent"
+              text-color="black"
+              large
+              label
+              medium
+              class="montyfont px-6 pt-3 pb-0 mx-3 mt-1 mb-0 text-center"
+              style="font-size:30px;font-weight:700;max-width:200px;"
+            >   
+              <v-icon
+                :style="`margin-right:12px;font-size:36px;`"
+              >
+                mdi-clipboard-flow
+              </v-icon>
+              reviews
+            </v-chip>
           </v-card>
           <!-- date below is for duplicate keys problem -->
           <v-simple-table
@@ -446,19 +448,15 @@
 <script>
   import Vue from 'vue'
   import axios from "axios";
-  import { Hcont, ccodes} from '@/constants/constantsnew.js'
   import cobj from '@/constants/constants.js';
-  require('./queries.js')
-  import { axiosGetProducts, writeReview, axiosGetReviewsMain, MyQueries } from './queries.js'
+  import { Hcont, ccodes} from '@/constants/constantsnew.js'
+  import { axiosGetProducts, writeReview, axiosGetReviewsMain } from './queries.js'
   const dJSON = require('dirty-json');
-  // const r = dJSON.parse("{ test: 'this is a test'}")
-  // console.log(JSON.stringify(r));
-  import ChipGray from './chipgray'
-  var cj = cobj.data.cobj
+  const cjo = cobj.data.cobj
 
-  function jsonToMap(jsonStr) {
-    return new Map(JSON.parse(jsonStr));
-  }
+  // function jsonToMap(jsonStr) {
+  //   return new Map(JSON.parse(jsonStr));
+  // }
 
   function strMapToObj(strMap) {
     let obj = Object.create(null);
@@ -479,19 +477,19 @@
     return strMap;
   }
 
-  function strMapToJson(strMap) {
-    return JSON.stringify(strMapToObj(strMap));
-  }
+  // function strMapToJson(strMap) {
+  //   return JSON.stringify(strMapToObj(strMap));
+  // }
 
   function jsonToStrMap(jsonStr) {
     return objToStrMap(JSON.parse(JSON.stringify(jsonStr)));
   }
 
-  function ditchit(jstr) {
-    let nstr = jstr.replace("\"" , "")
-    console.log(nstr)
-    return nstr
-  }
+  // function ditchit(jstr) {
+  //   let nstr = jstr.replace("\"" , "")
+  //   console.log(nstr)
+  //   return nstr
+  // }
 
   async function axiosGetRevs () {
     var contaddy = 'SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC'
@@ -507,33 +505,36 @@
   }  
 
   async function axiosGetProds () {
-    const cid = cobj.data.cobj.chainid
-    const ctaddy = cobj.data.cobj.contaddy
-    const u3 = cobj.data.cobj.Url3
-    console.log("thedata: " +  cid + " " + ctaddy + " " + u3)
-    let axr = await this.axiosGetProducts( cid, ctaddy, u3)
+    const c = cjo
+    this.showprodlist = false
+    console.log("thedata: " +  cjo.chainid + " " + cjo.contaddy + " " + cjo.Url3)
+    let axr = await this.axiosGetProducts( c.chainid, c.contaddy, c.Url3)
     let axrsorted = axr.slice().sort()
     console.log("sorted: -- : " +  axrsorted)
     this.productlist = Object.assign(axrsorted)
     console.log("this.productlist: " + axrsorted)
-    this.showProds = true
+    this.showprodlist = true
   }
 
-  async function waitReloadProducts() {
-    setTimeout(function () {
-      alert("Data received by blockchain. Press OK to Continue"); // "done!"
-      this.axiosGetProds()
-      this.prodkey1 += 1;
-    }, 5000);  
-
+  async function reloadProducts() {
+    this.showprodlist = false
+    this.axiosGetProds()
+    this.showprodlist = true
   }
+  // async function waitReloadProductsOrig() {
+  //   setTimeout(function () {
+  //     alert("Data received by blockchain. Press OK to Continue"); // "done!"
+  //     this.axiosGetProds()
+  //     this.prodkey1 += 1;
+  //   }, 5000);  
+  // }
 
   async function wreview () {
+    this.showprodlist = false;
     var answerstr = ''
     const wcat = this.vmcat
     const wrev = this.vmrev
     this.resetform()
-    this.showproducts = false;
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
@@ -550,8 +551,7 @@
       let partb = JSON.stringify(axr.status)
       let partc = JSON.stringify(axr.statusText)
       this.formaxrjson = answerstr
-      this.waitReloadProducts().then(console.log("- - - - ! ! ! done waiting"))
-      this.respkey += 1;
+      this.reloadProducts();
       this.resetvselone();
       this.showfeedback = true
       }
@@ -561,42 +561,21 @@
     name: "AllReviews",
     data: () => ({
       review: '',
-      respkey: 0,
-      showproducts: true,
+      showprodlist: false,
       prodkey1: 0,
       prodkey2: 0,
       formaxrjson: '',
       vmcat: '',
       vmrev: '',
-      chainid: cobj.data.cobj.chainid,
-      SENDER: cobj.data.cobj.SENDER,
-      OWNER: cobj.data.cobj.OWNER,
-      BUYER: cobj.data.cobj.BUYER,
-      VALUE_ASSET: cobj.data.cobj.VALUE_ASSET,
-      GAS_PRICE: cobj.data.cobj.GAS_PRICE,
-      GAS_LIMIT: cobj.data.cobj.GAS_LIMIT,
+      chainid: cjo.chainid,
       productlist: [],
       reviewlist: '',
       contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
-      showProds: false,
       prodchoice: '',
       showfeedback: false,
-      MyQueries,
       }),
 
     computed: {
-      cardyprops2 () {
-        var myobj = { width: "190px", height: "34px", "max-width": "190px", "min-width": "120px", 
-        "min-height": "34px", "max-height": "34px" };
-        return myobj
-      },
-      formwid () {
-        var fwsize = "350";
-        if (window.outerWidth < 960) {
-          tsize = "250"
-        }
-        return fwsize;
-      },
       tdate () {
         return new Date().getTime();
       },
@@ -606,8 +585,8 @@
       styleObject2 () {
         return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
       },
-      styleObject3 () {
-        return  (window.outerWidth < 960) ? { width: '290px' } : { width: '424px' };
+      computedHeight () {
+        return  (window.outerWidth < 960) ? { height: '624px' } : { height: '424px' };
       },
       styleObject4 () {
         return  (window.outerWidth < 960) ? '290px' : '424px';
@@ -635,12 +614,13 @@
       axiosGetProds,
       writeReview,
       wreview,
-      waitReloadProducts,
+      reloadProducts,
       resetform () {
         this.$refs.wform.reset()
         console.log("form reset")
       },
       resetvselone () {
+        this.showprodlist = true
         this.$refs.vselone.reset()
         console.log("vselone reset")
       },
@@ -652,12 +632,8 @@
   @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap'); 
 
-  /* .v-text-field input {
-    width: 350px!important;
-  } */
   .v-data-table__wrapper {
     font-size: small;
   }
@@ -672,18 +648,11 @@
     color: black;
   }
   .tealback {
-    background-image: linear-gradient(306deg, teal 70%, black 30% );
+    background-image: linear-gradient(306deg, teal 70%, cyan 30% );
   }
   .montyfont {
     font-family: 'Montserrat',sans-serif;
     letter-spacing: 1.25px;
     text-transform: lowercase;
-  }
-  .montyfonttwo {
-    font-family: 'Montserrat',sans-serif;
-    font-size: 20px;
-    letter-spacing: 1.25px;
-    text-transform: lowercase;
-    font-weight: 600;
   }
 </style>
