@@ -10,9 +10,9 @@
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="columncard-left"
-        color="blue-grep darken-3"
+        color="blue-grey lighten-5"
         width="100%"
-        height="790px"
+        height="890px"
         min-width="200px"           
         max-width="700px"            
         min-height="550px"
@@ -20,7 +20,7 @@
         elevation-15
         shaped
         filled
-        class="d-flex flex-column align-center justify-center flex-grow-1 flex-shrink-1 pt-12 pb-3 mt-0"
+        class="d-flex flex-column align-center flex-grow-1 flex-shrink-1 pt-1 pb-3 mt-0"
       > 
         <!-- * * * * * * *  card on left -->
         <v-card
@@ -34,41 +34,46 @@
           max-width="900px"  
           min-height="90px"
           max-height="907px"             
-          class="d-flex flex-column mx-3 mt-9 mb-12 pa-2"
+          class="d-flex flex-column mx-3 mt-1 mb-1"
         > 
           <!-- JUST THE LABEL TITLE WORD CONTRACT: -->
-          <v-card
-            id="getprodsChip"
-            color="blue-grey darken-2"
-            top-backcard
-            width="150px"
-            height="34px"
-            min-height="10px"
-            max-height="37px"            
-            min-width="23px"    
-            max-width="190px"  
-            dark
-            class="d-flex flex-grow-1 align-center justify-center white--text montyfont px-3 py-3 mx-7"
-            style="font-size:15px;font-weight:500;"
-            :style="`position:relative;z-index:4;`"
-          >
-            contract
-          </v-card>
-          <!--  card CHIP with contract # very small - - - -   -->
+
           <v-card
             v-for="contract in contracts"
-            id="contractCHIP"
+            id="contractviewer"
             :key="contract"      
-            color="white"
+            color="deep-orange lighten-5"
             width="breakpoint.smAndDown ? 179px : 420px"
-            height="90px"
-            min-height="72px"
+            height="140px"
+            min-height="110px"
             max-height="290px"
             max-width="523px"            
             min-width="100px"
             elevation-12
-            class="d-flex flex-column flex-grow-1 flex-wrap justify-center pl-4 pr-0 py-3 mx-3 mt-n2 mb-6 ptsans"
-          >      
+            class="d-flex flex-column flex-grow-1 flex-wrap align-center justify-center pl-4 pr-0 py-0 mt-0 mb-5 ptsans"
+          >   
+            <v-chip
+              id="titleChiptopContract"
+              color="teal accent-4"
+              text-color="black"
+              contractviewer
+              label
+              dark
+              large
+              outlined
+              class="montyfont px-6 mx-3 pl-4 text-center"
+              style="font-size:16px;font-weight:700;max-width:200px;"
+              :style="`position:relative;z-index:2;`"
+            >   
+              <v-icon
+                :style="`margin-right:12px;`"
+              >                
+                mdi-nfc
+              </v-icon>
+              contract in use
+            </v-chip>  
+            <br>
+            <!--  card CHIP with contract # very small - - - -   -->   
             <span 
               :style="styleObject"
             >
@@ -92,19 +97,20 @@
           <v-chip
             id="reviews-titleChipTop33"
             color="teal accent-4"
-            text-color="white"
+            text-color="black"
             vselbackgroundcard2
             label
             dark
             medium
-            class="montyfont px-6 mx-3 pl-4 text-center"
+            outlined
+            class="montyfont px-6 mx-3 my-3 pl-4 text-center"
             style="font-size:16px;font-weight:700;max-width:200px;"
             :style="`position:relative;z-index:4;`"
           >   
-            <v-icon 
-              left
+            <v-icon
+              :style="`margin-right:12px;`"
             >
-              mdi-clipboard-flow
+              mdi-rocket-launch
             </v-icon>
             write review
           </v-chip>  
