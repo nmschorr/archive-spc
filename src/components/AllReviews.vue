@@ -107,7 +107,6 @@
             medium
             class="montyfont pl-2 py-6 mx-3 mt-4 mb-1 text-center"
             style="font-size:36px;font-weight:700;max-width:600px;"
-            :style="`position:relative;z-index:4;`"
           >   
             <v-icon
               :style="`margin-right:22px;font-size:36px;line-height:50px;`"
@@ -180,6 +179,7 @@
                 flat
                 color="transparent"
                 width="100%"
+                height="10px"
                 class="d-flex flex-column align-center justify-center"
               >
                 <v-card-actions>
@@ -251,7 +251,7 @@
         elevation-24
         shaped
         filled
-        class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-around align-center pt-2"
+        class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center pt-2"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vsel RED groupcard  -->
@@ -278,9 +278,8 @@
             max-width="600px"
             min-height="170px"
             max-height="330px"
-            color="white"
+            color="purple"
             class="d-flex flex-column flex-grow-1 align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
-            :style="`position:relative;z-index:1;`"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
@@ -291,7 +290,7 @@
               vselbackgroundcard2
               label
               large
-              class="montyfont px-3 mx-2 mb-n1"
+              class="montyfont px-3 mx-2 mb-n1 mt-n1"
               style="font-size:36px;font-weight:700;"
             >   
               <v-icon
@@ -317,44 +316,49 @@
               height="30px"
               min-width="100px"
               max-width="450px"
-              min-height="20px"
+              min-height="30px"
               max-height="160px"
               :items="productlist"
-              class="d-flex mt-n2 mb-0 ml-2 mr-10 pr-2"
+              class="d-flex mt-2 mb-0 ml-2 mr-10 pr-2"
             />
             <!-- <span style="font-size:14px">Select a Product then press go</span> -->
-            <v-card-actions>
-              <v-btn
-                id="getrevssbtn"
-                color="deep-orange darken-2"
-                dark
-                vselbackgroundcard2
-                elevation-12
-                class="mb-2 montyfont"
-                style="text-transform:lowercase;"
-                @click="axiosGetRevs"
-              >    
-                go
-              </v-btn>
-              <br>
-              <p> 
-                r
-              </p>
-              <v-spacer />
+            <v-card
+              id="btnspacer"
+              color="red"
+              width="100%"
+              height="150px"
+              class="d-flex flex-column justify-center align-center"
+            >
+              <v-card-actions>
+                <v-btn
+                  id="getrevssbtn"
+                  color="deep-orange darken-2"
+                  dark
+                  vselbackgroundcard2
+                  elevation-12
+                  class="mb-2 montyfont"
+                  style="text-transform:lowercase;"
+                  @click="axiosGetRevs"
+                >    
+                  go
+                </v-btn>
+              </v-card-actions>
               If your product isn't showing in the list, try the reload products button.
-              <v-btn
-                id="reloadbtn"
-                color="cyan darken-4"
-                dark
-                vselbackgroundcard2
-                elevation-12
-                class="mb-3 montyfont"
-                style="text-transform:lowercase;"
-                @click="axiosGetList"
-              >    
-                reload products
-              </v-btn> 
-            </v-card-actions>
+              <v-card-actions>
+                <v-btn
+                  id="reloadbtn"
+                  color="cyan darken-4"
+                  dark
+                  vselbackgroundcard2
+                  elevation-12
+                  class="mb-3 montyfont"
+                  style="text-transform:lowercase;"
+                  @click="axiosGetList"
+                >    
+                  reload products
+                </v-btn> 
+              </v-card-actions>
+            </v-card>  <!-- end vselbackgroundcard -->
           </v-card>  <!-- end vselbackgroundcard -->
           <!-- end select a product -->
         </v-card>      <!-- end greencard -->
@@ -363,7 +367,7 @@
         <!-- ****** data results - revs listed here -->
         <v-card
           id="spacercard3"
-          height="70px"
+          height="12px"
           width="100%"
           min-width="100%"
           flat
@@ -381,7 +385,6 @@
           max-height="1744px"
           shaped
           class="d-flex flex-column flex-shrink-1 px-6 py-6 mx-6 mt-24 mb-10"
-          style="position:relative;z-index:1;"
         >    
           <v-chip
             id="reviews-titleChip2222"
@@ -393,7 +396,6 @@
             medium
             class="montyfont px-6 mx-3 pl-4 mt-3 text-center"
             style="font-size:16px;font-weight:700;max-width:200px;"
-            :style="`position:relative;z-index:4;`"
           >   
             <v-icon 
               left
@@ -402,24 +404,22 @@
             </v-icon>
             Reviews
           </v-chip>
-          <!-- 
-            <v-card
-              id="reviews-titleChip"
-              color="blue-grey darken-2"
-              reviewssheet
-              dark
-              width="190px"
-              height="34px"
-              max-width="190px"  
-              min-width="120px"    
-              min-height="20px"    
-              max-height="50px"
-              class="shaped=false d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
-              style="font-size:15px;font-weight:500;"
-              :style="`position:relative;z-index:4;`"
-            >   
-              reviews
-            </v-card> -->
+          <v-card
+            id="reviews-titleChip"
+            color="blue-grey darken-2"
+            reviewssheet
+            dark
+            width="190px"
+            height="34px"
+            max-width="190px"  
+            min-width="120px"    
+            min-height="20px"    
+            max-height="50px"
+            class="shaped=false d-flex flex-column align-center align-content-center white--text montyfont px-3 mx-3 py-1 mt-n10"
+            style="font-size:15px;font-weight:500;"
+          >   
+            reviews
+          </v-card>
           <!-- date below is for duplicate keys problem -->
           <v-simple-table
             v-for="review in reviewlist"
