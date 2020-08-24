@@ -10,14 +10,15 @@
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="columncard-left"
-        color="blue-grey lighten-5"
+        color="black"
         width="100%"
         height="890px"
         min-width="200px"           
         max-width="700px"            
         min-height="550px"
         max-height="1000px"
-        elevation-15
+        elevation-24
+        raised
         shaped
         filled
         class="d-flex flex-column align-center flex-grow-1 flex-shrink-1 pt-1 pb-3 mt-0"
@@ -42,48 +43,50 @@
             v-for="contract in contracts"
             id="contractviewer"
             :key="contract"      
-            color="deep-orange lighten-5"
-            width="breakpoint.smAndDown ? 179px : 420px"
+            color="transparent"
+            width="breakpoint.smAndDown ? 179px : 520px"
+            flat
             height="140px"
             min-height="110px"
             max-height="290px"
             max-width="523px"            
             min-width="100px"
-            elevation-12
-            class="d-flex flex-column flex-grow-1 flex-wrap align-center justify-center pl-4 pr-0 py-0 mt-0 mb-5 ptsans"
+            class="d-flex flex-inline-row justify-between flex-grow-1 flex-wrap pl-1 pr-0 py-0 mt-0 mb-5 ptsans"
           >   
             <v-chip
               id="titleChiptopContract"
-              color="teal accent-4"
+              color="transparent"
               text-color="black"
               contractviewer
               label
-              dark
               large
-              outlined
-              class="montyfont px-6 mx-3 pl-4 text-center"
-              style="font-size:16px;font-weight:700;max-width:200px;"
-              :style="`position:relative;z-index:2;`"
+              class="montyfont px-3 mx-2 mb-n1"
+              style="font-size:16px;font-weight:700;"
             >   
               <v-icon
                 :style="`margin-right:12px;`"
               >                
                 mdi-nfc
               </v-icon>
-              contract in use
+              <span
+                style="margin-right:24px;"
+              >
+                contract: 
+              </span>
+              <span 
+                :style="styleObject"
+                class="ptsans"
+              >
+                {{ contract }}
+              </span>
             </v-chip>  
-            <br>
+             
             <!--  card CHIP with contract # very small - - - -   -->   
-            <span 
-              :style="styleObject"
-            >
-              {{ contract }}
-            </span>
           </v-card> <!-- end contractchip -->
         </v-card>  <!-- form card start -->
         <v-card
-          id="form-area"
-          color="cyan lighten-5"
+          id="form-card"
+          color="teal lighten-5"
           columncard-left
           width="92%"
           height="520px"
@@ -92,23 +95,22 @@
           min-height="300px"
           max-height="600px"
           shaped
-          class="d-flex flex-column align-center flex-grow-1 px-0 pt-0 mx-1 mt-7 mb-20"
+          class="d-flex flex-column align-center flex-grow-1 px-0 pt-2 mx-1 mt-7 mb-20"
         >          
           <v-chip
-            id="reviews-titleChipTop33"
-            color="teal accent-4"
+            id="write-rev-Chip"
+            color="transparent"
             text-color="black"
             vselbackgroundcard2
             label
             dark
             medium
-            outlined
-            class="montyfont px-6 mx-3 my-3 pl-4 text-center"
-            style="font-size:16px;font-weight:700;max-width:200px;"
+            class="montyfont pl-2 py-6 mx-3 mt-4 mb-1 text-center"
+            style="font-size:36px;font-weight:700;max-width:600px;"
             :style="`position:relative;z-index:4;`"
           >   
             <v-icon
-              :style="`margin-right:12px;`"
+              :style="`margin-right:22px;font-size:36px;line-height:50px;`"
             >
               mdi-rocket-launch
             </v-icon>
@@ -117,7 +119,7 @@
 
           <v-card
             id="form-wrap"
-            form-area
+            form-card
             width="475px"
             height="430px"
             min-width="420px"
@@ -132,6 +134,7 @@
               id="wform"
               ref="wform" 
               form-wrap
+              background-color="white"
               width="470px"
               min-width="270px"
               max-width="650px"
@@ -205,24 +208,24 @@
           color="white"
           width="auto"
           height="300px"
-          min-width="120px"
+          min-width="320px"
           max-width="620px"
-          min-height="120px"
+          min-height="220px"
           max-height="600px"
           shaped
-          class="d-flex flex-column flex-wrap align-center px-4 pt-0 mx-4 mt-7 mb-10"
+          class="d-flex flex-column flex-wrap align-center px-4 pt-0 mx-4 mt-4 mb-4"
         >    
           <v-simple-table
             id="feedbacktable"
             feedbackcard
-            color="white"
+            color="teal lighten-2"
             width="auto"
             height="120px"
             min-width="220px"
             max-width="620px"
             min-height="140px"
             max-height="250px"
-            class="px-4 py-5"
+            class="px-4 py-3"
           >
             <span style="font-size:14px;"> <pre>{{ formaxrjson }} </pre></span>
           </v-simple-table>
@@ -240,14 +243,15 @@
       <!-- ****** column card  -->
       <v-card
         id="columncard-right"
-        color="teal lighten-4"
+        color="black"
+        width="100%"
         height="auto"
         min-height="250px"
         max-height="2000px"
-        elevation-15
+        elevation-24
         shaped
         filled
-        class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-around align-center pt-12"
+        class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-around align-center pt-2"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vsel RED groupcard  -->
@@ -255,12 +259,12 @@
           id="groupcard"
           columncard-right
           width="100%"
-          height="yesbig ? '150px' : '260px'"
-          min-height="75px"
-          max-height="290px"
+          height="yesbig ? '450px' : '650px'"
+          min-height="275px"
+          max-height="700px"
           flat
           color="transparent"
-          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center justify-center mt-4 px-3"
+          class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center mt-1 px-3"
         >                                
           <!-- * * * * * * vselbackgroundcard select BACKGROUND  -->
 
@@ -275,30 +279,32 @@
             min-height="170px"
             max-height="330px"
             color="white"
-            class="d-flex flex-column flex-grow-1 justify-center align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
+            class="d-flex flex-column flex-grow-1 align-center flex-shrink-1 px-2 py-6 mx-1 my-6"
             :style="`position:relative;z-index:1;`"
           >        
             <!-- * * * * * *  * * * * * * * * * * * * * * * * * * * * * * * *  -->
             <!-- * * * * * *  * * * * * * * PRODUCT CHOICE SELECT * * * * * * * * * * * * * * * * *  -->
             <v-chip
               id="reviews-titleChipTop"
-              color="cyan darken-1"
-              text-color="white"
+              color="transparent"
+              text-color="black"
               vselbackgroundcard2
               label
-              dark
-              medium
-              class="montyfont px-6 mx-3 pl-4 mt-n10 text-center"
-              style="font-size:16px;font-weight:700;max-width:200px;"
-              :style="`position:relative;z-index:4;`"
+              large
+              class="montyfont px-3 mx-2 mb-n1"
+              style="font-size:36px;font-weight:700;"
             >   
-              <v-icon 
-                left
-              >
+              <v-icon
+                :style="`margin-right:12px;font-size:36px;`"
+              >                
                 mdi-clipboard-flow
               </v-icon>
-              Show Reviews
-            </v-chip>  
+              <span
+                style="margin-right:24px;"
+              >
+                read reviews <br>
+              </span> 
+            </v-chip>
             <v-spacer />
             <v-select
               id="vselone"
@@ -314,7 +320,7 @@
               min-height="20px"
               max-height="160px"
               :items="productlist"
-              class="d-flex align-center justify-center mt-15 mb-2 ml-2 mr-10 pr-2"
+              class="d-flex mt-n2 mb-0 ml-2 mr-10 pr-2"
             />
             <!-- <span style="font-size:14px">Select a Product then press go</span> -->
             <v-card-actions>
@@ -324,12 +330,30 @@
                 dark
                 vselbackgroundcard2
                 elevation-12
-                class="mb-3 montyfont"
+                class="mb-2 montyfont"
                 style="text-transform:lowercase;"
                 @click="axiosGetRevs"
               >    
                 go
-              </v-btn>   
+              </v-btn>
+              <br>
+              <p> 
+                r
+              </p>
+              <v-spacer />
+              If your product isn't showing in the list, try the reload products button.
+              <v-btn
+                id="reloadbtn"
+                color="cyan darken-4"
+                dark
+                vselbackgroundcard2
+                elevation-12
+                class="mb-3 montyfont"
+                style="text-transform:lowercase;"
+                @click="axiosGetList"
+              >    
+                reload products
+              </v-btn> 
             </v-card-actions>
           </v-card>  <!-- end vselbackgroundcard -->
           <!-- end select a product -->
@@ -348,7 +372,7 @@
         <v-card
           id="reviewssheet"
           columncard-right
-          color="grey lighten-3"
+          color="teal lighten-5"
           height="auto"
           width="92%"
           min-width="170px"    
@@ -356,18 +380,18 @@
           :max-width="`styleobject4`"
           max-height="1744px"
           shaped
-          class="d-flex flex-column flex-shrink-1 px-2 py-6 mx-4 mt-24 mb-10"
+          class="d-flex flex-column flex-shrink-1 px-6 py-6 mx-6 mt-24 mb-10"
           style="position:relative;z-index:1;"
         >    
           <v-chip
             id="reviews-titleChip2222"
-            color="cyan darken-1"
-            text-color="white"
+            color="transparent"
+            text-color="black"
             label
             reviewssheet
             dark
             medium
-            class="montyfont px-6 mx-3 pl-4 mt-n10 text-center"
+            class="montyfont px-6 mx-3 pl-4 mt-3 text-center"
             style="font-size:16px;font-weight:700;max-width:200px;"
             :style="`position:relative;z-index:4;`"
           >   
@@ -509,7 +533,6 @@
     const wcat = this.vmcat
     const wrev = this.vmrev
     this.resetform()
-    this.showfeedback = true
     this.showproducts = false;
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
@@ -530,6 +553,7 @@
       this.waitReloadProducts().then(console.log("- - - - ! ! ! done waiting"))
       this.respkey += 1;
       this.resetvselone();
+      this.showfeedback = true
       }
   }
 
@@ -639,6 +663,7 @@
   }
   .ptsans {
     font-family:'PT Sans Narrow, sans-serif';
+    font-weight: 400;
   }
   .v-label  {
     font-size: 12px!important;
