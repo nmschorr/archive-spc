@@ -505,14 +505,14 @@
 
   async function reloadProducts(wcat) {
     var i = 0
+    this.showfeedback = true
     while (i < 200) {
       i += 1;
-      setTimeout(this.axiosGetProds, 1500);  // go fetch
+      setTimeout(() => this.axiosGetProds(), 1000)
       if (this.productlist.indexOf(wcat) > -1)   // found it
         break;
     }
     this.formaxrjson = '';
-    this.showfeedback = true
     this.$refs.vselone.reset()
   }
   
@@ -525,6 +525,7 @@
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
+    this.showfeedback = true
     let axr = await this.writeReview( wcat, wrev)
     if (typeof(axr.data.result) == 'undefined') {
       badanswerstr = "Write Review Failed. Make sure both fields contain alpha-numeric values."
