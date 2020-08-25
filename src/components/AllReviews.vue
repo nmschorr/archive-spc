@@ -354,18 +354,27 @@
                   go
                 </v-btn>
               </v-card-actions>
-              If your product isn't showing in the list, try the reload products button.
+              <span 
+                style="font-size:12px;margin-top:24px;"
+              >            
+                If your product isn't showing in the list, try the reload products button.
+              </span>
               <v-card-actions>
                 <v-btn
                   id="reloadbtn"
                   color="cyan darken-4"
                   outlined
+                  small
                   vselbackgroundcard2
-                  class="d-flex mb-3 mt-4 align-self-right"
+                  class="d-flex mb-3 mt-2 align-self-right"
                   style="text-transform:lowercase;"
                   @click="reloadProducts"
                 >    
-                  reload products
+                  <span 
+                    style="font-size:12px;"
+                  >
+                    reload products
+                  </span>
                 </v-btn> 
               </v-card-actions>
             </v-card>  <!-- end vselbackgroundcard -->
