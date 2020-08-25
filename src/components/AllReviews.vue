@@ -206,22 +206,20 @@
           </v-card>  
         </v-card>  <!-- end formAREA --><!-- begin feedback -->
         <v-card
-          v-if="showfeedback"
           id="feedbackcard"
-          :key="showfeedback"
           columncard-left
-          color="white"
+          color="transparent"
           width="auto"
           height="300px"
           min-width="320px"
           max-width="620px"
           min-height="220px"
           max-height="600px"
-          shaped
+          flat
           class="d-flex flex-column flex-wrap align-center px-4 pt-0 mx-4 mt-4 mb-4"
         >    
           <v-simple-table
-            id="feedbacktable"
+            id="feedbacktable"          
             feedbackcard
             color="teal lighten-2"
             width="auto"
@@ -232,7 +230,13 @@
             max-height="250px"
             class="px-4 py-3"
           >
-            <span style="font-size:14px;"> <pre>{{ formaxrjson }} </pre></span>
+            <span 
+              id="writeresspan"
+              :key="writeresultkey"
+              style="font-size:14px;"
+            >
+              <pre>{{ writeresult }}</pre>
+            </span>
           </v-simple-table>
         </v-card>  <!-- end formAREA -->
       </v-card>  <!-- end formcardtwo -->
@@ -276,7 +280,7 @@
 
           <v-card        
             id="vselbackgroundcard2"
-            :key="prodkey1"
+            :key="prodkey"
             groupcard
             width="97%"
             height="100%"
@@ -311,9 +315,8 @@
               </span> 
             </v-chip>
             <v-select
-              v-show="showprodlist"
               id="vselone"
-              :key="showprodlist"
+              :key="showprodkey"
               ref="vselone"
               v-model="prodchoice"
               vselbackgroundcard2
@@ -328,7 +331,7 @@
               :items="productlist"
               class="d-flex mt-2 mb-0 ml-2 mr-10 pr-2"
             />
-            <!-- <span style="font-size:14px">Select a Product then press go</span> -->
+            <!--  -->
             <v-card
               id="btnspacer"
               color="transparent"
@@ -344,7 +347,7 @@
                   dark
                   vselbackgroundcard2
                   elevation-12
-                  class="mb-2 montyfont"
+                  class="mb-5 montyfont"
                   style="text-transform:lowercase;"
                   @click="axiosGetRevs"
                 >    
@@ -356,10 +359,9 @@
                 <v-btn
                   id="reloadbtn"
                   color="cyan darken-4"
-                  dark
+                  outlined
                   vselbackgroundcard2
-                  elevation-12
-                  class="mb-3 montyfont"
+                  class="d-flex mb-3 mt-4 align-self-right"
                   style="text-transform:lowercase;"
                   @click="reloadProducts"
                 >    
@@ -492,7 +494,6 @@
 
   async function axiosGetProds () {
     const c = cjo
-    this.showprodlist = false
     console.log("thedata: " +  c.chainid + " " + c.contaddy + " " + c.Url3)
     let axr = await this.axiosGetProducts( c.chainid, c.contaddy, c.Url3)
     let axrsorted = axr.slice().sort()
@@ -500,75 +501,82 @@
     this.productlist = []
     this.productlist = Object.assign(axrsorted)
     console.log("new this.productlist: " + axrsorted)
-    this.showprodlist = true
   }
 
   async function reloadProducts(wcat) {
     var i = 0
-    this.showfeedback = true
-    while (i < 200) {
+    while (i < 100) {
       i += 1;
-      setTimeout(() => this.axiosGetProds(), 1000)
+      await this.msleep(2000).then(() => { 
+        this.axiosGetProds() }); 
       if (this.productlist.indexOf(wcat) > -1)   // found it
         break;
     }
-    this.formaxrjson = '';
+    // reset results form
     this.$refs.vselone.reset()
+    this.showprodkey += 1;
   }
   
   async function wreview () {
-    var answerstr = ''
-    this.showfeedback = false
+    this.writeresult = ' ';
+    this.writeresultkey += 1;
     const wcat = this.vmcat
     const wrev = this.vmrev
     this.$refs.wform.reset()
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
-    this.showfeedback = true
     let axr = await this.writeReview( wcat, wrev)
     if (typeof(axr.data.result) == 'undefined') {
       badanswerstr = "Write Review Failed. Make sure both fields contain alpha-numeric values."
       alert(badanswerstr)
       }
     else {
+      this.productlist = [ "Please wait", "Blockchain is updating" ]
+      this.showprodkey += 1;
       console.log("wreview received response axr: " + axr)
       let axrstring = JSON.stringify(axr)
       console.log("wreview received response myaxr: " + axrstring)
       let partresult = JSON.stringify(axr.data.result)
       let partb = JSON.stringify(axr.status)
       let partc = JSON.stringify(axr.statusText)
-      let answerstr = partresult + "\n\nStatus code: " + partb + "\n\nStatusText: " + partc
-      this.formaxrjson = answerstr
+      this.writeresult  = partresult + "\n\nStatus code: " + partb + "\n\nStatusText: " + partc
+      this.writeresultkey += 1;
       this.reloadProducts(wcat);
       }
   }
 
+  function msleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+  // async function testg () {
+  //   var i = 0;
+  //   while (i < 20) {
+  //     i += 1;
+  //     await this.msleep(2000).then(() => { 
+  //       console.log("----- ----- ----- !!!!! woke again") 
+  //     }); 
+  //   }
+  // }
+
   export default {
     name: "AllReviews",
     data: () => ({
+      showprodkey: 0,
+      writeresultkey: 0,
+      prodkey: 0,      
       review: '',
-      newcat: '',
-      showprodlist: true,
-      prodkey1: 0,
-      prodkey2: 0,
-      formaxrjson: '',
+      writeresult: '',
       vmcat: '',
       vmrev: '',
-      chainid: cjo.chainid,
       productlist: [],
-      reviewlist: '',
-      contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
       prodchoice: '',
-      showfeedback: false,
+      reviewlist: '',
+      chainid: cjo.chainid,
+      contracts:  ["SPEXdKRT4zmkrCMcwQKfWEQfmCCKSboHp4TCdC"], 
       }),
 
     computed: {
-      tdate () {
-        var n = Math.random()
-        var nn = n.toString()
-        return nn;
-      },
       styleObject () {
         return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
       },
@@ -578,21 +586,13 @@
       computedHeight () {
         return  (window.outerWidth < 960) ? { height: '624px' } : { height: '424px' };
       },
-      styleObject3 () {
-        return  (window.outerWidth < 960) ? '290px' : '424px';
-      },
       styleObjMaxWidth () {
         return  (window.outerWidth < 960) ? { "max-width": "290px"} : {"max-width": "424px"};
       },
       yesbig () {
-        var big = false;
-        if (window.outerWidth > 959) {
-          big = true;
-        }
-        return big;
+        return (window.outerWidth > 959) ? true : false;
       },
     },
-
     mounted () {
       this.axiosGetProds()  // get the prod list
       if (window.outerWidth < 960) {
@@ -600,14 +600,16 @@
         console.log("yes mobile") 
         console.log(this.$vuetify.application.top) 
       }
-    },
+    },    
     methods: {
+      msleep,
       axiosGetRevs,
       axiosGetProducts,
       axiosGetProds,
       writeReview,
       wreview,
       reloadProducts,
+     
     },
   }
 </script>
