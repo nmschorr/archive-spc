@@ -422,7 +422,7 @@
               reviews
             </v-chip>
           </v-card>
-          <!-- date below is for duplicate keys problem -->
+          <!-- Math.random below is for duplicate keys problem -->
           <v-simple-table
             v-for="review in reviewlist"
             id="reviewstable"
@@ -511,14 +511,17 @@
       if (this.productlist.indexOf(wcat) > -1)   // found it
         break;
     }
+    this.formaxrjson = '';
+    this.showfeedback = true
+    this.$refs.vselone.reset()
   }
   
   async function wreview () {
     var answerstr = ''
+    this.showfeedback = false
     const wcat = this.vmcat
     const wrev = this.vmrev
-    this.netcat = wcat
-    this.resetform()
+    this.$refs.wform.reset()
     console.log("reset the form")
     console.log("wcat category being written to: " + wcat)
     console.log("wrev review being written: " + wrev)
@@ -536,9 +539,7 @@
       let partc = JSON.stringify(axr.statusText)
       let answerstr = partresult + "\n\nStatus code: " + partb + "\n\nStatusText: " + partc
       this.formaxrjson = answerstr
-      this.showfeedback = true
       this.reloadProducts(wcat);
-      this.resetvselone();
       }
   }
 
@@ -606,15 +607,6 @@
       writeReview,
       wreview,
       reloadProducts,
-      resetform () {
-        this.$refs.wform.reset()
-        console.log("form reset")
-      },
-      resetvselone () {
-        this.showprodlist = true
-        this.$refs.vselone.reset()
-        console.log("vselone reset")
-      },
     },
   }
 </script>
