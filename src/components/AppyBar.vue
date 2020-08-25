@@ -78,6 +78,12 @@
         @click="allrevsclick"
       >
         Reviews
+        <v-icon
+          style="font-size:26px;margin-left:10px;"
+          color="white"
+        >
+          mdi-rocket-outline
+        </v-icon>
       </v-btn>
     </div>
   </v-container>

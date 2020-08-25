@@ -493,7 +493,7 @@
   async function axiosGetProds () {
     const c = cjo
     this.showprodlist = false
-    console.log("thedata: " +  cjo.chainid + " " + cjo.contaddy + " " + cjo.Url3)
+    console.log("thedata: " +  c.chainid + " " + c.contaddy + " " + c.Url3)
     let axr = await this.axiosGetProducts( c.chainid, c.contaddy, c.Url3)
     let axrsorted = axr.slice().sort()
     console.log("sorted: -- : " +  axrsorted)
@@ -505,14 +505,12 @@
 
   async function reloadProducts(wcat) {
     var i = 0
-    var itsthere = false
-    while (i < 15) {
-      this.axiosGetProds()
+    while (i < 200) {
       i += 1;
-      if (this.productlist.indexOf(wcat) > -1)
+      setTimeout(this.axiosGetProds, 1500);  // go fetch
+      if (this.productlist.indexOf(wcat) > -1)   // found it
         break;
     }
-    
   }
   
   async function wreview () {
@@ -536,6 +534,7 @@
       let partresult = JSON.stringify(axr.data.result)
       let partb = JSON.stringify(axr.status)
       let partc = JSON.stringify(axr.statusText)
+      let answerstr = partresult + "\n\nStatus code: " + partb + "\n\nStatusText: " + partc
       this.formaxrjson = answerstr
       this.showfeedback = true
       this.reloadProducts(wcat);
@@ -577,8 +576,11 @@
       computedHeight () {
         return  (window.outerWidth < 960) ? { height: '624px' } : { height: '424px' };
       },
-      styleObject4 () {
+      styleObject3 () {
         return  (window.outerWidth < 960) ? '290px' : '424px';
+      },
+      styleObjMaxWidth () {
+        return  (window.outerWidth < 960) ? { "max-width": "290px"} : {"max-width": "424px"};
       },
       yesbig () {
         var big = false;
