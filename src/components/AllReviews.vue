@@ -7,22 +7,16 @@
       xs="12"
       class="d-flex flex-column"
     >  
-      <!-- <v-img
-        class="align-center"
-        height="890px"
-        src="@/assets/StockSnap_YVTZVJ1BRI.jpg"
-      />       -->
-
       <!-- * * * * * * * ENTIRE LEFT COLUMN card on left -->
       <v-card
         id="columncard-left"
         color="transparent"
         width="100%"
-        height="800px"
+        height="auto"
         min-width="200px"           
         max-width="700px"            
         min-height="550px"
-        max-height="1000px"
+        max-height="1200px"
         elevation-24
         raised
         shaped
@@ -50,14 +44,14 @@
             id="contractviewer"
             :key="contract"      
             color="transparent"
-            width="breakpoint.smAndDown ? 179px : 520px"
+            width="breakpoint.smAndDown ? 200px : 600px"
             flat
             height="140px"
             min-height="110px"
             max-height="290px"
-            max-width="523px"            
+            max-width="600px"            
             min-width="100px"
-            class="d-flex flex-inline-row justify-between flex-grow-1 flex-wrap pl-1 pr-0 py-0 mt-0 mb-5 ptsans"
+            class="d-flex flex-inline-row flex-grow-1 pa-0 mt-0 mb-5 mx-0 ptsans"
           >   
             <v-chip
               id="titleChiptopContract"
@@ -70,17 +64,18 @@
               style="font-size:16px;font-weight:700;"
             >   
               <v-icon
-                :style="`margin-right:12px;`"
+                :style="`margin-right:10px;`"
               >                
                 mdi-nfc
               </v-icon>
               <span
-                style="margin-right:24px;"
+                style="margin-right:10px;"
               >
                 contract: 
               </span>
               <span 
-                :style="styleObject"
+                :style="styleContract"
+                style="text-transform:none;"
                 class="ptsans"
               >
                 {{ contract }}
@@ -110,7 +105,7 @@
             label
             dark
             medium
-            class="montyfont pl-2 py-6 mx-3 mt-1 mb-1 text-center"
+            class="montyfont textlow pl-2 py-6 mx-3 mt-1 mb-1 text-center"
             style="font-size:36px;font-weight:700;max-width:600px;"
           >   
             <v-icon
@@ -161,7 +156,7 @@
                 color="deep-purple"
                 label="Product Category"
                 class="pa-2 mb-0 mx-2"
-                :style="styleObject2"
+                :style="styleTextareaSz"
               />                        
               <v-textarea
                 id="textfieldform1b"
@@ -176,7 +171,7 @@
                 outlined
                 clearable
                 class="pa-2 ma-2"
-                :style="styleObject2"
+                :style="styleTextareaSz"
               />
               <v-card
                 id="tocenterbutton"
@@ -194,7 +189,7 @@
                     tocenterbutton
                     elevation-12
                     color="deep-orange darken-2"
-                    class="mt-n4 mb-3 montyfont"
+                    class="mt-n4 mb-3 montyfont textlow"
                     style="text-transform:lowercase;"
                     @click="wreview"
                   >
@@ -210,25 +205,25 @@
           columncard-left
           color="transparent"
           width="auto"
-          height="300px"
+          height="60px"
           min-width="320px"
           max-width="620px"
-          min-height="220px"
-          max-height="600px"
+          min-height="50px"
+          max-height="100px"
           flat
-          class="d-flex flex-column flex-wrap align-center px-4 pt-0 mx-4 mt-4 mb-4"
+          class="d-flex flex-column flex-grow-1 align-center px-0 pt-0 mx-0 mt-3 mb-3"
         >    
           <v-simple-table
             id="feedbacktable"          
             feedbackcard
             color="teal lighten-2"
             width="auto"
-            height="120px"
+            height="auto"
             min-width="220px"
             max-width="620px"
-            min-height="140px"
-            max-height="250px"
-            class="px-4 py-3"
+            min-height="40px"
+            max-height="2050px"
+            class="d-flex flex-column flex-grow-1 px-2 py-1"
           >
             <span 
               id="writeresspan"
@@ -256,12 +251,12 @@
         width="100%"
         height="auto"
         min-height="250px"
-        max-height="2000px"
+        max-height="3000px"
         elevation-24
         raised
         shaped
         filled
-        class="d-flex flex-column align-center pt-2"
+        class="d-flex flex-column flex-grow-1 align-center pt-2"
       > 
         <!--   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
         <!-- ****** vsel RED groupcard  -->
@@ -271,7 +266,7 @@
           width="100%"
           height="yesbig ? '450px' : '650px'"
           min-height="275px"
-          max-height="700px"
+          max-height="3000px"
           flat
           color="transparent"
           class="d-flex flex-column flex-grow-1 flex-shrink-1 align-center mt-1 px-3"
@@ -300,7 +295,7 @@
               vselbackgroundcard2
               label
               large
-              class="montyfont px-3 mx-2 mb-n1 mt-n1"
+              class="montyfont textlow px-3 mx-2 mb-n1 mt-n1"
               style="font-size:36px;font-weight:700;"
             >   
               <v-icon
@@ -347,7 +342,7 @@
                   dark
                   vselbackgroundcard2
                   elevation-12
-                  class="mb-5 montyfont"
+                  class="mb-5 montyfont textlow"
                   style="text-transform:lowercase;"
                   @click="axiosGetRevs"
                 >    
@@ -401,9 +396,9 @@
           min-width="170px"    
           min-height="150px"            
           :max-width="`styleobject4`"
-          max-height="1744px"
+          max-height="3000px"
           shaped
-          class="d-flex flex-column align-left flex-shrink-1 px-6 pt-3 pb-6 mx-6 mt-4 mb-10"
+          class="d-flex flex-column align-left flex-grow-1 flex-shrink-1 px-6 pt-3 pb-6 mx-6 mt-4 mb-10"
         >    
           <v-card
             id="chipdivcenter"
@@ -422,7 +417,7 @@
               large
               label
               medium
-              class="montyfont px-6 pt-3 pb-0 mx-3 mt-1 mb-0 text-center"
+              class="montyfont textlow textlow px-6 pt-3 pb-0 mx-3 mt-1 mb-0 text-center"
               style="font-size:30px;font-weight:700;max-width:200px;"
             >   
               <v-icon
@@ -549,7 +544,7 @@
       let partresult = JSON.stringify(axr.data.result)
       let partb = JSON.stringify(axr.status)
       let partc = JSON.stringify(axr.statusText)
-      this.writeresult  = partresult + "\n\nStatus code: " + partb + "\n\nStatusText: " + partc
+      this.writeresult  = partresult + "\nStatus code: " + partb + " Status text: " + partc
       this.writeresultkey += 1;
       this.reloadProducts(wcat);
       }
@@ -558,15 +553,6 @@
   function msleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
-  // async function testg () {
-  //   var i = 0;
-  //   while (i < 20) {
-  //     i += 1;
-  //     await this.msleep(2000).then(() => { 
-  //       console.log("----- ----- ----- !!!!! woke again") 
-  //     }); 
-  //   }
-  // }
 
   export default {
     name: "AllReviews",
@@ -586,10 +572,10 @@
       }),
 
     computed: {
-      styleObject () {
+      styleContract () {
         return  (window.outerWidth < 960) ? { fontSize: '11px' } : {};
       },
-      styleObject2 () {
+      styleTextareaSz () {
         return  (window.outerWidth < 960) ? { width: '224px' } : { width: '424px' };
       },
       computedHeight () {
@@ -618,7 +604,6 @@
       writeReview,
       wreview,
       reloadProducts,
-     
     },
   }
 </script>
@@ -635,6 +620,7 @@
   .ptsans {
     font-family:'PT Sans Narrow, sans-serif';
     font-weight: 400;
+    font-size: 12px;
   }
   .v-label  {
     font-size: 12px!important;
@@ -648,6 +634,8 @@
   .montyfont {
     font-family: 'Montserrat',sans-serif;
     letter-spacing: 1.25px;
+  }
+  .textlow {
     text-transform: lowercase;
   }
 </style>
